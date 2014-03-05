@@ -19,5 +19,16 @@ namespace Individuellt_arbete
         {
             Label.Text = Service.Contact.ToString();
         }
+
+        // The return type can be changed to IEnumerable, however to support
+        // paging and sorting, the following parameters must be added:
+        //     int maximumRows
+        //     int startRowIndex
+        //     out int totalRowCount
+        //     string sortByExpression
+        public IQueryable<Individuellt_arbete.Model.Song> ListView1_GetData()
+        {
+            return null;
+        }
     }
 }
