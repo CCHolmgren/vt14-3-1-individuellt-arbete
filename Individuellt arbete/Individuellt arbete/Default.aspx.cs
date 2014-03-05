@@ -30,5 +30,13 @@ namespace Individuellt_arbete
         {
             return null;
         }
+
+        public IEnumerable<Individuellt_arbete.Model.Album> Unnamed_GetData()
+        {
+            List<Album> album = new List<Album>();
+            album.Add(new Album { AlbumName = "Test", ReleaseDate = "Today", AlbumId = 5 });
+            album.Add(new Album{AlbumName = "Yes", AlbumId =3, ReleaseDate ="Yesterday"});
+            return album.AsEnumerable();
+        }
     }
 }
