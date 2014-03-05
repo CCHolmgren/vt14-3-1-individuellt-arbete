@@ -17,7 +17,7 @@ namespace Individuellt_arbete
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label.Text = Service.Contact.ToString();
+            Label.Text = Session["username"] as string;
         }
 
         // The return type can be changed to IEnumerable, however to support
@@ -37,6 +37,23 @@ namespace Individuellt_arbete
             album.Add(new Album { AlbumName = "Test", ReleaseDate = "Today", AlbumId = 5 });
             album.Add(new Album{AlbumName = "Yes", AlbumId =3, ReleaseDate ="Yesterday"});
             return album.AsEnumerable();
+        }
+
+        public IEnumerable<Individuellt_arbete.Model.Medlem> Unnamed_GetData1()
+        {
+            List<Medlem> medlem = new List<Medlem>();
+            medlem.Add(new Medlem { FirstName = "Test firstname", LastName = "Test lastname" });
+            return medlem;
+        }
+
+        protected void Unnamed_Command(object sender, CommandEventArgs e)
+        {
+        }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            Session["username"] = TextBox1.Text;
+            Response.Redirect("Default.aspx");
         }
     }
 }
