@@ -50,6 +50,30 @@ namespace Individuellt_arbete.Model
                 throw new ConnectionException(errorMessage);
         }
     }
+    public class Contact
+    {
+        public int ContactId
+        {
+            get;
+            set;
+        }
+        public string FirstName
+        {
+            get;
+            set;
+        }
+        public string LastName
+        {
+            get;
+            set;
+        }
+        public string EmailAddress
+        {
+            get;
+            set;
+        }
+
+    }
     public class ContactDAL : DALBase
     {
         /// <summary>
