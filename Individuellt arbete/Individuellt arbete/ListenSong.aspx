@@ -3,6 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Repeater runat="server" ID="SongRepeater" ItemType="Individuellt_arbete.Model.Song" SelectMethod="SongRepeater_GetData">
-        <ItemTemplate><asp:Button Text="Betygsätt" runat="server" /></ItemTemplate>
+        <ItemTemplate><%# System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ApplicationService"].ConnectionString %><asp:Button Text="Betygsätt" runat="server" /></ItemTemplate>
     </asp:Repeater>
 </asp:Content>

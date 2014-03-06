@@ -81,7 +81,20 @@ namespace Individuellt_arbete
 
         public IEnumerable<Individuellt_arbete.Model.Song> SongRepeater_GetData()
         {
-            return Service.getAllSongs();
+            try
+            {
+                return Service.getAllSongs();
+            }
+            catch (ConnectionException cx)
+            {
+                List<Song> song = new List<Song>();
+                song.Add(new Song
+                {
+                    SongName = "Broken",
+                    BandName = cx.Message
+                });
+                return song;
+            }
         }
     }
 }
