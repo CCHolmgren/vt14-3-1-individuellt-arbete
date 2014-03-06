@@ -35,12 +35,8 @@ namespace Individuellt_arbete
 
             // Populate the table with sample values.
             albums.ForEach(album => 
-                dt.Rows.Add(CreateRow(String.Format("{0} ({1})",album.AlbumName, album.ReleaseDate.Year),album.AlbumId,dt)));
-            /*dt.Rows.Add(CreateRow("White", "White", dt));
-            dt.Rows.Add(CreateRow("Silver", "Silver", dt));
-            dt.Rows.Add(CreateRow("Dark Gray", "DarkGray", dt));
-            dt.Rows.Add(CreateRow("Khaki", "Khaki", dt));
-            dt.Rows.Add(CreateRow("Dark Khaki", "DarkKhaki", dt));*/
+                dt.Rows.Add(CreateRow(String.Format("{0} ({1})",album.AlbumName, album.ReleaseDate.Year)
+                                        ,album.AlbumId,dt)));
 
             // Create a DataView from the DataTable to act as the data source
             // for the DropDownList control.
@@ -64,6 +60,11 @@ namespace Individuellt_arbete
             dr[1] = Value;
 
             return dr;
+        }
+
+        protected void SaveSongButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

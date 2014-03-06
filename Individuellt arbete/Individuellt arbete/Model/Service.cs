@@ -32,5 +32,9 @@ namespace Individuellt_arbete.Model
         {
             return Contact.GetAllAlbums();
         }
+        public List<Medlem> getAllMedlems()
+        {
+            return Contact.GetAllMedlems();
+        }
     }
 }
