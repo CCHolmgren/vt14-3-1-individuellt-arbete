@@ -5,6 +5,9 @@ using System.Web;
 
 namespace Individuellt_arbete.Model
 {
+    /// <summary>
+    /// Represents a Song stored in the database
+    /// </summary>
     public class Song
     {
         public int SongId

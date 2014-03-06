@@ -5,6 +5,9 @@ using System.Web;
 
 namespace Individuellt_arbete.Model
 {
+    /// <summary>
+    /// Represents a Medlem stored in the Database
+    /// </summary>
     public class Medlem
     {
         public string FirstName
@@ -12,7 +15,11 @@ namespace Individuellt_arbete.Model
             get;
             set;
         }
-        public string LastName { get; set; }
+        public string LastName 
+        { 
+            get; 
+            set; 
+        }
         public int MedlemId
         {
             get;

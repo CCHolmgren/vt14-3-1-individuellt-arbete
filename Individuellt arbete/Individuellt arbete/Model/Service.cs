@@ -16,5 +16,6 @@ namespace Individuellt_arbete.Model
                 return _contact ?? (_contact = new ContactDAL());
             }
         }
+        //Add all functions to get all data from database
     }
 }

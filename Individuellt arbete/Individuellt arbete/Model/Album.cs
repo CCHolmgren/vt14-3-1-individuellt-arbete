@@ -5,6 +5,9 @@ using System.Web;
 
 namespace Individuellt_arbete.Model
 {
+    /// <summary>
+    /// Represents an Album stored in the database
+    /// </summary>
     public class Album
     {
         public int AlbumId
