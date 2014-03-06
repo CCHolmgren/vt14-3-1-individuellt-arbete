@@ -19,8 +19,8 @@ namespace Individuellt_arbete
         protected void Page_Load(object sender, EventArgs e)
         {
             AlbumList.DataSource = CreateDataSource();
-            AlbumList.DataTextField = "ColorTextField";
-            AlbumList.DataValueField = "ColorValueField";
+            AlbumList.DataTextField = "AlbumNameTextField";
+            AlbumList.DataValueField = "AlbumIdValueField";
             AlbumList.DataBind();
         }
         DataView CreateDataSource()
@@ -30,8 +30,8 @@ namespace Individuellt_arbete
             DataTable dt = new DataTable();
 
             // Define the columns of the table.
-            dt.Columns.Add(new DataColumn("ColorTextField", typeof(String)));
-            dt.Columns.Add(new DataColumn("ColorValueField", typeof(int)));
+            dt.Columns.Add(new DataColumn("AlbumNameTextField", typeof(String)));
+            dt.Columns.Add(new DataColumn("AlbumIdValueField", typeof(int)));
 
             // Populate the table with sample values.
             albums.ForEach(album => 
