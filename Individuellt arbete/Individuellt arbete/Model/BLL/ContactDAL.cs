@@ -214,13 +214,16 @@ namespace Individuellt_arbete.Model
 
                     while (reader.Read())
                     {
-                        songs.Add(new Song
-                        {
-                            SongId = reader.GetInt32(songIDindex),
+                        Song songyes = new Song();
+                        songyes.BandName = reader.GetString(bandNameIndex);
+                        songyes.SongId = reader.GetInt32(songIDindex);
+                        songyes.Length = reader.GetInt16(lengthIndex);
+                        songyes.SongName = reader.GetString(songNameIndex);
+                        songs.Add(songyes);
+                            /*SongId = reader.GetInt32(songIDindex),
                             SongName = reader.GetString(songNameIndex),
                             Length = reader.GetInt32(lengthIndex),
-                            BandName = reader.GetString(bandNameIndex)
-                        });
+                            BandName = reader.GetString(bandNameIndex)*/
                     }
                     return songs;
                 }
