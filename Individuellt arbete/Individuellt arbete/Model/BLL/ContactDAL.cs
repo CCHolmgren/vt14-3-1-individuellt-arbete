@@ -229,6 +229,35 @@ namespace Individuellt_arbete.Model
                 }
             }
         }
+        public List<Album> GetAllAlbums()
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("getAllAlbums", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                conn.Open(); 
+                using (var reader = cmd.ExecuteReader())
+                {
+                    List<Album> albums = new List<Album>();
+
+                    int albumIDindex = reader.GetOrdinal("AlbumId");
+                    int albumNameIndex = reader.GetOrdinal("AlbumName");
+                    int releaseDateIndex = reader.GetOrdinal("ReleaseDate");
+
+                    while (reader.Read())
+                    {
+                        albums.Add(new Album
+                        {
+                            AlbumName = reader.GetString(albumNameIndex),
+                            AlbumId = reader.GetInt32(albumIDindex),
+                            ReleaseDate = reader.GetDateTime(releaseDateIndex).ToString()
+                        });
+                    }
+                    return albums;
+                }
+            }
+        }
         /// <summary>
         /// Creates a new element in the database and put the contact into it
         /// </summary>
