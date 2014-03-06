@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ListenSong.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="SiteMaster.Master" />
     <None Include="Web.Debug.config">
@@ -77,6 +78,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListenSong.aspx.cs">
+      <DependentUpon>ListenSong.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListenSong.aspx.designer.cs">
+      <DependentUpon>ListenSong.aspx</DependentUpon>
     </Compile>
     <Compile Include="Model\Album.cs" />
     <Compile Include="Model\BLL\ContactDAL.cs" />

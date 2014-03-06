@@ -50,30 +50,6 @@ namespace Individuellt_arbete.Model
                 throw new ConnectionException(errorMessage);
         }
     }
-    public class Contact
-    {
-        public int ContactId
-        {
-            get;
-            set;
-        }
-        public string FirstName
-        {
-            get;
-            set;
-        }
-        public string LastName
-        {
-            get;
-            set;
-        }
-        public string EmailAddress
-        {
-            get;
-            set;
-        }
-
-    }
     public class ContactDAL : DALBase
     {
         /// <summary>
@@ -98,7 +74,7 @@ namespace Individuellt_arbete.Model
         /// </summary>
         /// <param name="contactId">Integer representing a contact</param>
         /// <returns></returns>
-        public Contact GetContactById(int contactId)
+        public Medlem GetContactById(int contactId)
         {
             using (var conn = CreateConnection())
             {
@@ -118,12 +94,12 @@ namespace Individuellt_arbete.Model
 
                     if (reader.Read())
                     {
-                        return new Contact
+                        return new Medlem
                         {
-                            ContactId = reader.GetInt32(contactIDindex),
+                            MedlemId = reader.GetInt32(contactIDindex),
                             FirstName = reader.GetString(firstNameIndex),
                             LastName = reader.GetString(lastNameIndex),
-                            EmailAddress = reader.GetString(emailAdressIndex)
+                            PrimaryEmail = reader.GetString(emailAdressIndex)
                         };
                     }
                 }
@@ -134,11 +110,11 @@ namespace Individuellt_arbete.Model
         /// Get all contacts
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Contact> GetContacts()
+        public IEnumerable<Medlem> GetContacts()
         {
             using (var conn = CreateConnection())
             {
-                List<Contact> contacts = new List<Contact>();
+                List<Medlem> contacts = new List<Medlem>();
 
                 var cmd = new SqlCommand("Person.uspGetContacts", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -154,12 +130,12 @@ namespace Individuellt_arbete.Model
 
                     while (reader.Read())
                     {
-                        contacts.Add(new Contact
+                        contacts.Add(new Medlem
                         {
-                            ContactId = reader.GetInt32(contactIDindex),
+                            MedlemId = reader.GetInt32(contactIDindex),
                             FirstName = reader.GetString(firstNameIndex),
                             LastName = reader.GetString(lastNameIndex),
-                            EmailAddress = reader.GetString(emailAdressIndex)
+                            PrimaryEmail = reader.GetString(emailAdressIndex)
                         });
                     }
                 }
@@ -175,13 +151,13 @@ namespace Individuellt_arbete.Model
         /// <param name="startRowIndex">Index to start on.</param>
         /// <param name="totalRowCount"></param>
         /// <returns></returns>
-        public IEnumerable<Contact> GetContactsPageWise(int maximumRows, int startRowIndex, out int totalRowCount)
+        public IEnumerable<Medlem> GetContactsPageWise(int maximumRows, int startRowIndex, out int totalRowCount)
         {
             using (var conn = CreateConnection())
             {
                 try
                 {
-                    var contacts = new List<Contact>();
+                    var contacts = new List<Medlem>();
                     var cmd = new SqlCommand("Person.uspGetContactsPageWise", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@PageIndex", SqlDbType.Int, 4).Value = startRowIndex / maximumRows + 1;
@@ -201,12 +177,12 @@ namespace Individuellt_arbete.Model
 
                         while (reader.Read())
                         {
-                            contacts.Add(new Contact
+                            contacts.Add(new Medlem
                             {
-                                ContactId = reader.GetInt32(contactIdIndex),
+                                MedlemId = reader.GetInt32(contactIdIndex),
                                 FirstName = reader.GetString(firstNameIndex),
                                 LastName = reader.GetString(lastNameIndex),
-                                EmailAddress = reader.GetString(emailAdressIndex)
+                                PrimaryEmail = reader.GetString(emailAdressIndex)
                             });
                         }
                     }
@@ -218,44 +194,77 @@ namespace Individuellt_arbete.Model
                 }
             }
         }
+        public List<Song> GetAllSongs()
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("getAllSongs", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    List<Song> songs = new List<Song>();
+
+                    int songIDindex = reader.GetOrdinal("SongId");
+                    int songNameIndex = reader.GetOrdinal("SongName");
+                    int lengthIndex = reader.GetOrdinal("Length");
+                    int bandNameIndex = reader.GetOrdinal("BandName");
+
+                    while (reader.Read())
+                    {
+                        songs.Add(new Song
+                        {
+                            SongId = reader.GetInt32(songIDindex),
+                            SongName = reader.GetString(songNameIndex),
+                            Length = reader.GetInt32(lengthIndex),
+                            BandName = reader.GetString(bandNameIndex)
+                        });
+                    }
+                    return songs;
+                }
+                return null;
+            }
+        }
         /// <summary>
         /// Creates a new element in the database and put the contact into it
         /// </summary>
         /// <param name="contact"></param>
-        public void InsertContact(Contact contact)
+        public void InsertMedlem(Medlem medlem)
         {
             using (var conn = CreateConnection())
             {
-                SqlCommand cmd = new SqlCommand("Person.uspAddContact", conn);
+                SqlCommand cmd = new SqlCommand("Person.AddSong", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar, 50).Value = contact.FirstName;
-                cmd.Parameters.Add("@LastName", SqlDbType.NVarChar, 50).Value = contact.LastName;
-                cmd.Parameters.Add("@EmailAddress", SqlDbType.NVarChar, 50).Value = contact.EmailAddress;
+                cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar, 50).Value = medlem.FirstName;
+                cmd.Parameters.Add("@LastName", SqlDbType.NVarChar, 50).Value = medlem.LastName;
+                cmd.Parameters.Add("@EmailAddress", SqlDbType.NVarChar, 50).Value = medlem.PrimaryEmail;
 
                 cmd.Parameters.Add("@ContactID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
 
-                contact.ContactId = (int)cmd.Parameters["@ContactID"].Value;
+                medlem.MedlemId = (int)cmd.Parameters["@ContactID"].Value;
             }
         }
         /// <summary>
         /// Update a already existing contact with the new information
         /// </summary>
         /// <param name="contact"></param>
-        public void UpdateContact(Contact contact)
+        public void UpdateContact(Medlem medlem)
         {
             using (var conn = CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Person.uspUpdateContact", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@ContactID", SqlDbType.Int, 4).Value = contact.ContactId;
-                cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar, 50).Value = contact.FirstName;
-                cmd.Parameters.Add("@LastName", SqlDbType.NVarChar, 50).Value = contact.LastName;
-                cmd.Parameters.Add("@EmailAddress", SqlDbType.NVarChar, 50).Value = contact.EmailAddress;
+                cmd.Parameters.Add("@MedlemId", SqlDbType.Int, 4).Value = medlem.MedlemId;
+                cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar, 50).Value = medlem.FirstName;
+                cmd.Parameters.Add("@LastName", SqlDbType.NVarChar, 50).Value = medlem.LastName;
+                cmd.Parameters.Add("@EmailAddress", SqlDbType.NVarChar, 50).Value = medlem.PrimaryEmail;
 
                 conn.Open();
                 cmd.ExecuteNonQuery();

@@ -16,6 +16,13 @@ namespace Individuellt_arbete.Model
                 return _contact ?? (_contact = new ContactDAL());
             }
         }
-        //Add all functions to get all data from database
+        //Add all functions to get all data from database and insert into
+        public void addSong(Song song)
+        {
+        }
+        public List<Song> getAllSongs()
+        {
+            return Contact.GetAllSongs();
+        }
     }
 }
