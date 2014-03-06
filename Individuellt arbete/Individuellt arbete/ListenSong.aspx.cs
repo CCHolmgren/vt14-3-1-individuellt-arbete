@@ -83,7 +83,8 @@ namespace Individuellt_arbete
         {
             try
             {
-                return Service.getAllSongs();
+                Medlem medlem = Session["currentuser"] as Medlem;
+                return Service.getAllListened(medlem.MedlemId);
             }
             catch (ConnectionException cx)
             {

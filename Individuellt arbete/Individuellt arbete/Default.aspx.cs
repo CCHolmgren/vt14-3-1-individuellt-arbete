@@ -33,5 +33,17 @@ namespace Individuellt_arbete
             Session["username"] = TextBox1.Text;
             Response.Redirect("Default.aspx");
         }
+
+        protected void MedlemId_TextChanged(object sender, EventArgs e)
+        {
+            Session["currentuser"] = new Medlem { MedlemId = 1 };
+            Response.Redirect("ListenSong.aspx");
+        }
+
+        protected void MedlemIdSet_Click(object sender, EventArgs e)
+        {
+            Session["currentuser"] = new Medlem { MedlemId = int.Parse(MedlemId.Text) };
+            Response.Redirect("ListenSong.aspx");
+        }
     }
 }

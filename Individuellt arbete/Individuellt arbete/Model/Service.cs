@@ -24,5 +24,9 @@ namespace Individuellt_arbete.Model
         {
             return Contact.GetAllSongs();
         }
+        public List<Song> getAllListened(int medlemId)
+        {
+            return Contact.GetAllSongs();
+        }
     }
 }
