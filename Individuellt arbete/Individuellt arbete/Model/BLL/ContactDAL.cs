@@ -251,7 +251,7 @@ namespace Individuellt_arbete.Model
                         {
                             AlbumName = reader.GetString(albumNameIndex),
                             AlbumId = reader.GetInt32(albumIDindex),
-                            ReleaseDate = reader.GetDateTime(releaseDateIndex).ToString()
+                            ReleaseDate = reader.GetDateTime(releaseDateIndex)
                         });
                     }
                     return albums;

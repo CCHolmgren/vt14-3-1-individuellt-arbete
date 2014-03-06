@@ -23,8 +23,8 @@ namespace Individuellt_arbete
         public IEnumerable<Individuellt_arbete.Model.Album> Unnamed_GetData()
         {
             List<Album> album = new List<Album>();
-            album.Add(new Album { AlbumName = "Test", ReleaseDate = "Today", AlbumId = 5 });
-            album.Add(new Album{ AlbumName = "Yes", AlbumId = 3, ReleaseDate ="Yesterday" });
+            album.Add(new Album { AlbumName = "Test", ReleaseDate = System.DateTime.Today, AlbumId = 5 });
+            album.Add(new Album{ AlbumName = "Yes", AlbumId = 3, ReleaseDate =DateTime.Today });
             return album.AsEnumerable();
         }
 

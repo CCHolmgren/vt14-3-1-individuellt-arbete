@@ -20,7 +20,7 @@ namespace Individuellt_arbete.Model
             get;
             set;
         }
-        public string ReleaseDate
+        public DateTime ReleaseDate
         {
             get;
             set;
