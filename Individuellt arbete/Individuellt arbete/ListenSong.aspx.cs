@@ -90,13 +90,8 @@ namespace Individuellt_arbete
             }
             catch (ConnectionException cx)
             {
-                List<Song> song = new List<Song>();
-                song.Add(new Song
-                {
-                    SongName = "Broken",
-                    BandName = cx.Message
-                });
-                return song;
+                ModelState.AddModelError(String.Empty, cx.Message);
+                return null;
             }
         }
     }

@@ -13,6 +13,15 @@ namespace Individuellt_arbete {
     public partial class ListenSong {
         
         /// <summary>
+        /// ListenSongValidation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ListenSongValidation;
+        
+        /// <summary>
         /// Label control.
         /// </summary>
         /// <remarks>
