@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ValidationSummary runat="server" />
     <ul>
         <asp:Repeater runat="server" ItemType="Individuellt_arbete.Model.Song" ID="AddedSongsRepeater" SelectMethod="AddedSongsRepeater_GetData">
             <HeaderTemplate>
@@ -14,7 +15,7 @@
         <li>Längd: <asp:TextBox runat="server" ID="Length"/></li>
         <li>Namn: <asp:TextBox runat="server" ID="SongName"/></li>
         <li>BandNamn: <asp:TextBox runat="server" ID="BandName"/></li>
-        <li>Album: <asp:DropDownList ID="AlbumList" runat="server"></asp:DropDownList></li>
+        <li>Album: <asp:DropDownList ID="AlbumList" runat="server" ItemType="Individuellt_arbete.Model.Album" ViewStateMode="Enabled"></asp:DropDownList></li>
         <li>
             <asp:Button Text="Spara" runat="server" ID="SaveSongButton" OnClick="SaveSongButton_Click"/></li>
         <li></li>

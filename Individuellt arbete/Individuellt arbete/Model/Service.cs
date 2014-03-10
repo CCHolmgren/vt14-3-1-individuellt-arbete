@@ -17,7 +17,7 @@ namespace Individuellt_arbete.Model
             }
         }
         //Add all functions to get all data from database and insert into
-        public void addSong(Song song)
+        public void addSong(Song song, Album album)
         {
         }
         public List<Song> getAllSongs()

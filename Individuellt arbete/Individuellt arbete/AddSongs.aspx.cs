@@ -22,10 +22,12 @@ namespace Individuellt_arbete
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            AlbumList.DataSource = CreateDataSource();
-            AlbumList.DataTextField = "AlbumNameTextField";
-            AlbumList.DataValueField = "AlbumIdValueField";
-            AlbumList.DataBind();
+            if (!IsPostBack) { 
+                AlbumList.DataSource = CreateDataSource();
+                AlbumList.DataTextField = "AlbumNameTextField";
+                AlbumList.DataValueField = "AlbumIdValueField";
+                AlbumList.DataBind();
+            }
 
             if (Session["AddedSongs"] == null)
                 Session["AddedSongs"] = new List<Song>();
@@ -42,7 +44,8 @@ namespace Individuellt_arbete
 
             // Populate the table with sample values.
             albums.ForEach(album => 
-                dt.Rows.Add(CreateRow(String.Format("{0} ({1})",album.AlbumName, album.ReleaseDate.Year)
+                dt.Rows.Add(CreateRow(
+                String.Format("{0} ({1})",album.AlbumName, album.ReleaseDate.Year)
                                         ,album.AlbumId,dt)));
 
             // Create a DataView from the DataTable to act as the data source
@@ -71,7 +74,14 @@ namespace Individuellt_arbete
 
         protected void SaveSongButton_Click(object sender, EventArgs e)
         {
-            SongList.Add(new Song());
+            if (IsValid)
+            {
+                ModelState.AddModelError(String.Empty, AlbumList.SelectedItem.ToString());
+                ModelState.AddModelError("", AlbumList.SelectedValue);
+                ModelState.AddModelError("", AlbumList.SelectedIndex.ToString());
+                //Song newSong = new Song { Length = int.Parse(Length.Text), SongName = SongName.Text, BandName = BandName.Text };
+                //SongList.Add(newSong);
+            }
         }
 
         public IEnumerable<Individuellt_arbete.Model.Song> AddedSongsRepeater_GetData()
