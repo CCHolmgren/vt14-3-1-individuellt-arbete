@@ -194,6 +194,14 @@ namespace Individuellt_arbete.Model
                 }
             }
         }
+        public void AddSong(Song song, int albumId)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("addSong", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+            }
+        }
         public List<Song> GetAllSongs()
         {
             using (var conn = CreateConnection())
