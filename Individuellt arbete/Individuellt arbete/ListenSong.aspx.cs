@@ -83,8 +83,10 @@ namespace Individuellt_arbete
         {
             try
             {
-                Medlem medlem = Session["currentuser"] as Medlem;
-                return Service.getAllListened(medlem.MedlemId);
+                if (Session["currentuser"] == null)
+                    return null;
+                int medlemId = (int)Session["currentuser"];
+                return Service.getAllListened(medlemId);
             }
             catch (ConnectionException cx)
             {

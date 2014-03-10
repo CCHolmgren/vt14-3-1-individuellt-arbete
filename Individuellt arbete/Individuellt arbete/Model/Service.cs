@@ -36,5 +36,10 @@ namespace Individuellt_arbete.Model
         {
             return Contact.GetAllMedlems();
         }
+
+        internal static void createMedlem()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

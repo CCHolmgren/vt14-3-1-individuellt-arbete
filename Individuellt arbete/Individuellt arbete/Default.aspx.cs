@@ -78,7 +78,7 @@ namespace Individuellt_arbete
 
         protected void MedlemIdSet_Click(object sender, EventArgs e)
         {
-            Session["currentuser"] = new Medlem { MedlemId = int.Parse(MemberList.SelectedValue) };
+            Session["currentuser"] = int.Parse(MemberList.SelectedValue);
             Response.Redirect("ListenSong.aspx");
         }
     }
