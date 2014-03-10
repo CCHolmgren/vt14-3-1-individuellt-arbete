@@ -3,6 +3,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <ul>
+        <asp:Repeater runat="server" ItemType="Individuellt_arbete.Model.Song" ID="AddedSongsRepeater" SelectMethod="AddedSongsRepeater_GetData">
+            <HeaderTemplate>
+                <li>Tillagda låtar:</li>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <li><%# Item.SongName %></li>
+            </ItemTemplate>
+        </asp:Repeater>
         <li>Längd: <asp:TextBox runat="server" ID="Length"/></li>
         <li>Namn: <asp:TextBox runat="server" ID="SongName"/></li>
         <li>BandNamn: <asp:TextBox runat="server" ID="BandName"/></li>

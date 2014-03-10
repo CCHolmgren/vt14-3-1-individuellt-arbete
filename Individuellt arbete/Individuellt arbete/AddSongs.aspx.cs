@@ -16,12 +16,19 @@ namespace Individuellt_arbete
         {
             get { return _service ?? (_service = new Service()); }
         }
+        List<Song> SongList
+        {
+            get { return Session["AddedSongs"] as List<Song>; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             AlbumList.DataSource = CreateDataSource();
             AlbumList.DataTextField = "AlbumNameTextField";
             AlbumList.DataValueField = "AlbumIdValueField";
             AlbumList.DataBind();
+
+            if (Session["AddedSongs"] == null)
+                Session["AddedSongs"] = new List<Song>();
         }
         DataView CreateDataSource()
         {
@@ -64,7 +71,12 @@ namespace Individuellt_arbete
 
         protected void SaveSongButton_Click(object sender, EventArgs e)
         {
+            SongList.Add(new Song());
+        }
 
+        public IEnumerable<Individuellt_arbete.Model.Song> AddedSongsRepeater_GetData()
+        {
+            return SongList;
         }
     }
 }
