@@ -17,6 +17,7 @@ namespace Individuellt_arbete
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            Label.Text = Session["currentuser"] as String;
             if (!Page.IsPostBack)
             {
                 //WIll need to implement a function that uses a ICollection to make the DropDownList work
@@ -81,6 +82,7 @@ namespace Individuellt_arbete
 
         public IEnumerable<Individuellt_arbete.Model.Song> SongRepeater_GetData()
         {
+            return null;
             try
             {
                 Medlem medlem = Session["currentuser"] as Medlem;

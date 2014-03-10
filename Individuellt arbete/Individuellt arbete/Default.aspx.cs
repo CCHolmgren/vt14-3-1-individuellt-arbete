@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Individuellt_arbete
@@ -33,7 +34,7 @@ namespace Individuellt_arbete
             dt.Columns.Add(new DataColumn("MemberNameTextField", typeof(String)));
             dt.Columns.Add(new DataColumn("MemberIdValueField", typeof(int)));
 
-            // Populate the table with sample values.
+            // Populate the table with sample values.e
             medlems.ForEach(medlem =>
                 dt.Rows.Add(CreateRow(String.Format("{0} {1}", medlem.FirstName, medlem.LastName)
                                         , medlem.MedlemId, dt)));
@@ -69,12 +70,6 @@ namespace Individuellt_arbete
             return album.AsEnumerable();
         }
 
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-            Session["username"] = TextBox1.Text;
-            Response.Redirect("Default.aspx");
-        }
-
         protected void MedlemId_TextChanged(object sender, EventArgs e)
         {
             Session["currentuser"] = new Medlem { MedlemId = 1 };
@@ -83,7 +78,7 @@ namespace Individuellt_arbete
 
         protected void MedlemIdSet_Click(object sender, EventArgs e)
         {
-            Session["currentuser"] = new Medlem { MedlemId = int.Parse(MedlemId.Text) };
+            Session["currentuser"] = MemberList.SelectedValue;
             Response.Redirect("ListenSong.aspx");
         }
     }
