@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Routing;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -73,13 +74,13 @@ namespace Individuellt_arbete
         protected void MedlemId_TextChanged(object sender, EventArgs e)
         {
             Session["currentuser"] = new Medlem { MedlemId = 1 };
-            Response.Redirect("ListenSong.aspx");
+            Response.RedirectToRoute("ListenToSong", new { medlem = (Session["currentuser"] as Medlem).MedlemId });
         }
 
         protected void MedlemIdSet_Click(object sender, EventArgs e)
         {
             Session["currentuser"] = int.Parse(MemberList.SelectedValue);
-            Response.Redirect("ListenSong.aspx");
+            Response.RedirectToRoute("ListenToSongMedlem", new { medlem = MemberList.SelectedValue });
         }
     }
 }

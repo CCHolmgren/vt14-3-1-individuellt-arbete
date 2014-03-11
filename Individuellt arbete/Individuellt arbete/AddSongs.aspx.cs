@@ -80,7 +80,7 @@ namespace Individuellt_arbete
                 ModelState.AddModelError("", AlbumList.SelectedValue);
                 ModelState.AddModelError("", AlbumList.SelectedIndex.ToString());
                 Song newSong = new Song { Length = int.Parse(Length.Text), SongName = SongName.Text, BandName = BandName.Text };
-                SongList.Add(newSong, AlbumList.SelectedValue);
+                SongList.Add(newSong/*, AlbumList.SelectedValue*/);
             }
         }
 
