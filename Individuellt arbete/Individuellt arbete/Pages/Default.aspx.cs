@@ -20,10 +20,13 @@ namespace Individuellt_arbete
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            MemberList.DataSource = CreateDataSource();
-            MemberList.DataTextField = "MemberNameTextField";
-            MemberList.DataValueField = "MemberIdValueField";
-            MemberList.DataBind();
+            if (!IsPostBack)
+            {
+                MemberList.DataSource = CreateDataSource();
+                MemberList.DataTextField = "MemberNameTextField";
+                MemberList.DataValueField = "MemberIdValueField";
+                MemberList.DataBind();
+            }
         }
         DataView CreateDataSource()
         {
