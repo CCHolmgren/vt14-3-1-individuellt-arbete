@@ -198,8 +198,18 @@ namespace Individuellt_arbete.Model
         {
             using (var conn = CreateConnection())
             {
-                SqlCommand cmd = new SqlCommand("addSong", conn);
+                SqlCommand cmd = new SqlCommand("addSongWithAlbum", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@songName",SqlDbType.VarChar, 50).Value = song.SongName;
+                cmd.Parameters.Add("@songLength", SqlDbType.Int, 4).Value = song.Length;
+                cmd.Parameters.Add("@bandName", SqlDbType.VarChar, 50).Value = song.BandName;
+                cmd.Parameters.Add("@albumId", SqlDbType.Int, 4).Value = albumId;
+                cmd.Parameters.Add("@songId", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+
+                song.SongId = (int)cmd.Parameters["@songId"].Value;
             }
         }
         public List<Song> GetAllSongs()
@@ -295,6 +305,25 @@ namespace Individuellt_arbete.Model
                     }
                     return medlems;
                 }
+            }
+        }
+        public void AddMedlem(Medlem medlem)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("addMedlemWithUniqueEmail", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@firstName", SqlDbType.VarChar, 45).Value = medlem.FirstName;
+                cmd.Parameters.Add("@lastName", SqlDbType.VarChar, 45).Value = medlem.LastName;
+                cmd.Parameters.Add("@primaryEmail", SqlDbType.VarChar, 50).Value = medlem.PrimaryEmail;
+
+                cmd.Parameters.Add("@medlemId", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+
+                medlem.MedlemId = (int)cmd.Parameters["@medlemId"].Value;
             }
         }
         public Medlem GetMedlem(int id)
