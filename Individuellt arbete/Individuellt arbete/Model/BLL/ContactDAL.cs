@@ -297,6 +297,38 @@ namespace Individuellt_arbete.Model
                 }
             }
         }
+        public Medlem GetMedlem(int id)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("getMedlem", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@medlemId", SqlDbType.Int, 4).Value = id;
+
+                conn.Open();
+                
+                using (var reader = cmd.ExecuteReader())
+                {
+                    int medlemIDindex = reader.GetOrdinal("MedlemId");
+                    int firstNameIndex = reader.GetOrdinal("FirstName");
+                    int lastNameIndex = reader.GetOrdinal("LastName");
+                    int primaryEmailIndex = reader.GetOrdinal("PrimaryEmail");
+
+                    if (reader.Read())
+                    {
+                        return new Medlem
+                        {
+                            MedlemId = reader.GetInt32(medlemIDindex),
+                            FirstName = reader.GetString(firstNameIndex),
+                            LastName = reader.GetString(lastNameIndex),
+                            PrimaryEmail = reader.GetString(primaryEmailIndex)
+                        };
+                    }
+                    return null;
+                }
+            }
+        }
         /// <summary>
         /// Creates a new element in the database and put the contact into it
         /// </summary>

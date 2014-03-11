@@ -1,8 +1,10 @@
 ﻿using Individuellt_arbete.Model;
+using Individuellt_arbete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.ModelBinding;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -17,15 +19,23 @@ namespace Individuellt_arbete
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-                RegisterForm.Visible = true;
         }
 
         protected void RegisterButton_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-                Service.createMedlem();
+                try
+                {
+                    Medlem medlem = new Medlem { FirstName = FirstName.Text, LastName = LastName.Text, PrimaryEmail = PrimaryEmail.Text };
+                    medlem.MedlemId = Service.createMedlem(medlem);
+                    Page.SetTempData("SuccessMessage", "Kontakten skapades.");
+                    Response.RedirectToRoute("MedlemPage", new { medlem = medlem.MedlemId });
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(String.Empty, "Ett fel uppstod vid skapandet av medlemen.");
+                }
             }
         }
     }

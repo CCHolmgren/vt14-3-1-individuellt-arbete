@@ -11,9 +11,14 @@ namespace Individuellt_arbete
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.MapPageRoute("ListenToSong", "song/listen", "~/Pages/Songs/Listen.aspx");
-            routes.MapPageRoute("ListenToSongMedlem", "song/{medlem}/listen", "~/Pages/Songs/Listen.aspx");
+            routes.MapPageRoute("MedlemPage", "medlem/{medlem}", "~/Pages/Medlem.aspx");
+            routes.MapPageRoute("AddSong", "song/add", "~/Pages/Songs/Add.aspx");
+            routes.MapPageRoute("Songs", "songs", "~/Pages/Songs/Songs.aspx");
+            routes.MapPageRoute("ListenToSongs", "songs/listen", "~/Pages/Songs/Listen.aspx");
+            routes.MapPageRoute("ListenToSong", "song/{song}/listen", "~/Pages/Song/Listen.aspx");
             routes.MapPageRoute("Default", "", "~/Pages/Default.aspx");
+
+            routes.MapPageRoute("Missing", "{*value}", "~/Missing.aspx");
         }
     }
 }

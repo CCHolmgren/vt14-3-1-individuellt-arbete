@@ -97,10 +97,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AddSongs.aspx" />
+    <Content Include="Missing.aspx" />
+    <Content Include="Pages\Songs\Add.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ListenSong.aspx" />
     <Content Include="Pages\Songs\Listen.aspx" />
+    <Content Include="Pages\Song\Listen.aspx" />
     <Content Include="Register.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -128,12 +130,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddSongs.aspx.cs">
-      <DependentUpon>AddSongs.aspx</DependentUpon>
+    <Compile Include="App_Infrastructure\PageExtensions.cs" />
+    <Compile Include="Missing.aspx.cs">
+      <DependentUpon>Missing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddSongs.aspx.designer.cs">
-      <DependentUpon>AddSongs.aspx</DependentUpon>
+    <Compile Include="Missing.aspx.designer.cs">
+      <DependentUpon>Missing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Songs\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Songs\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -165,6 +175,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Songs\Listen.aspx.designer.cs">
+      <DependentUpon>Listen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Song\Listen.aspx.cs">
+      <DependentUpon>Listen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Song\Listen.aspx.designer.cs">
       <DependentUpon>Listen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

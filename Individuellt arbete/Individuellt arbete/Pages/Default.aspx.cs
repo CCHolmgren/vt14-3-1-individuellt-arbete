@@ -74,16 +74,10 @@ namespace Individuellt_arbete
             return album.AsEnumerable();
         }
 
-        protected void MedlemId_TextChanged(object sender, EventArgs e)
-        {
-            Session["currentuser"] = new Medlem { MedlemId = 1 };
-            Response.RedirectToRoute("ListenToSong", new { medlem = (Session["currentuser"] as Medlem).MedlemId });
-        }
-
         protected void MedlemIdSet_Click(object sender, EventArgs e)
         {
             Session["currentuser"] = int.Parse(MemberList.SelectedValue);
-            Response.RedirectToRoute("ListenToSongMedlem", new { medlem = MemberList.SelectedValue });
+            Response.RedirectToRoute("ListenToSong", new { song = MemberList.SelectedValue });
         }
     }
 }

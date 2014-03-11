@@ -37,8 +37,11 @@ namespace Individuellt_arbete.Model
         {
             return Contact.GetAllMedlems();
         }
-
-        internal static void createMedlem()
+        public Medlem getMedlem(int id)
+        {
+            return Contact.GetMedlem(id);
+        }
+        public static int createMedlem(Medlem medlem)
         {
             throw new NotImplementedException();
         }
