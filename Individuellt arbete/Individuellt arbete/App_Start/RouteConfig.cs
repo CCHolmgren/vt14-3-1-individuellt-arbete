@@ -13,7 +13,7 @@ namespace Individuellt_arbete
         {
             routes.RouteExistingFiles = true;
 
-            routes.MapPageRoute("MedlemPage", "medlem/{medlem}", "~/Pages/Medlem.aspx");
+            routes.MapPageRoute("MedlemPage", "medlem/{medlem}", "~/Pages/MedlemFolder/MedlemPage.aspx");
             routes.MapPageRoute("AddSong", "song/add", "~/Pages/Songs/Add.aspx");
             routes.MapPageRoute("Songs", "songs", "~/Pages/Songs/Songs.aspx");
             routes.MapPageRoute("ListenToSongs", "songs/listen", "~/Pages/Songs/Listen.aspx");

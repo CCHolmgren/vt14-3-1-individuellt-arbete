@@ -98,10 +98,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Missing.aspx" />
+    <Content Include="Pages\MedlemFolder\MedlemPage.aspx" />
     <Content Include="Pages\Songs\Add.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ListenSong.aspx" />
     <Content Include="Pages\Songs\Listen.aspx" />
+    <Content Include="Pages\Songs\Songs.aspx" />
     <Content Include="Pages\Song\Listen.aspx" />
     <Content Include="Register.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -137,6 +139,13 @@
     </Compile>
     <Compile Include="Missing.aspx.designer.cs">
       <DependentUpon>Missing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MedlemFolder\MedlemPage.aspx.cs">
+      <DependentUpon>MedlemPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MedlemFolder\MedlemPage.aspx.designer.cs">
+      <DependentUpon>MedlemPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Songs\Add.aspx.cs">
       <DependentUpon>Add.aspx</DependentUpon>
@@ -176,6 +185,13 @@
     </Compile>
     <Compile Include="Pages\Songs\Listen.aspx.designer.cs">
       <DependentUpon>Listen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Songs\Songs.aspx.cs">
+      <DependentUpon>Songs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Songs\Songs.aspx.designer.cs">
+      <DependentUpon>Songs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Song\Listen.aspx.cs">
       <DependentUpon>Listen.aspx</DependentUpon>
