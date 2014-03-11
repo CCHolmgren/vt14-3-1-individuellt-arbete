@@ -2,6 +2,7 @@
 [Bb]in/
 [Oo]bj/
 
+Web.config
 # mstest test results
 TestResults
 

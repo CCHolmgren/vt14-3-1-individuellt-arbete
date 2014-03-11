@@ -25,8 +25,12 @@ namespace Individuellt_arbete.Pages.MedlemFolder
             int medlemId = Convert.ToInt32(Page.RouteData.Values["medlem"]);
             
             Medlem medlem = Service.getMedlem(medlemId);
-            if(medlem!= null)
+            if (medlem != null)
+            {
                 FirstName.Text = medlem.FirstName;
+                LastName.Text = medlem.LastName;
+                PrimaryEmail.Text = medlem.PrimaryEmail;
+            }
             else
                 ModelState.AddModelError(String.Empty, "Medlemmen du söker kan inte finnas.");
         }

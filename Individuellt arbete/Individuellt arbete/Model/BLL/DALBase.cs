@@ -26,7 +26,7 @@ namespace Individuellt_arbete.Model
         {
             //Attempts to connect with the QuickOpen function which throws after 5000 ms if we didn't connect
             //That way we can assume that it's safe to connect to the server and we won't get 30 s of loading
-            //SqlExtensions.QuickOpen(new SqlConnection(_connectionString), 10000, "Anslutningen till databasen misslyckades.");
+            SqlExtensions.QuickOpen(new SqlConnection(_connectionString), 10000, "Anslutningen till databasen misslyckades.");
             return new SqlConnection(_connectionString);
         }
         public DALBase()
