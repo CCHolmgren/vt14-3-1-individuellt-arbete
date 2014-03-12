@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ListView ItemType="Individuellt_arbete.Model.Album" runat="server" ID="Album" SelectMethod="AlbumList_GetData"></asp:ListView>
     <p>Du befinner dig på Songs.aspx där det förhoppningsvis kommer finnas en lista med låtar, som man sedan går in på varje och kan lyssna på.</p>
     <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Default %>" Text="Hej, hemsidan" runat="server"></asp:HyperLink>
 </asp:Content>

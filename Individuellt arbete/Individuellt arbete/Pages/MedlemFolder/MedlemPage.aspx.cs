@@ -23,16 +23,26 @@ namespace Individuellt_arbete.Pages.MedlemFolder
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
             int medlemId = Convert.ToInt32(Page.RouteData.Values["medlem"]);
-            
-            Medlem medlem = Service.getMedlem(medlemId);
-            if (medlem != null)
+            try
             {
-                FirstName.Text = medlem.FirstName;
-                LastName.Text = medlem.LastName;
-                PrimaryEmail.Text = medlem.PrimaryEmail;
+                Medlem medlem = Service.getMedlem(medlemId);
+                if (medlem != null)
+                {
+                    FirstName.Text = medlem.FirstName;
+                    LastName.Text = medlem.LastName;
+                    PrimaryEmail.Text = medlem.PrimaryEmail;
+                    Page.Title = String.Format("Medlem - {0} {1}", medlem.FirstName, medlem.LastName);
+                }
+                else
+                {
+                    ModelState.AddModelError(String.Empty, "Medlemmen du söker kan inte finnas.");
+                    Page.Title = String.Format("Medlemmen kunde inte hittas.");
+                }
             }
-            else
-                ModelState.AddModelError(String.Empty, "Medlemmen du söker kan inte finnas.");
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+            }
         }
     }
 }
