@@ -9,9 +9,25 @@ namespace Individuellt_arbete.Pages.Album
 {
     public partial class Album : System.Web.UI.Page
     {
+        Service _service;
+        Service Service
+        {
+            get { return _service ?? (_service = new Service()); }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        // The return type can be changed to IEnumerable, however to support
+        // paging and sorting, the following parameters must be added:
+        //     int maximumRows
+        //     int startRowIndex
+        //     out int totalRowCount
+        //     string sortByExpression
+        public IEnumerable<Individuellt_arbete.Model.Album> AlbumList_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
+        {
+            return Service.getAlbumList(maximumRows, startRowIndex, out totalRowCount);
         }
     }
 }

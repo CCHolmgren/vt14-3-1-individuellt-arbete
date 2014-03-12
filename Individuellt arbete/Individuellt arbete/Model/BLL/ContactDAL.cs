@@ -422,11 +422,13 @@ namespace Individuellt_arbete.Model
                 {
                     int albumNameIndex = reader.GetOrdinal("AlbumName");
                     int releaseDateIndex = reader.GetOrdinal("ReleaseDate");
+                    int albumIdIndex = reader.GetOrdinal("AlbumId");
 
                     while (reader.Read())
                     {
                         albums.Add(new Album
                         {
+                            AlbumId = reader.GetInt32(albumIdIndex),
                             AlbumName = reader.GetString(albumNameIndex),
                             ReleaseDate = reader.GetDateTime(releaseDateIndex),
                         });
