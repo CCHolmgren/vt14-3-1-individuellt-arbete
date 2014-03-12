@@ -9,10 +9,12 @@
                             <th>Songname</th>
                             <th>BandName</th>
                             <th>Length</th>
+                            <th></th>
                         </tr>
                         <asp:PlaceHolder runat="server" ID="itemPlaceholder"/>
                     </table>
                     <%-- Pagination --%>
+                    <%-- Invisible because we don't want there to be any pagination right now. Must probably change the PageSize though --%>
                     <asp:DataPager PagedControlID="SongList" ID="DataPager" Visible="false" runat="server" QueryStringField="page" PageSize="20">
                         <Fields>
                         </Fields>
@@ -29,9 +31,11 @@
                 <td>
                     <asp:Label runat="server" Text="<%# Item.Length %>"></asp:Label>
                 </td>
+                <td>
+                    <asp:HyperLink runat="server" NavigateUrl='<%# GetRouteUrl("ListenToSong", new {song=Item.SongId}) %>' Text="Lyssna"></asp:HyperLink>
+                </td>
             </tr>
         </ItemTemplate>
     </asp:ListView>
-    <p>Du befinner dig på Songs.aspx där det förhoppningsvis kommer finnas en lista med låtar, som man sedan går in på varje och kan lyssna på.</p>
     <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Default %>" Text="Hej, hemsidan" runat="server"></asp:HyperLink>
 </asp:Content>

@@ -458,11 +458,13 @@ namespace Individuellt_arbete.Model
                     int songNameIndex = reader.GetOrdinal("SongName");
                     int bandNameIndex = reader.GetOrdinal("BandName");
                     int lengthIndex = reader.GetOrdinal("Length");
+                    int songIdIndex = reader.GetOrdinal("SongId");
 
                     while (reader.Read())
                     {
                         songs.Add(new Song
                         {
+                            SongId = reader.GetInt32(songIdIndex),
                             SongName = reader.GetString(songNameIndex),
                             Length = reader.GetInt16(lengthIndex),
                             BandName = reader.GetString(bandNameIndex)
