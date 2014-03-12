@@ -25,7 +25,7 @@ namespace Individuellt_arbete.Pages.MedlemFolder
             int medlemId = Convert.ToInt32(Page.RouteData.Values["medlem"]);
             try
             {
-                Medlem medlem = Service.getMedlem(medlemId);
+                Model.Medlem medlem = Service.getMedlem(medlemId);
                 if (medlem != null)
                 {
                     FirstName.Text = medlem.FirstName;
@@ -43,6 +43,11 @@ namespace Individuellt_arbete.Pages.MedlemFolder
             {
                 ModelState.AddModelError(String.Empty, ex.Message);
             }
+        }
+
+        public IEnumerable<Individuellt_arbete.Model.RecentlyListened> LastListened_GetData()
+        {
+            return Service.getSongListLatest((int)(Session["currentuser"]??1));
         }
     }
 }

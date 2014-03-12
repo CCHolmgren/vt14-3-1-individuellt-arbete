@@ -474,5 +474,42 @@ namespace Individuellt_arbete.Model
                 return songs;
             }
         }
+        public IEnumerable<RecentlyListened> GetSongListByUserLatest(int medlemId)
+        {
+            using(var conn = CreateConnection())
+            {
+                List<RecentlyListened> recentlylistened = new List<RecentlyListened>();
+                SqlCommand cmd = new SqlCommand("getSongListByUserLatest", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@medlemId", SqlDbType.Int, 4).Value = medlemId;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    int songNameIndex = reader.GetOrdinal("SongName");
+                    int dateIndex = reader.GetOrdinal("Date");
+                    int lengthIndex = reader.GetOrdinal("Length");
+                    int bandNameIndex = reader.GetOrdinal("BandName");
+                    int betygIndex = reader.GetOrdinal("Betyg");
+                    //Date, SongName, ConstrictedRows.Length, BandName, Betyg
+
+                    while (reader.Read())
+                    {
+                        recentlylistened.Add(new RecentlyListened
+                        {
+                            SongName = reader.GetString(songNameIndex),
+                            Date = reader.GetDateTime(dateIndex),
+                            BandName = reader.GetString(bandNameIndex),
+                            Betyg = reader.GetInt32(betygIndex),
+                            Length = reader.GetInt16(lengthIndex)
+                        });
+                    }
+                }
+                return recentlylistened;
+            }
+        }
     }
 }

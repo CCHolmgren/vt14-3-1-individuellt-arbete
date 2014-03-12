@@ -54,5 +54,10 @@ namespace Individuellt_arbete
         {
             return Contact.GetSongList(maximumRows, startRowIndex, out totalRowCount, albumId);
         }
+
+        public IEnumerable<RecentlyListened> getSongListLatest(int medlemId)
+        {
+            return Contact.GetSongListByUserLatest(medlemId);
+        }
     }
 }
