@@ -15,7 +15,7 @@ namespace Individuellt_arbete
             
             routes.MapPageRoute("MedlemPage", "medlem/{medlem}", "~/Pages/MedlemFolder/MedlemPage.aspx");
             routes.MapPageRoute("AddSong", "song/add", "~/Pages/Songs/Add.aspx");
-            routes.MapPageRoute("Songs", "songs", "~/Pages/Songs/Songs.aspx");
+            routes.MapPageRoute("SongsGivenAlbum", "{albumid}/songs", "~/Pages/Songs/Songs.aspx");
             routes.MapPageRoute("ListenToSongs", "songs/listen", "~/Pages/Songs/Listen.aspx");
             routes.MapPageRoute("ListenToSong", "song/{song}/listen", "~/Pages/Song/Listen.aspx");
             routes.MapPageRoute("Default", "", "~/Pages/Default.aspx");

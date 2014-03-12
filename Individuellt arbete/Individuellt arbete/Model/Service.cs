@@ -46,9 +46,13 @@ namespace Individuellt_arbete
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Song> getAlbumList(int maximumRows, int startRowIndex, out int totalRowCount)
+        public IEnumerable<Album> getAlbumList(int maximumRows, int startRowIndex, out int totalRowCount)
         {
             return Contact.GetAlbumList(maximumRows, startRowIndex, out totalRowCount);
+        }
+        public IEnumerable<Song> getSongList(int maximumRows, int startRowIndex, out int totalRowCount, int albumId)
+        {
+            return Contact.GetSongList(maximumRows, startRowIndex, out totalRowCount, albumId);
         }
     }
 }

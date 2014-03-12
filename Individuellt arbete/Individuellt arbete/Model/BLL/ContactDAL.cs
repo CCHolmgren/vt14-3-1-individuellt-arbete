@@ -401,5 +401,76 @@ namespace Individuellt_arbete.Model
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public List<Album> GetAlbumList(int maximumRows, int startRowIndex, out int totalRowCount)
+        {
+            using (var conn = CreateConnection())
+            {
+                List<Album> albums = new List<Album>();
+                SqlCommand cmd = new SqlCommand("getAlbumsPageWise", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@startRowIndex", SqlDbType.Int, 4).Value = startRowIndex;
+                cmd.Parameters.Add("@maximumRows", SqlDbType.Int, 4).Value = maximumRows;
+                cmd.Parameters.Add("@totalRows", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+
+                totalRowCount = (int)cmd.Parameters["@totalRows"].Value;
+                using (var reader = cmd.ExecuteReader())
+                {
+                    int albumNameIndex = reader.GetOrdinal("AlbumName");
+                    int releaseDateIndex = reader.GetOrdinal("ReleaseDate");
+
+                    while (reader.Read())
+                    {
+                        albums.Add(new Album
+                        {
+                            AlbumName = reader.GetString(albumNameIndex),
+                            ReleaseDate = reader.GetDateTime(releaseDateIndex),
+                        });
+                    }
+                }
+                return albums;
+            }
+        }
+
+        public IEnumerable<Song> GetSongList(int maximumRows, int startRowIndex, out int totalRowCount, int albumId)
+        {
+            using (var conn = CreateConnection())
+            {
+                List<Song> songs = new List<Song>();
+                SqlCommand cmd = new SqlCommand("getSongsPageWise", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@startRowIndex", SqlDbType.Int, 4).Value = startRowIndex;
+                cmd.Parameters.Add("@maximumRows", SqlDbType.Int, 4).Value = maximumRows;
+                cmd.Parameters.Add("@albumId", SqlDbType.Int, 4).Value = albumId;
+                cmd.Parameters.Add("@totalRows", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+
+                totalRowCount = (int)cmd.Parameters["@totalRows"].Value;
+                using (var reader = cmd.ExecuteReader())
+                {
+                    int songNameIndex = reader.GetOrdinal("SongName");
+                    int bandNameIndex = reader.GetOrdinal("BandName");
+                    int lengthIndex = reader.GetOrdinal("Length");
+
+                    while (reader.Read())
+                    {
+                        songs.Add(new Song
+                        {
+                            SongName = reader.GetString(songNameIndex),
+                            Length = reader.GetInt16(lengthIndex),
+                            BandName = reader.GetString(bandNameIndex)
+                        });
+                    }
+                }
+                return songs;
+            }
+        }
     }
 }
