@@ -59,5 +59,10 @@ namespace Individuellt_arbete
         {
             return Contact.GetSongListByUserLatest(medlemId);
         }
+
+        public void ListenToSong(int songId)
+        {
+            Contact.ListenToSong(songId);
+        }
     }
 }

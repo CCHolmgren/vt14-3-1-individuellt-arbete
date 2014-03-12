@@ -45,5 +45,11 @@ namespace Individuellt_arbete.Pages.Songs
                 return null;
             }
         }
+
+        protected void ListenButton_Click(object sender, EventArgs e)
+        {
+            int argument = Convert.ToInt32(((Button)sender).CommandArgument);
+            Service.ListenToSong(argument);
+        }
     }
 }

@@ -33,6 +33,7 @@
                     <asp:Label runat="server" Text="<%# Item.Length %>"></asp:Label>
                 </td>
                 <td>
+                    <asp:Button Text="text" ID="ListenButton" OnClick="ListenButton_Click" runat="server" CommandArgument="<%# Item.SongId %>" />
                     <asp:HyperLink runat="server" NavigateUrl='<%# GetRouteUrl("ListenToSong", new {song=Item.SongId}) %>' Text="Lyssna"></asp:HyperLink>
                 </td>
             </tr>

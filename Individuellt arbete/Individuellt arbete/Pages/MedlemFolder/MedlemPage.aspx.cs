@@ -52,7 +52,7 @@ namespace Individuellt_arbete.Pages.MedlemFolder
         {
             //TODO: Change back this to return Service.getSongListLatest((int)(RouteData.Values["medlem"]));
             //It's only for debugging
-            return Service.getSongListLatest((int)(RouteData.Values["medlem"]??Session["currentuser"]));
+            return Service.getSongListLatest(Convert.ToInt32(RouteData.Values["medlem"]));
         }
     }
 }

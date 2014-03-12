@@ -513,5 +513,10 @@ namespace Individuellt_arbete.Model
                 return recentlylistened;
             }
         }
+
+        internal void ListenToSong(int songId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
