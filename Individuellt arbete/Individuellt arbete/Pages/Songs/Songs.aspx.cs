@@ -25,9 +25,9 @@ namespace Individuellt_arbete.Pages.Songs
         //     int startRowIndex
         //     out int totalRowCount
         //     string sortByExpression
-        public IEnumerable<Individuellt_arbete.Model.Album> AlbumList_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
+        public IEnumerable<Individuellt_arbete.Model.Song> SongList_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
-            return Service.getAlbumList(maximumRows, startRowIndex, out totalRowCount);
+            return Service.getSongList(maximumRows, startRowIndex, out totalRowCount, Convert.ToInt32(Page.RouteData.Values["albumid"]));
         }
     }
 }
