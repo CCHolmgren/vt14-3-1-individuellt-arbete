@@ -22,7 +22,10 @@ namespace Individuellt_arbete.Pages.MedlemFolder
         }
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            int medlemId = Convert.ToInt32(Page.RouteData.Values["medlem"]);
+            //TODO: Change back this line to 
+            //int medlemId = Convert.ToInt32(Page.RouteData.Values["medlem"]);
+            //It's only for debuggign.
+            int medlemId = Convert.ToInt32(Page.RouteData.Values["medlem"]??Session["currentuser"]);
             try
             {
                 Model.Medlem medlem = Service.getMedlem(medlemId);
@@ -47,7 +50,9 @@ namespace Individuellt_arbete.Pages.MedlemFolder
 
         public IEnumerable<Individuellt_arbete.Model.RecentlyListened> LastListened_GetData()
         {
-            return Service.getSongListLatest((int)(Session["currentuser"]??1));
+            //TODO: Change back this to return Service.getSongListLatest((int)(RouteData.Values["medlem"]));
+            //It's only for debugging
+            return Service.getSongListLatest((int)(RouteData.Values["medlem"]??Session["currentuser"]));
         }
     }
 }
