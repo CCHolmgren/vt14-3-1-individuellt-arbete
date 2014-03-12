@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ValidationSummary runat="server"/>
     <asp:ListView ItemType="Individuellt_arbete.Model.Song" runat="server" ID="SongList" SelectMethod="SongList_GetData">
         <LayoutTemplate>
                     <table>

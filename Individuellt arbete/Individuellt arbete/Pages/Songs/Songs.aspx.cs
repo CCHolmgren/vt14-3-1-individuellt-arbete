@@ -16,7 +16,7 @@ namespace Individuellt_arbete.Pages.Songs
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Page.Title = String.Format("Låtar på albumet");
         }
 
         // The return type can be changed to IEnumerable, however to support
@@ -27,7 +27,13 @@ namespace Individuellt_arbete.Pages.Songs
         //     string sortByExpression
         public IEnumerable<Individuellt_arbete.Model.Song> SongList_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
-            return Service.getSongList(maximumRows, startRowIndex, out totalRowCount, Convert.ToInt32(Page.RouteData.Values["albumid"]));
+            IEnumerable<Model.Song> songs = Service.getSongList(maximumRows, startRowIndex, out totalRowCount, Convert.ToInt32(Page.RouteData.Values["albumid"]));
+            if(songs.Count()==0)
+            {
+                Page.Title = String.Format("Albumet har inga låtar.");
+                ModelState.AddModelError(String.Empty, "Det finns inga låtar associerade med det albumet. Försök igen med ett annat album.");
+            }
+            return songs;
         }
     }
 }
