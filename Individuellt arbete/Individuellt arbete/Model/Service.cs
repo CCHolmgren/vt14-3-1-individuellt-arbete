@@ -101,5 +101,10 @@ namespace Individuellt_arbete
                 Album.UpdateAlbum(album);
             }
         }
+
+        public void deleteAlbum(int AlbumId)
+        {
+            Album.DeleteAlbum(AlbumId);
+        }
     }
 }

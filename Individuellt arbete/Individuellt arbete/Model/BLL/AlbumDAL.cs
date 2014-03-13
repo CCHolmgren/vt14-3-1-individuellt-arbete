@@ -122,7 +122,7 @@ namespace Individuellt_arbete.Model
             }
         }
 
-        internal void UpdateAlbum(Album album)
+        public void UpdateAlbum(Album album)
         {
             using (var conn = CreateConnection())
             {
@@ -137,5 +137,19 @@ namespace Individuellt_arbete.Model
                 cmd.ExecuteNonQuery();
             }
         }
-	}
+
+        public void DeleteAlbum(int AlbumId)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("removeAlbum", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@albumId", SqlDbType.Int, 4).Value = AlbumId;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
 }

@@ -105,9 +105,9 @@ namespace Individuellt_arbete.Pages.Album
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
-        public void AlbumList_DeleteItem(int id)
+        public void AlbumList_DeleteItem(int AlbumId)
         {
-
+            Service.deleteAlbum(AlbumId);
         }
     }
 }
