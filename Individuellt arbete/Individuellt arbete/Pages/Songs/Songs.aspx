@@ -12,7 +12,6 @@
                             <th>BandName</th>
                             <th>Length</th>
                             <th></th>
-                            <th></th>
                         </tr>
                         <asp:PlaceHolder runat="server" ID="itemPlaceholder"/>
                     </table>
@@ -38,9 +37,9 @@
                     <asp:Button Text="Lyssna" ID="ListenButton" OnClick="ListenButton_Click" runat="server" CommandArgument='<%# String.Format("{0},{1}",Item.SongId,Item.Length) %>' />
                     <%-- <asp:HyperLink runat="server" NavigateUrl='<%# GetRouteUrl("ListenToSong", new {song=Item.SongId}) %>' Text="Lyssna"></asp:HyperLink>--%>
                 </td>
-                <td>
+                <%-- <td>
                     <asp:Button Text="Delete" ID="DeleteButton" OnClick="DeleteButton_Click" runat="server" CommandArgument="<%# Item.SongId %>" />
-                </td>
+                </td>--%>
             </tr>
         </ItemTemplate>
     </asp:ListView>

@@ -102,6 +102,7 @@
     <Compile Include="App_Infrastructure\ValidationExtensions.cs" />
     <Compile Include="Model\BLL\AlbumDAL.cs" />
     <Content Include="Pages\Album\Album.aspx" />
+    <Content Include="Pages\Album\EditAlbum.aspx" />
     <Content Include="Pages\MedlemFolder\MedlemPage.aspx" />
     <Content Include="Pages\Songs\Add.aspx" />
     <Content Include="Global.asax" />
@@ -152,6 +153,13 @@
     </Compile>
     <Compile Include="Pages\Album\Album.aspx.designer.cs">
       <DependentUpon>Album.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Album\EditAlbum.aspx.cs">
+      <DependentUpon>EditAlbum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Album\EditAlbum.aspx.designer.cs">
+      <DependentUpon>EditAlbum.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\MedlemFolder\MedlemPage.aspx.cs">
       <DependentUpon>MedlemPage.aspx</DependentUpon>
