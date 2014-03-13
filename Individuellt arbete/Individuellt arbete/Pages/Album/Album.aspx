@@ -2,13 +2,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:ListView runat="server" ID="AlbumList" ItemType="Individuellt_arbete.Model.Album" SelectMethod="AlbumList_GetData" DataKeyNames="AlbumId" InsertItemPosition="None">
+    <asp:ValidationSummary runat="server"/>
+    <asp:Button Text="Nytt album" OnClick="NewAlbum_Click" ID="NewAlbum" runat="server" />
+    <asp:ListView runat="server" ID="AlbumList" 
+        ItemType="Individuellt_arbete.Model.Album" 
+        SelectMethod="AlbumList_GetData" 
+        DataKeyNames="AlbumId" 
+        InsertItemPosition="None" 
+        InsertMethod="AlbumList_InsertItem" 
+        UpdateMethod="AlbumList_UpdateItem">
         <LayoutTemplate>
                     <table>
                         <thead>
                             <tr>
                                 <th>Albumname</th>
                                 <th>ReleaseYear</th>
+                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -31,8 +40,15 @@
                 <td>
                     <asp:HyperLink NavigateUrl='<%# GetRouteUrl("SongsGivenAlbum", new { albumid = Item.AlbumId }) %>' runat="server" Text="Lyssna"/>
                 </td>
+                <td></td>
             </tr>
         </ItemTemplate>
+        <EditItemTemplate>
+
+        </EditItemTemplate>
+        <InsertItemTemplate>
+
+        </InsertItemTemplate>
     </asp:ListView>
     <p>Kommer visa album här som man senare går in på och kan se varje låt.</p>
     <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Default %>" runat="server">Hej, hemsidan</asp:HyperLink>

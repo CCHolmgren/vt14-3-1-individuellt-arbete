@@ -64,5 +64,15 @@ namespace Individuellt_arbete
         {
             Contact.ListenToSong(songId, medlemId, length, date);
         }
+
+        internal static Album getAlbumById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void updateAlbum(int id, Album item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

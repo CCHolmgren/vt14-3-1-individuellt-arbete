@@ -13,6 +13,15 @@ namespace Individuellt_arbete.Pages.Album {
     public partial class Album {
         
         /// <summary>
+        /// NewAlbum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button NewAlbum;
+        
+        /// <summary>
         /// AlbumList control.
         /// </summary>
         /// <remarks>
