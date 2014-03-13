@@ -30,7 +30,9 @@ namespace Individuellt_arbete
             }
 
             if (Session["AddedSongs"] == null)
+            {
                 Session["AddedSongs"] = new List<Song>();
+            }
         }
         DataView CreateDataSource()
         {

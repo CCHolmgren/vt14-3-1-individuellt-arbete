@@ -76,6 +76,7 @@ namespace Individuellt_arbete.Pages.Album
                         }
                         catch (System.Data.SqlClient.SqlException ex)
                         {
+                            ModelState.AddModelError(String.Empty, ex.Message);
                             //setModelState("Ett oväntat fel inträffade vid uppdateringen av kontakten.");
                         }
                         /*catch (ValidationException vx)
@@ -87,10 +88,12 @@ namespace Individuellt_arbete.Pages.Album
                 }
                 catch (ArgumentException ax)
                 {
+                    ModelState.AddModelError(String.Empty, ax.Message);
                     //setModelState(ax.Message);
                 }
                 catch (ConnectionException cx)
                 {
+                    ModelState.AddModelError(String.Empty, cx.Message);
                     //setModelState(cx.Message);
                 }
             }
