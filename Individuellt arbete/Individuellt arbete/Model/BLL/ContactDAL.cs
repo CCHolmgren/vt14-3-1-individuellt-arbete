@@ -261,7 +261,7 @@ namespace Individuellt_arbete.Model
 
                     int albumIDindex = reader.GetOrdinal("AlbumId");
                     int albumNameIndex = reader.GetOrdinal("AlbumName");
-                    int releaseDateIndex = reader.GetOrdinal("ReleaseDate");
+                    int releaseYearIndex = reader.GetOrdinal("ReleaseYear");
 
                     while (reader.Read())
                     {
@@ -269,7 +269,7 @@ namespace Individuellt_arbete.Model
                         {
                             AlbumName = reader.GetString(albumNameIndex),
                             AlbumId = reader.GetInt32(albumIDindex),
-                            ReleaseDate = reader.GetDateTime(releaseDateIndex)
+                            ReleaseYear = reader.GetInt16(releaseYearIndex)
                         });
                     }
                     return albums;
@@ -421,7 +421,7 @@ namespace Individuellt_arbete.Model
                 using (var reader = cmd.ExecuteReader())
                 {
                     int albumNameIndex = reader.GetOrdinal("AlbumName");
-                    int releaseDateIndex = reader.GetOrdinal("ReleaseDate");
+                    int releaseYearIndex = reader.GetOrdinal("ReleaseYear");
                     int albumIdIndex = reader.GetOrdinal("AlbumId");
 
                     while (reader.Read())
@@ -430,7 +430,7 @@ namespace Individuellt_arbete.Model
                         {
                             AlbumId = reader.GetInt32(albumIdIndex),
                             AlbumName = reader.GetString(albumNameIndex),
-                            ReleaseDate = reader.GetDateTime(releaseDateIndex),
+                            ReleaseYear = reader.GetInt16(releaseYearIndex),
                         });
                     }
                 }

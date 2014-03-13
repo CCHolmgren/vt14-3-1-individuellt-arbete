@@ -8,7 +8,7 @@
                         <thead>
                             <tr>
                                 <th>Albumname</th>
-                                <th>ReleaseDate</th>
+                                <th>ReleaseYear</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -26,7 +26,7 @@
                     <%# Item.AlbumName %>
                 </td>
                 <td>
-                    <%# Item.ReleaseDate %>
+                    <%# Item.ReleaseYear %>
                 </td>
                 <td>
                     <asp:HyperLink NavigateUrl='<%# GetRouteUrl("SongsGivenAlbum", new { albumid = Item.AlbumId }) %>' runat="server" Text="Lyssna"/>
