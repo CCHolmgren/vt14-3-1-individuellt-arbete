@@ -52,7 +52,7 @@ namespace Individuellt_arbete.Pages.Songs
             string[] argumentarray = arguments.Split(',');
             try
             {
-                Service.ListenToSong(Convert.ToInt32(argumentarray[0]), (int)Session["currentuser"],Convert.ToInt32(argumentarray[1]),DateTime.Now);
+                Service.ListenToSong(Convert.ToInt32(argumentarray[0]), (int)Session["currentuser"],Convert.ToInt32(argumentarray[1]),DateTime.Today);
                 Successlabel.Text = "Du lyssnade på låten.";
             }
             catch (Exception ex)

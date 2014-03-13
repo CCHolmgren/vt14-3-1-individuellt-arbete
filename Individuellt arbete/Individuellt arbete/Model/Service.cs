@@ -8,38 +8,50 @@ namespace Individuellt_arbete
 {
     public class Service
     {
-        ContactDAL _contact;
-        public ContactDAL Contact
+        MedlemDAL _medlem;
+        SongDAL _song;
+        AlbumDAL _album;
+
+        public MedlemDAL Medlem
         {
             get
             {
-                return _contact ?? (_contact = new ContactDAL());
+                return _medlem ?? (_medlem = new MedlemDAL());
             }
         }
+        public AlbumDAL Album
+        {
+            get { return _album ?? (_album = new AlbumDAL()); }
+        }
+        public SongDAL Song
+        {
+            get { return _song ?? (_song = new SongDAL()); }
+        }
+
         //Add all functions to get all data from database and insert into
         public void addSong(Song song, int albumId)
         {
-            Contact.AddSong(song, albumId);
+            Song.AddSong(song, albumId);
         }
         public List<Song> getAllSongs()
         {
-            return Contact.GetAllSongs();
+            return Song.GetAllSongs();
         }
         public List<Song> getAllListened(int medlemId)
         {
-            return Contact.GetAllSongs();
+            return Song.GetAllSongs();
         }
         public List<Album> getAllAlbums()
         {
-            return Contact.GetAllAlbums();
+            return Album.GetAllAlbums();
         }
         public List<Medlem> getAllMedlems()
         {
-            return Contact.GetAllMedlems();
+            return Medlem.GetAllMedlems();
         }
         public Medlem getMedlem(int id)
         {
-            return Contact.GetMedlem(id);
+            return Medlem.GetMedlem(id);
         }
         public static int createMedlem(Medlem medlem)
         {
@@ -48,37 +60,37 @@ namespace Individuellt_arbete
 
         public IEnumerable<Album> getAlbumList(int maximumRows, int startRowIndex, out int totalRowCount)
         {
-            return Contact.GetAlbumList(maximumRows, startRowIndex, out totalRowCount);
+            return Album.GetAlbumList(maximumRows, startRowIndex, out totalRowCount);
         }
         public IEnumerable<Song> getSongList(int maximumRows, int startRowIndex, out int totalRowCount, int albumId)
         {
-            return Contact.GetSongList(maximumRows, startRowIndex, out totalRowCount, albumId);
+            return Song.GetSongList(maximumRows, startRowIndex, out totalRowCount, albumId);
         }
 
         public IEnumerable<RecentlyListened> getSongListLatest(int medlemId)
         {
-            return Contact.GetSongListByUserLatest(medlemId);
+            return Song.GetSongListByUserLatest(medlemId);
         }
 
-        public void ListenToSong(int songId, int medlemId, int length, DateTime? date)
+        public void ListenToSong(int songId, int medlemId, int length, DateTime date)
         {
-            Contact.ListenToSong(songId, medlemId, length, date);
+            Song.ListenToSong(songId, medlemId, length, date);
         }
 
         public Album getAlbumById(int id)
         {
-            return Contact.GetAlbumById(id);
+            return Album.GetAlbumById(id);
         }
 
         public void saveAlbum(Album album)
         {
             if(album.AlbumId == 0)
             {
-                Contact.SaveAlbum(album);
+                Album.SaveAlbum(album);
             }
             else
             {
-                Contact.UpdateAlbum(album);
+                Album.UpdateAlbum(album);
             }
         }
     }

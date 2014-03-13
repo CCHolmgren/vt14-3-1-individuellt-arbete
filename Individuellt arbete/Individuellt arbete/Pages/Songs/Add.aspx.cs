@@ -45,7 +45,7 @@ namespace Individuellt_arbete
             // Populate the table with sample values.
             albums.ForEach(album => 
                 dt.Rows.Add(CreateRow(
-                String.Format("{0} ({1})",album.AlbumName, album.ReleaseDate.Year)
+                String.Format("{0} ({1})",album.AlbumName, album.ReleaseYear)
                                         ,album.AlbumId,dt)));
 
             // Create a DataView from the DataTable to act as the data source

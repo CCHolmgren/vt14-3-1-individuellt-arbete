@@ -98,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Missing.aspx" />
+    <Compile Include="App_Infrastructure\SqlExtensions.cs" />
+    <Compile Include="Model\BLL\AlbumDAL.cs" />
     <Content Include="Pages\Album\Album.aspx" />
     <Content Include="Pages\MedlemFolder\MedlemPage.aspx" />
     <Content Include="Pages\Songs\Add.aspx" />
@@ -141,6 +143,7 @@
     <Compile Include="Missing.aspx.designer.cs">
       <DependentUpon>Missing.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\BLL\SongDAL.cs" />
     <Compile Include="Model\RecentlyListened.cs" />
     <Compile Include="Pages\Album\Album.aspx.cs">
       <DependentUpon>Album.aspx</DependentUpon>
@@ -183,7 +186,7 @@
       <DependentUpon>ListenSong.aspx</DependentUpon>
     </Compile>
     <Compile Include="Model\Album.cs" />
-    <Compile Include="Model\BLL\ContactDAL.cs" />
+    <Compile Include="Model\BLL\MedlemDAL.cs" />
     <Compile Include="Model\BLL\DALBase.cs" />
     <Compile Include="Model\Medlem.cs" />
     <Compile Include="Model\Service.cs" />
