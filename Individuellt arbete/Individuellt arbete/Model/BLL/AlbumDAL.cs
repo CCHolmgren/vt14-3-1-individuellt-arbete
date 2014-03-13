@@ -71,19 +71,71 @@ namespace Individuellt_arbete.Model
                 return albums;
             }
         }
-        internal Album GetAlbumById(int id)
+        public Album GetAlbumById(int id)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                Album album;
+                SqlCommand cmd = new SqlCommand("getAlbumById", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@albumId", SqlDbType.Int, 4).Value = id;
+
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    int albumIdIndex = reader.GetOrdinal("AlbumId");
+                    int albumNameIndex = reader.GetOrdinal("AlbumName");
+                    int releaseYearIndex = reader.GetOrdinal("ReleaseYear");
+
+                    if (reader.Read())
+                    {
+                        album = new Album
+                        {
+                            AlbumName = reader.GetString(albumNameIndex),
+                            ReleaseYear = reader.GetInt16(releaseYearIndex),
+                            AlbumId = reader.GetInt32(albumIdIndex)
+                        };
+                        return album;
+                    }
+                    return null;
+                }
+            }
         }
 
         internal void SaveAlbum(Album album)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("addAlbum", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@albumName", SqlDbType.VarChar, 50).Value = album.AlbumName;
+                cmd.Parameters.Add("@releaseYear", SqlDbType.Int, 4).Value = album.ReleaseYear;
+                cmd.Parameters.Add("@albumId", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+
+                album.AlbumId = (int)cmd.Parameters["@albumId"].Value;
+            }
         }
 
         internal void UpdateAlbum(Album album)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("updateAlbum", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@albumName", SqlDbType.VarChar, 50).Value = album.AlbumName;
+                cmd.Parameters.Add("@releaseYear", SqlDbType.Int, 4).Value = album.ReleaseYear;
+                cmd.Parameters.Add("@albumId", SqlDbType.Int, 4).Value = album.AlbumId;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 	}
 }
