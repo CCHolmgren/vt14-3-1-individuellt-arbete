@@ -7,6 +7,11 @@ namespace Individuellt_arbete.Model
 {
     public class RecentlyListened
     {
+        public int ListenedId
+        {
+            get;
+            set;
+        }
         public DateTime Date{
             get;
             set;

@@ -60,9 +60,9 @@ namespace Individuellt_arbete
             return Contact.GetSongListByUserLatest(medlemId);
         }
 
-        public void ListenToSong(int songId)
+        public void ListenToSong(int songId, int medlemId, int length, DateTime? date)
         {
-            Contact.ListenToSong(songId);
+            Contact.ListenToSong(songId, medlemId, length, date);
         }
     }
 }

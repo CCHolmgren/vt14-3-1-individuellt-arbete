@@ -13,6 +13,15 @@ namespace Individuellt_arbete.Pages.Songs {
     public partial class Songs {
         
         /// <summary>
+        /// Successlabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Successlabel;
+        
+        /// <summary>
         /// SongList control.
         /// </summary>
         /// <remarks>

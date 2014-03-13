@@ -3,6 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ValidationSummary runat="server"/>
+    <asp:Label runat="server" ID="Successlabel"></asp:Label>
     <asp:ListView ItemType="Individuellt_arbete.Model.Song" runat="server" ID="SongList" SelectMethod="SongList_GetData">
         <LayoutTemplate>
                     <table>
@@ -10,6 +11,7 @@
                             <th>Songname</th>
                             <th>BandName</th>
                             <th>Length</th>
+                            <th></th>
                             <th></th>
                         </tr>
                         <asp:PlaceHolder runat="server" ID="itemPlaceholder"/>
@@ -33,8 +35,11 @@
                     <asp:Label runat="server" Text="<%# Item.Length %>"></asp:Label>
                 </td>
                 <td>
-                    <asp:Button Text="text" ID="ListenButton" OnClick="ListenButton_Click" runat="server" CommandArgument="<%# Item.SongId %>" />
-                    <asp:HyperLink runat="server" NavigateUrl='<%# GetRouteUrl("ListenToSong", new {song=Item.SongId}) %>' Text="Lyssna"></asp:HyperLink>
+                    <asp:Button Text="Lyssna" ID="ListenButton" OnClick="ListenButton_Click" runat="server" CommandArgument='<%# String.Format("{0},{1}",Item.SongId,Item.Length) %>' />
+                    <%-- <asp:HyperLink runat="server" NavigateUrl='<%# GetRouteUrl("ListenToSong", new {song=Item.SongId}) %>' Text="Lyssna"></asp:HyperLink>--%>
+                </td>
+                <td>
+                    <asp:Button Text="Delete" ID="DeleteButton" OnClick="DeleteButton_Click" runat="server" CommandArgument="<%# Item.SongId %>" />
                 </td>
             </tr>
         </ItemTemplate>

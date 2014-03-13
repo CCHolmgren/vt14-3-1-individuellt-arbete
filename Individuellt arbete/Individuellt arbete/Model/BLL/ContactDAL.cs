@@ -514,9 +514,21 @@ namespace Individuellt_arbete.Model
             }
         }
 
-        internal void ListenToSong(int songId)
+        public void ListenToSong(int songId,int medlemId, int length, DateTime? date)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("listenToSong",conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@songId", SqlDbType.Int, 4).Value = songId;
+                cmd.Parameters.Add("@medlemId", SqlDbType.Int, 4).Value = medlemId;
+                cmd.Parameters.Add("@length", SqlDbType.Int, 4).Value = length;
+                cmd.Parameters.Add("@date", SqlDbType.DateTime).Value = date;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

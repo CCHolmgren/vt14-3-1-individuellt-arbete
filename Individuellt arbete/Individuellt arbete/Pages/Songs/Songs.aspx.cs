@@ -48,8 +48,22 @@ namespace Individuellt_arbete.Pages.Songs
 
         protected void ListenButton_Click(object sender, EventArgs e)
         {
-            int argument = Convert.ToInt32(((Button)sender).CommandArgument);
-            Service.ListenToSong(argument);
+            string arguments = ((Button)sender).CommandArgument;
+            string[] argumentarray = arguments.Split(',');
+            try
+            {
+                Service.ListenToSong(Convert.ToInt32(argumentarray[0]), (int)Session["currentuser"],Convert.ToInt32(argumentarray[1]),DateTime.Now);
+                Successlabel.Text = "Du lyssnade på låten.";
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+            }
+        }
+
+        protected void DeleteButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
