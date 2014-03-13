@@ -65,14 +65,21 @@ namespace Individuellt_arbete
             Contact.ListenToSong(songId, medlemId, length, date);
         }
 
-        internal static Album getAlbumById(int id)
+        public Album getAlbumById(int id)
         {
-            throw new NotImplementedException();
+            return Contact.GetAlbumById(id);
         }
 
-        internal static void updateAlbum(int id, Album item)
+        public void saveAlbum(Album album)
         {
-            throw new NotImplementedException();
+            if(album.AlbumId == 0)
+            {
+                Contact.SaveAlbum(album);
+            }
+            else
+            {
+                Contact.UpdateAlbum(album);
+            }
         }
     }
 }
