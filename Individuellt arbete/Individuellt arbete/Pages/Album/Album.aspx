@@ -10,13 +10,15 @@
         DataKeyNames="AlbumId" 
         InsertItemPosition="None" 
         InsertMethod="AlbumList_InsertItem" 
-        UpdateMethod="AlbumList_UpdateItem">
+        UpdateMethod="AlbumList_UpdateItem" 
+        DeleteMethod="AlbumList_DeleteItem">
         <LayoutTemplate>
                     <table>
                         <thead>
                             <tr>
                                 <th>Albumname</th>
                                 <th>ReleaseYear</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -40,14 +42,51 @@
                 <td>
                     <asp:HyperLink NavigateUrl='<%# GetRouteUrl("SongsGivenAlbum", new { albumid = Item.AlbumId }) %>' runat="server" Text="Lyssna"/>
                 </td>
-                <td></td>
+                <td>
+                    <asp:Button Text="Redigera" CommandName="Edit" runat="server" />
+                </td>
+                <td>
+                    <asp:Button Text="Ta bort" CommandName="Delete" runat="server" />
+                </td>
             </tr>
         </ItemTemplate>
         <EditItemTemplate>
+            <tr>
+                <td>
+                    <asp:TextBox Text="<%# BindItem.AlbumName %>" ID="EditName" runat="server"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="EditReleaseYear" runat="server"></asp:TextBox>
+                </td>
+                <td>
 
+                </td>
+                <td>
+                    <asp:Button CommandName="Update" ID="UpdateButton" runat="server" Text="Uppdatera"/>
+                </td>
+                <td>
+                    <asp:Button CommandName="Cancel" ID="CancelUpdateButton" runat="server" Text="Avbryt" />
+                </td>
+            </tr>
         </EditItemTemplate>
         <InsertItemTemplate>
+            <tr>
+                <td>
+                    <asp:TextBox Text="<%# BindItem.AlbumName %>" ID="InsertName" runat="server"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="InsertReleaseYear" runat="server"></asp:TextBox>
+                </td>
+                <td>
 
+                </td>
+                <td>
+                    <asp:Button CommandName="Insert" ID="InsertButton" runat="server" Text="Lägg till"/>
+                </td>
+                <td>
+                    <asp:Button CommandName="Cancel" ID="CancelInsertButton" runat="server" Text="Avbryt" />
+                </td>
+            </tr>
         </InsertItemTemplate>
     </asp:ListView>
     <p>Kommer visa album här som man senare går in på och kan se varje låt.</p>

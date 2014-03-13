@@ -103,5 +103,11 @@ namespace Individuellt_arbete.Pages.Album
         {
             AlbumList.InsertItemPosition = InsertItemPosition.FirstItem;
         }
+
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void AlbumList_DeleteItem(int id)
+        {
+
+        }
     }
 }

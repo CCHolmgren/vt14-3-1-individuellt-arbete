@@ -99,6 +99,7 @@
   <ItemGroup>
     <Content Include="Missing.aspx" />
     <Compile Include="App_Infrastructure\SqlExtensions.cs" />
+    <Compile Include="App_Infrastructure\ValidationExtensions.cs" />
     <Compile Include="Model\BLL\AlbumDAL.cs" />
     <Content Include="Pages\Album\Album.aspx" />
     <Content Include="Pages\MedlemFolder\MedlemPage.aspx" />

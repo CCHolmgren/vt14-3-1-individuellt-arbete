@@ -1,6 +1,7 @@
 ﻿using Individuellt_arbete.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -84,6 +85,13 @@ namespace Individuellt_arbete
 
         public void saveAlbum(Album album)
         {
+            ICollection<ValidationResult> validationResult;
+            if (!album.Validate(out validationResult))
+            {
+                var vx = new ValidationException("Objektet klarade inte valideringen.");
+                vx.Data.Add("validationResult", validationResult);
+                throw vx;
+            }
             if(album.AlbumId == 0)
             {
                 Album.SaveAlbum(album);
