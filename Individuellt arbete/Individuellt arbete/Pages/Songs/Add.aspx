@@ -36,7 +36,7 @@
                     <asp:PlaceHolder ID="itemPlaceholder" runat="server"/>
                 </tbody>
             </table>
-            <asp:DataPager Visible="false" PagedControlID="AddSongsListView" ID="DataPager" runat="server" QueryStringField="page" PageSize="10000">
+            <asp:DataPager Visible="false" PagedControlID="AddSongsListView" ID="DataPager" runat="server" QueryStringField="page" PageSize="200">
                     </asp:DataPager>
         </LayoutTemplate>
         <ItemTemplate>
