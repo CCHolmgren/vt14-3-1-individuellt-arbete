@@ -3,13 +3,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ValidationSummary runat="server" />
+    <asp:Button Text="Lägg till låt" ID="AddSongButton" OnClick="AddSongButton_Click" runat="server" />
     <asp:ListView ID="AddSongsListView" 
         runat="server" 
         DataKeyNames="SongId" 
         ItemType="Individuellt_arbete.Model.Song" 
         SelectMethod="AddSongsListView_GetData" 
         InsertMethod="AddSongsListView_InsertItem" 
-        InsertItemPosition="LastItem" 
+        InsertItemPosition="None" 
         DeleteMethod="AddSongsListView_DeleteItem" 
         UpdateMethod="AddSongsListView_UpdateItem">
         <LayoutTemplate>
@@ -17,16 +18,17 @@
                 <thead>
                     <tr>
                         <th>
-                            What is this
+                            SongName
                         </th>
                         <th>
-                            th second
+                            BandName
                         </th>
                         <th>
-                            what
+                            Length
                         </th>
                         <th>
-                            yes
+                        </th>
+                        <th>
                         </th>
                     </tr>
                 </thead>
@@ -49,23 +51,27 @@
                     <%# Item.Length %>
                 </td>
                 <td>
-                    what
+                    <asp:Button runat="server" ID="Edit" CommandName="Edit" Text="Redigera" />
                 </td>
+                <td></td>
             </tr>
         </ItemTemplate>
         <EditItemTemplate>
             <tr>
                 <td>
-                    Edit
+                    <asp:TextBox runat="server" ID="SongNameEdit" Text="<%# BindItem.SongName %>" />
                 </td>
                 <td>
-                    Edit second
+                    <asp:TextBox runat="server" ID="TextBox1" Text="<%# BindItem.SongName %>" />
                 </td>
                 <td>
-                    Edit third
+                    <asp:TextBox runat="server" ID="TextBox2" Text="<%# BindItem.SongName %>" />
                 </td>
                 <td>
-                    Edit fourth
+                    <asp:Button runat="server" CommandName="Update" Text="Spara" ID="EditButton"/>
+                </td>
+                <td>
+                    <asp:Button runat="server" CommandName="Cancel" Text="Avbryt" ID="EditCancelButton" />
                 </td>
             </tr>
         </EditItemTemplate>

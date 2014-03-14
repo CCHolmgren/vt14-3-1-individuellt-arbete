@@ -141,7 +141,7 @@ namespace Individuellt_arbete.Model
 
                 cmd.Parameters.Add("@songId", SqlDbType.Int, 4).Value = songId;
                 cmd.Parameters.Add("@medlemId", SqlDbType.Int, 4).Value = medlemId;
-                cmd.Parameters.Add("@length", SqlDbType.Int, 4).Value = length;
+                cmd.Parameters.Add("@length", SqlDbType.Int, 2).Value = length;
                 cmd.Parameters.Add("@date", SqlDbType.DateTime).Value = date;
 
                 conn.Open();
@@ -149,7 +149,24 @@ namespace Individuellt_arbete.Model
             }
         }
 
-        internal void UpdateSong(Song song, int albumId)
+        public void UpdateSong(Song song, int albumId)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("updateSong", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@songId", SqlDbType.Int, 4).Value = song.SongId;
+                cmd.Parameters.Add("@songName", SqlDbType.VarChar, 50).Value = song.SongName;
+                cmd.Parameters.Add("@bandName", SqlDbType.VarChar, 50).Value = song.BandName;
+                cmd.Parameters.Add("@length", SqlDbType.Int, 2).Value = song.Length;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        internal void RemoveSong(int SongId)
         {
             throw new NotImplementedException();
         }

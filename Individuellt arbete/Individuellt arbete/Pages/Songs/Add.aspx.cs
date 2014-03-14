@@ -134,15 +134,28 @@ namespace Individuellt_arbete
             if (item == null)
             {
                 // The item wasn't found
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
+                ModelState.AddModelError(String.Empty, String.Format("Item with id {0} was not found", SongId));
                 return;
             }
-            TryUpdateModel(item);
-            if (ModelState.IsValid)
+
+            if (TryUpdateModel(item))
             {
                 // Save changes here, e.g. MyDataLayer.SaveChanges();
-
+                try
+                {
+                    Service.saveSong(item, 0);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(String.Empty, "Låten kunde inte sparas.");
+                    return;
+                }
             }
+        }
+
+        protected void AddSongButton_Click(object sender, EventArgs e)
+        {
+            AddSongsListView.InsertItemPosition = InsertItemPosition.LastItem;
         }
     }
 }

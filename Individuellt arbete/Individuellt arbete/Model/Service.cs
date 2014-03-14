@@ -29,8 +29,6 @@ namespace Individuellt_arbete
             get { return _song ?? (_song = new SongDAL()); }
         }
 
-        //Add all functions to get all data from database and insert into
-
         //Song
         public void addSong(Song song, int albumId)
         {
@@ -48,7 +46,6 @@ namespace Individuellt_arbete
         {
             return Song.GetSongList(maximumRows, startRowIndex, out totalRowCount, albumId);
         }
-
         public IEnumerable<RecentlyListened> getSongListLatest(int medlemId)
         {
             return Song.GetSongListByUserLatest(medlemId);
@@ -71,7 +68,6 @@ namespace Individuellt_arbete
                 Song.UpdateSong(song, albumId);
             }
         }
-
         public void removeSong(int SongId)
         {
             Song.RemoveSong(SongId);
@@ -80,6 +76,7 @@ namespace Individuellt_arbete
         {
             Song.ListenToSong(songId, medlemId, length, date);
         }
+
         //Album
         public List<Album> getAllAlbums()
         {
@@ -93,7 +90,6 @@ namespace Individuellt_arbete
         {
             return Album.GetAlbumById(id);
         }
-
         public void saveAlbum(Album album)
         {
             ICollection<ValidationResult> validationResult;
@@ -116,12 +112,12 @@ namespace Individuellt_arbete
         {
             Album.DeleteAlbum(AlbumId);
         }
+
         //Medlem
         public List<Medlem> getAllMedlems()
         {
             return Medlem.GetAllMedlems();
         }
-        
         public Medlem getMedlem(int id)
         {
             return Medlem.GetMedlem(id);
