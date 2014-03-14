@@ -28,13 +28,13 @@ namespace Individuellt_arbete
                 try
                 {
                     Medlem medlem = new Medlem { FirstName = FirstName.Text, LastName = LastName.Text, PrimaryEmail = PrimaryEmail.Text };
-                    medlem.MedlemId = Service.createMedlem(medlem);
+                    Service.createMedlem(medlem);
                     Page.SetTempData("SuccessMessage", "Kontakten skapades.");
                     Response.RedirectToRoute("MedlemPage", new { medlem = medlem.MedlemId });
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    ModelState.AddModelError(String.Empty, "Ett fel uppstod vid skapandet av medlemen.");
+                    ModelState.AddModelError(String.Empty, String.Format("Ett fel uppstod vid skapandet av medlemen. {0}", ex.Message));
                 }
             }
         }

@@ -122,9 +122,9 @@ namespace Individuellt_arbete
         {
             return Medlem.GetMedlem(id);
         }
-        public static int createMedlem(Medlem medlem)
+        public void createMedlem(Medlem medlem)
         {
-            throw new NotImplementedException();
+            Medlem.AddMedlem(medlem);
         }
     }
 }

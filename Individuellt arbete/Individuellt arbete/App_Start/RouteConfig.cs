@@ -12,8 +12,10 @@ namespace Individuellt_arbete
         public static void RegisterRoutes(RouteCollection routes)
         {
             //routes.RouteExistingFiles = true;
-            
+
+            routes.MapPageRoute("RegisterMedlem", "medlem/register", "~/Pages/MedlemFolder/Register.aspx");
             routes.MapPageRoute("MedlemPage", "medlem/{medlem}", "~/Pages/MedlemFolder/MedlemPage.aspx");
+
 
             routes.MapPageRoute("Albums", "albums", "~/Pages/Album/Album.aspx");
             routes.MapPageRoute("EditAlbums", "albums/edit", "~/Pages/Album/EditAlbum.aspx");
@@ -22,8 +24,6 @@ namespace Individuellt_arbete
             routes.MapPageRoute("AddSongs", "album-{albumid}/songs/add", "~/Pages/Songs/Add.aspx");
             routes.MapPageRoute("EditSongsOnAlbum", "album-{albumid}/songs/edit", "~/Pages/Songs/EditSongs.aspx");
             
-            
-
             routes.MapPageRoute("DeleteSong", "song/{song}/delete", "~/Pages/Song/Delete.aspx");
             //routes.MapPageRoute("ListenToSongs", "songs/listen", "~/Pages/Songs/Listen.aspx");
             

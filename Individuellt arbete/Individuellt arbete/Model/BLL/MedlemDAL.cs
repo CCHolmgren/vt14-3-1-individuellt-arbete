@@ -250,16 +250,16 @@ namespace Individuellt_arbete.Model
                 SqlCommand cmd = new SqlCommand("Person.AddSong", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar, 50).Value = medlem.FirstName;
-                cmd.Parameters.Add("@LastName", SqlDbType.NVarChar, 50).Value = medlem.LastName;
-                cmd.Parameters.Add("@EmailAddress", SqlDbType.NVarChar, 50).Value = medlem.PrimaryEmail;
+                cmd.Parameters.Add("@firstName", SqlDbType.NVarChar, 50).Value = medlem.FirstName;
+                cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = medlem.LastName;
+                cmd.Parameters.Add("@primaryEmail", SqlDbType.NVarChar, 50).Value = medlem.PrimaryEmail;
 
-                cmd.Parameters.Add("@ContactID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@medlemId", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
 
-                medlem.MedlemId = (int)cmd.Parameters["@ContactID"].Value;
+                medlem.MedlemId = (int)cmd.Parameters["@medlemId"].Value;
             }
         }
         /// <summary>
@@ -282,7 +282,5 @@ namespace Individuellt_arbete.Model
                 cmd.ExecuteNonQuery();
             }
         }
-
-        
     }
 }
