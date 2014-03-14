@@ -17,22 +17,28 @@ namespace Individuellt_arbete.Pages.MedlemFolder
                 return _service ?? (_service = new Service());
             }
         }
+        int CurrentUser
+        {
+            get { return Convert.ToInt32(Session["currentuser"]); }
+        }
+        int MedlemId
+        {
+            get { return Convert.ToInt32(RouteData.Values["medlemid"]); }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
         }
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            int sessionCurrentUser = Convert.ToInt32(Session["currentuser"]);
-            int medlemIdRoute = Convert.ToInt32(RouteData.Values["medlemid"]);
             //TODO: Change back this line to 
             //int medlemId = Convert.ToInt32(Page.RouteData.Values["medlem"]);
             //It's only for debuggign.
             try
             {
-                Model.Medlem medlem = Service.getMedlem(medlemIdRoute);
+                Model.Medlem medlem = Service.getMedlem(MedlemId);
                 if (medlem != null)
                 {
-                    if (sessionCurrentUser == medlemIdRoute)
+                    if (CurrentUser == MedlemId)
                     {
                         HelloMessage.Visible = true;
                         RecentlyListenedListView.EmptyDataTemplate = RecentlyListenedListView.InsertItemTemplate;
@@ -59,13 +65,6 @@ namespace Individuellt_arbete.Pages.MedlemFolder
             }
         }
 
-        public IEnumerable<Individuellt_arbete.Model.RecentlyListened> LastListened_GetData()
-        {
-            //TODO: Change back this to return Service.getSongListLatest((int)(RouteData.Values["medlem"]));
-            //It's only for debugging
-            return Service.getSongListLatest(Convert.ToInt32(RouteData.Values["medlem"]));
-        }
-
         // The return type can be changed to IEnumerable, however to support
         // paging and sorting, the following parameters must be added:
         //     int maximumRows
@@ -74,7 +73,7 @@ namespace Individuellt_arbete.Pages.MedlemFolder
         //     string sortByExpression
         public IEnumerable<Individuellt_arbete.Model.RecentlyListened> RecentlyListenedListView_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
-            IEnumerable<Model.RecentlyListened> rl = Service.getSongListLatest(Convert.ToInt32(RouteData.Values["medlem"]));
+            IEnumerable<Model.RecentlyListened> rl = Service.getSongListLatest(MedlemId);
             totalRowCount = rl.Count();
             return rl;
         }
