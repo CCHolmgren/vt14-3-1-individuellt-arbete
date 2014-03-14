@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ValidationSummary runat="server" DisplayMode="SingleParagraph"/>
-    <p>Hej <asp:Label ID="FirstName" runat="server"/>!</p>
+    <asp:Panel runat="server" ID="HelloMessage" Visible="false"><p>Hej <asp:Label ID="FirstName" runat="server"/>!</p></asp:Panel>
     <p><asp:Label ID="LastName" runat="server"></asp:Label>
     <asp:Label ID="PrimaryEmail" runat="server"></asp:Label></p>
     <asp:ListView runat="server" ItemType="Individuellt_arbete.Model.RecentlyListened" ID="RecentlyListenedListView" SelectMethod="RecentlyListenedListView_GetData">
@@ -22,6 +22,7 @@
                     <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
                 </tbody>
             </table>
+            <asp:DataPager runat="server" PageSize="5" Visible="false"/>
         </LayoutTemplate>
         <ItemTemplate>
             <tr>
@@ -42,10 +43,15 @@
                 </td>
             </tr>
         </ItemTemplate>
-        <EmptyDataTemplate>
+        <InsertItemTemplate>
             <tr>
                 <td>Du har inte lyssnat på några låtar, du vill kanske <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Albums %>" runat="server">göra det</asp:HyperLink>?</td>
             </tr>
-        </EmptyDataTemplate>
+        </InsertItemTemplate>
+        <EditItemTemplate>
+            <tr>
+                <td>Användaren har inte lyssnat på några låtar än.</td>
+            </tr>
+        </EditItemTemplate>
     </asp:ListView>
 </asp:Content>

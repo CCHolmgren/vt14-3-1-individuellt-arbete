@@ -75,7 +75,7 @@ namespace Individuellt_arbete
         protected void MedlemIdSet_Click(object sender, EventArgs e)
         {
             Session["currentuser"] = int.Parse(MemberList.SelectedValue);
-            Response.RedirectToRoute("MedlemPage", new { medlem = MemberList.SelectedValue });
+            Response.RedirectToRoute("MedlemPage", new { medlemid = MemberList.SelectedValue });
         }
     }
 }

@@ -22,15 +22,26 @@ namespace Individuellt_arbete.Pages.MedlemFolder
         }
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
+            int sessionCurrentUser = Convert.ToInt32(Session["currentuser"]);
+            int medlemIdRoute = Convert.ToInt32(RouteData.Values["medlemid"]);
             //TODO: Change back this line to 
             //int medlemId = Convert.ToInt32(Page.RouteData.Values["medlem"]);
             //It's only for debuggign.
-            int medlemId = Convert.ToInt32(Page.RouteData.Values["medlem"]??Session["currentuser"]);
             try
             {
-                Model.Medlem medlem = Service.getMedlem(medlemId);
+                Model.Medlem medlem = Service.getMedlem(medlemIdRoute);
                 if (medlem != null)
                 {
+                    if (sessionCurrentUser == medlemIdRoute)
+                    {
+                        HelloMessage.Visible = true;
+                        RecentlyListenedListView.EmptyDataTemplate = RecentlyListenedListView.InsertItemTemplate;
+                    }
+                    else
+                    {
+                        RecentlyListenedListView.EmptyDataTemplate = RecentlyListenedListView.EditItemTemplate;
+                    }
+
                     FirstName.Text = medlem.FirstName;
                     LastName.Text = medlem.LastName;
                     PrimaryEmail.Text = medlem.PrimaryEmail;
@@ -61,9 +72,11 @@ namespace Individuellt_arbete.Pages.MedlemFolder
         //     int startRowIndex
         //     out int totalRowCount
         //     string sortByExpression
-        public IQueryable<Individuellt_arbete.Model.RecentlyListened> RecentlyListenedListView_GetData()
+        public IEnumerable<Individuellt_arbete.Model.RecentlyListened> RecentlyListenedListView_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
-            return null;
+            IEnumerable<Model.RecentlyListened> rl = Service.getSongListLatest(Convert.ToInt32(RouteData.Values["medlem"]));
+            totalRowCount = rl.Count();
+            return rl;
         }
     }
 }
