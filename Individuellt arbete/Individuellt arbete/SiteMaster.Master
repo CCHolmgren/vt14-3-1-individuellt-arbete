@@ -5,20 +5,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>MasterPage</title>
+    <link href="~/Styles/Main.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <div id="header">
-        <h1>Individuellt projekt</h1>
-    </div>
-    <div id="main">
-        <form id="form1" runat="server">
-            <div>
-                <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                </asp:ContentPlaceHolder>
-            </div>
-        </form>
+    <div class="pagewrapper">
+        <div id="header">
+            <h1>Individuellt projekt</h1>
+        </div>
+        <div class="main" id="main">
+            <form id="form1" runat="server">
+                <div>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
