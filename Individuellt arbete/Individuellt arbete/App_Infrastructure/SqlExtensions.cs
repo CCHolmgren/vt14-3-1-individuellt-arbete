@@ -13,7 +13,7 @@ namespace Individuellt_arbete
         /// <param name="conn">The sqlconnection that you are about to connect to</param>
         /// <param name="timeout">The timeout time in ms</param>
         /// <param name="errorMessage">The errormessage that the ConnectionException will have</param>
-        public static void QuickOpen(this SqlConnection conn, int timeout, string errorMessage = "Timed out while trying to connect.")
+        public static void QuickOpen(this SqlConnection conn, int timeout = 5000, string errorMessage = "Timed out while trying to connect.")
         {
             // We'll use a Stopwatch here for simplicity. A comparison to a stored DateTime.Now value could also be used
             Stopwatch sw = new Stopwatch();
