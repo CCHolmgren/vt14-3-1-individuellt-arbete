@@ -30,6 +30,8 @@ namespace Individuellt_arbete
         }
 
         //Add all functions to get all data from database and insert into
+
+        //Song
         public void addSong(Song song, int albumId)
         {
             Song.AddSong(song, albumId);
@@ -42,27 +44,6 @@ namespace Individuellt_arbete
         {
             return Song.GetAllSongs();
         }
-        public List<Album> getAllAlbums()
-        {
-            return Album.GetAllAlbums();
-        }
-        public List<Medlem> getAllMedlems()
-        {
-            return Medlem.GetAllMedlems();
-        }
-        public Medlem getMedlem(int id)
-        {
-            return Medlem.GetMedlem(id);
-        }
-        public static int createMedlem(Medlem medlem)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Album> getAlbumList(int maximumRows, int startRowIndex, out int totalRowCount)
-        {
-            return Album.GetAlbumList(maximumRows, startRowIndex, out totalRowCount);
-        }
         public IEnumerable<Song> getSongList(int maximumRows, int startRowIndex, out int totalRowCount, int albumId)
         {
             return Song.GetSongList(maximumRows, startRowIndex, out totalRowCount, albumId);
@@ -72,45 +53,10 @@ namespace Individuellt_arbete
         {
             return Song.GetSongListByUserLatest(medlemId);
         }
-
-        public void ListenToSong(int songId, int medlemId, int length, DateTime date)
-        {
-            Song.ListenToSong(songId, medlemId, length, date);
-        }
-
-        public Album getAlbumById(int id)
-        {
-            return Album.GetAlbumById(id);
-        }
-
-        public void saveAlbum(Album album)
-        {
-            ICollection<ValidationResult> validationResult;
-            if (!album.Validate(out validationResult))
-            {
-                var vx = new ValidationException("Objektet klarade inte valideringen.");
-                vx.Data.Add("validationResult", validationResult);
-                throw vx;
-            }
-            if(album.AlbumId == 0)
-            {
-                Album.SaveAlbum(album);
-            }
-            else
-            {
-                Album.UpdateAlbum(album);
-            }
-        }
-
-        public void deleteAlbum(int AlbumId)
-        {
-            Album.DeleteAlbum(AlbumId);
-        }
-
         public void saveSong(Song song, int albumId)
         {
             ICollection<ValidationResult> validationResult;
-            if(!song.Validate(out validationResult))
+            if (!song.Validate(out validationResult))
             {
                 var vx = new ValidationException("Objectet klarade inte validering.");
                 vx.Data.Add("validationResult", validationResult);
@@ -129,6 +75,60 @@ namespace Individuellt_arbete
         public void removeSong(int SongId)
         {
             Song.RemoveSong(SongId);
+        }
+        public void ListenToSong(int songId, int medlemId, int length, DateTime date)
+        {
+            Song.ListenToSong(songId, medlemId, length, date);
+        }
+        //Album
+        public List<Album> getAllAlbums()
+        {
+            return Album.GetAllAlbums();
+        }
+        public IEnumerable<Album> getAlbumList(int maximumRows, int startRowIndex, out int totalRowCount)
+        {
+            return Album.GetAlbumList(maximumRows, startRowIndex, out totalRowCount);
+        }
+        public Album getAlbumById(int id)
+        {
+            return Album.GetAlbumById(id);
+        }
+
+        public void saveAlbum(Album album)
+        {
+            ICollection<ValidationResult> validationResult;
+            if (!album.Validate(out validationResult))
+            {
+                var vx = new ValidationException("Objektet klarade inte valideringen.");
+                vx.Data.Add("validationResult", validationResult);
+                throw vx;
+            }
+            if (album.AlbumId == 0)
+            {
+                Album.SaveAlbum(album);
+            }
+            else
+            {
+                Album.UpdateAlbum(album);
+            }
+        }
+        public void deleteAlbum(int AlbumId)
+        {
+            Album.DeleteAlbum(AlbumId);
+        }
+        //Medlem
+        public List<Medlem> getAllMedlems()
+        {
+            return Medlem.GetAllMedlems();
+        }
+        
+        public Medlem getMedlem(int id)
+        {
+            return Medlem.GetMedlem(id);
+        }
+        public static int createMedlem(Medlem medlem)
+        {
+            throw new NotImplementedException();
         }
     }
 }
