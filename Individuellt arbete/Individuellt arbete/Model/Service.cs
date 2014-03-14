@@ -106,5 +106,29 @@ namespace Individuellt_arbete
         {
             Album.DeleteAlbum(AlbumId);
         }
+
+        public void saveSong(Song song, int albumId)
+        {
+            ICollection<ValidationResult> validationResult;
+            if(!song.Validate(out validationResult))
+            {
+                var vx = new ValidationException("Objectet klarade inte validering.");
+                vx.Data.Add("validationResult", validationResult);
+                throw vx;
+            }
+            if (song.SongId == 0)
+            {
+                Song.AddSong(song, albumId);
+            }
+            else
+            {
+                Song.UpdateSong(song, albumId);
+            }
+        }
+
+        public void removeSong(int SongId)
+        {
+            Song.RemoveSong(SongId);
+        }
     }
 }

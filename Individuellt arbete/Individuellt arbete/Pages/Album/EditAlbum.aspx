@@ -40,13 +40,13 @@
                     <%# Item.ReleaseYear %>
                 </td>
                 <td>
-                    <asp:HyperLink NavigateUrl='<%# GetRouteUrl("SongsGivenAlbum", new { albumid = Item.AlbumId }) %>' runat="server" Text="Lyssna"/>
-                </td>
-                <td>
                     <asp:Button Text="Redigera" CommandName="Edit" runat="server" />
                 </td>
                 <td>
                     <asp:Button Text="Ta bort" CommandName="Delete" runat="server" />
+                </td>
+                <td>
+                    <asp:Button Text="Lägg till låtar" OnClick="AddSongsButton_Click" CommandArgument="<%# Item.AlbumId %>" ID="AddSongsButton" runat="server"/>
                 </td>
             </tr>
         </ItemTemplate>
@@ -57,9 +57,6 @@
                 </td>
                 <td>
                     <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="EditReleaseYear" runat="server"></asp:TextBox>
-                </td>
-                <td>
-
                 </td>
                 <td>
                     <asp:Button CommandName="Update" ID="UpdateButton" runat="server" Text="Uppdatera"/>
@@ -76,9 +73,6 @@
                 </td>
                 <td>
                     <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="InsertReleaseYear" runat="server"></asp:TextBox>
-                </td>
-                <td>
-
                 </td>
                 <td>
                     <asp:Button CommandName="Insert" ID="InsertButton" runat="server" Text="Lägg till"/>

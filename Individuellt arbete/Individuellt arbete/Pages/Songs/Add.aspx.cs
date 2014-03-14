@@ -23,10 +23,10 @@ namespace Individuellt_arbete
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) { 
-                AlbumList.DataSource = CreateDataSource();
+                /*AlbumList.DataSource = CreateDataSource();
                 AlbumList.DataTextField = "AlbumNameTextField";
                 AlbumList.DataValueField = "AlbumIdValueField";
-                AlbumList.DataBind();
+                AlbumList.DataBind();*/
             }
 
             if (Session["AddedSongs"] == null)
@@ -78,17 +78,71 @@ namespace Individuellt_arbete
         {
             if (IsValid)
             {
-                ModelState.AddModelError(String.Empty, AlbumList.SelectedItem.ToString());
+                /*ModelState.AddModelError(String.Empty, AlbumList.SelectedItem.ToString());
                 ModelState.AddModelError("", AlbumList.SelectedValue);
                 ModelState.AddModelError("", AlbumList.SelectedIndex.ToString());
                 Song newSong = new Song { Length = int.Parse(Length.Text), SongName = SongName.Text, BandName = BandName.Text };
-                SongList.Add(newSong/*, AlbumList.SelectedValue*/);
+                SongList.Add(newSong/*, AlbumList.SelectedValue);*/
             }
         }
 
         public IEnumerable<Individuellt_arbete.Model.Song> AddedSongsRepeater_GetData()
         {
             return SongList;
+        }
+
+        // The return type can be changed to IEnumerable, however to support
+        // paging and sorting, the following parameters must be added:
+        //     int maximumRows
+        //     int startRowIndex
+        //     out int totalRowCount
+        //     string sortByExpression
+        public IEnumerable<Individuellt_arbete.Model.Song> AddSongsListView_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
+        {
+            return Service.getSongList(maximumRows, startRowIndex, out totalRowCount, Convert.ToInt32(RouteData.Values["albumid"]));
+        }
+
+        public void AddSongsListView_InsertItem()
+        {
+            Model.Song item = new Individuellt_arbete.Model.Song();
+            if (TryUpdateModel(item))
+            {
+                // Save changes heretry
+                try
+                {
+                    Service.saveSong(item, Convert.ToInt32(RouteData.Values["albumid"]));
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(String.Empty, ex.Message);
+                    return;
+                }
+            }
+        }
+
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void AddSongsListView_DeleteItem(int SongId)
+        {
+            Service.removeSong(SongId);
+        }
+
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void AddSongsListView_UpdateItem(int SongId)
+        {
+            Individuellt_arbete.Model.Song item = null;
+            // Load the item here, e.g. item = MyDataLayer.Find(id);
+            if (item == null)
+            {
+                // The item wasn't found
+                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
+                return;
+            }
+            TryUpdateModel(item);
+            if (ModelState.IsValid)
+            {
+                // Save changes here, e.g. MyDataLayer.SaveChanges();
+
+            }
         }
     }
 }

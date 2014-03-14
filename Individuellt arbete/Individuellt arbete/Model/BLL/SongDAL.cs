@@ -148,5 +148,10 @@ namespace Individuellt_arbete.Model
                 cmd.ExecuteNonQuery();
             }
         }
+
+        internal void UpdateSong(Song song, int albumId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

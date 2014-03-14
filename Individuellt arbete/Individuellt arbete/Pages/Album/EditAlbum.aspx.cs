@@ -109,5 +109,10 @@ namespace Individuellt_arbete.Pages.Album
         {
             Service.deleteAlbum(AlbumId);
         }
+
+        protected void AddSongsButton_Click(object sender, EventArgs e)
+        {
+            Response.RedirectToRoute("AddSongs", new { albumid = Convert.ToInt32(((Button)sender).CommandArgument) });
+        }
     }
 }
