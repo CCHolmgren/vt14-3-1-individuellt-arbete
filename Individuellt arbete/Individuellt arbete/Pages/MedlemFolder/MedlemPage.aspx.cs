@@ -54,5 +54,16 @@ namespace Individuellt_arbete.Pages.MedlemFolder
             //It's only for debugging
             return Service.getSongListLatest(Convert.ToInt32(RouteData.Values["medlem"]));
         }
+
+        // The return type can be changed to IEnumerable, however to support
+        // paging and sorting, the following parameters must be added:
+        //     int maximumRows
+        //     int startRowIndex
+        //     out int totalRowCount
+        //     string sortByExpression
+        public IQueryable<Individuellt_arbete.Model.RecentlyListened> RecentlyListenedListView_GetData()
+        {
+            return null;
+        }
     }
 }

@@ -6,8 +6,8 @@
     <p>Hej <asp:Label ID="FirstName" runat="server"/>!</p>
     <p><asp:Label ID="LastName" runat="server"></asp:Label>
     <asp:Label ID="PrimaryEmail" runat="server"></asp:Label></p>
-    <asp:Repeater runat="server" ItemType="Individuellt_arbete.Model.RecentlyListened" ID="LastListened" SelectMethod="LastListened_GetData">
-        <HeaderTemplate>
+    <asp:ListView runat="server" ItemType="Individuellt_arbete.Model.RecentlyListened" ID="RecentlyListenedListView" SelectMethod="RecentlyListenedListView_GetData">
+        <LayoutTemplate>
             <table>
                 <thead>
                     <tr>
@@ -18,7 +18,11 @@
                         <th>Betyg</th>
                     </tr>
                 </thead>
-        </HeaderTemplate>
+                <tbody>
+                    <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
+                </tbody>
+            </table>
+        </LayoutTemplate>
         <ItemTemplate>
             <tr>
                 <td>
@@ -38,8 +42,10 @@
                 </td>
             </tr>
         </ItemTemplate>
-        <FooterTemplate>
-            </table>
-        </FooterTemplate>
-    </asp:Repeater>
+        <EmptyDataTemplate>
+            <tr>
+                <td>Du har inte lyssnat på några låtar, du vill kanske <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Albums %>" runat="server">göra det</asp:HyperLink>?</td>
+            </tr>
+        </EmptyDataTemplate>
+    </asp:ListView>
 </asp:Content>
