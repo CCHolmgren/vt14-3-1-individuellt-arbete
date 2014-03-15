@@ -16,6 +16,7 @@ namespace Individuellt_arbete.Model
                 cmd.Parameters.Add("@songLength", SqlDbType.Int, 4).Value = song.Length;
                 cmd.Parameters.Add("@bandName", SqlDbType.VarChar, 50).Value = song.BandName;
                 cmd.Parameters.Add("@albumId", SqlDbType.Int, 4).Value = albumId;
+                cmd.Parameters.Add("@trackNr", SqlDbType.TinyInt, 1).Value = song.TrackNr;
                 cmd.Parameters.Add("@songId", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
 
                 conn.Open();
@@ -41,6 +42,7 @@ namespace Individuellt_arbete.Model
                     int songNameIndex = reader.GetOrdinal("SongName");
                     int lengthIndex = reader.GetOrdinal("Length");
                     int bandNameIndex = reader.GetOrdinal("BandName");
+                    int trackNrIndex = reader.GetOrdinal("TrackNr");
 
                     while (reader.Read())
                     {
@@ -49,7 +51,8 @@ namespace Individuellt_arbete.Model
                             BandName = reader.GetString(bandNameIndex),
                             SongId = reader.GetInt32(songIDindex),
                             Length = reader.GetInt16(lengthIndex),
-                            SongName = reader.GetString(songNameIndex)
+                            SongName = reader.GetString(songNameIndex),
+                            TrackNr = reader.GetInt16(trackNrIndex)
                         });
                     }
                     return songs;
@@ -79,6 +82,7 @@ namespace Individuellt_arbete.Model
                     int bandNameIndex = reader.GetOrdinal("BandName");
                     int lengthIndex = reader.GetOrdinal("Length");
                     int songIdIndex = reader.GetOrdinal("SongId");
+                    int trackNrIndex = reader.GetOrdinal("TrackNr");
 
                     while (reader.Read())
                     {
@@ -87,7 +91,8 @@ namespace Individuellt_arbete.Model
                             SongId = reader.GetInt32(songIdIndex),
                             SongName = reader.GetString(songNameIndex),
                             Length = reader.GetInt16(lengthIndex),
-                            BandName = reader.GetString(bandNameIndex)
+                            BandName = reader.GetString(bandNameIndex),
+                            TrackNr = reader.GetByte(trackNrIndex)
                         });
                     }
                 }
@@ -160,6 +165,7 @@ namespace Individuellt_arbete.Model
                 cmd.Parameters.Add("@songName", SqlDbType.VarChar, 50).Value = song.SongName;
                 cmd.Parameters.Add("@bandName", SqlDbType.VarChar, 50).Value = song.BandName;
                 cmd.Parameters.Add("@length", SqlDbType.Int, 2).Value = song.Length;
+                cmd.Parameters.Add("@trackNr", SqlDbType.TinyInt, 1).Value = song.TrackNr;
 
                 conn.Open();
                 cmd.ExecuteNonQuery();

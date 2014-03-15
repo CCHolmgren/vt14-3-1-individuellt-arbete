@@ -30,7 +30,16 @@ namespace Individuellt_arbete
         }
         DataView CreateDataSource()
         {
-            List<Medlem> medlems = Service.getAllMedlems();
+            List<Medlem> medlems;
+            try
+            {
+                medlems = Service.getAllMedlems();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+                return new DataView();
+            }
             // Create a table to store data for the DropDownList control.
             DataTable dt = new DataTable();
 
@@ -68,8 +77,16 @@ namespace Individuellt_arbete
         }
         public IEnumerable<Individuellt_arbete.Model.Album> Unnamed_GetData()
         {
-            List<Album> album = Service.getAllAlbums();
-            return album.AsEnumerable();
+            try
+            {
+                List<Album> album = Service.getAllAlbums();
+                return album.AsEnumerable();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+                return null;
+            }
         }
 
         protected void MedlemIdSet_Click(object sender, EventArgs e)

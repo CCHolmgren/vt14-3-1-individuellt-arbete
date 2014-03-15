@@ -8,6 +8,7 @@
         <LayoutTemplate>
                     <table>
                         <tr>
+                            <th>Track number</th>
                             <th>Songname</th>
                             <th>BandName</th>
                             <th>Length</th>
@@ -24,6 +25,9 @@
                 </LayoutTemplate>
         <ItemTemplate>
             <tr>
+                <td>
+                    <asp:Label runat="server" Text="<%# Item.TrackNr %>"></asp:Label>
+                </td>
                 <td>
                     <asp:Label runat="server" Text="<%# Item.SongName %>"></asp:Label>
                 </td>

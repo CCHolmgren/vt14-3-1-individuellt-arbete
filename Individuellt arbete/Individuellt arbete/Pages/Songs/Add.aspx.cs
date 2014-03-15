@@ -36,7 +36,16 @@ namespace Individuellt_arbete
         }
         DataView CreateDataSource()
         {
-            List<Album> albums = Service.getAllAlbums();
+            List<Album> albums;
+            try
+            {
+                albums = Service.getAllAlbums();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+                return new DataView();
+            }
             // Create a table to store data for the DropDownList control.
             DataTable dt = new DataTable();
 
@@ -99,7 +108,16 @@ namespace Individuellt_arbete
         //     string sortByExpression
         public IEnumerable<Individuellt_arbete.Model.Song> AddSongsListView_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
-            return Service.getSongList(maximumRows, startRowIndex, out totalRowCount, Convert.ToInt32(RouteData.Values["albumid"]));
+            try
+            {
+                return Service.getSongList(maximumRows, startRowIndex, out totalRowCount, Convert.ToInt32(RouteData.Values["albumid"]));
+            }
+            catch (Exception ex)
+            {
+                totalRowCount = 0;
+                ModelState.AddModelError(String.Empty, ex.Message);
+                return null;
+            }
         }
 
         public void AddSongsListView_InsertItem()
@@ -123,7 +141,15 @@ namespace Individuellt_arbete
         // The id parameter name should match the DataKeyNames value set on the control
         public void AddSongsListView_DeleteItem(int SongId)
         {
-            Service.removeSong(SongId);
+            try
+            {
+                Service.removeSong(SongId);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+                return;
+            }
         }
 
         // The id parameter name should match the DataKeyNames value set on the control

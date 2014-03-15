@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" MasterPageFile="~/SiteMaster.Master" Inherits="Individuellt_arbete.Default" ViewStateMode="Disabled"%>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="MainContent">
+    <asp:ValidationSummary runat="server" />
     <asp:Label Text="Login" runat="server" />
     <asp:DropDownList runat="server" ID="MemberList" ViewStateMode="Enabled"></asp:DropDownList>
     <asp:Button Text="Login" ID="MedlemIdSet" OnClick="MedlemIdSet_Click" runat="server" />

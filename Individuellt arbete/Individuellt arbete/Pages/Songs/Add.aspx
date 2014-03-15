@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <ul>
         <li>
-            <asp:ValidationSummary runat="server" />
+            <asp:ValidationSummary runat="server" DisplayMode="List"/>
         </li>
         <li>
             <asp:Button Text="Lägg till låt" ID="AddSongButton" OnClick="AddSongButton_Click" runat="server" />
@@ -23,6 +23,9 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>
+                                Track number
+                            </th>
                             <th>
                                 SongName
                             </th>
@@ -48,6 +51,9 @@
             <ItemTemplate>
                 <tr>
                     <td>
+                        <%# Item.TrackNr %>
+                    </td>
+                    <td>
                         <%# Item.SongName %>
                     </td>
                     <td>
@@ -64,6 +70,9 @@
             </ItemTemplate>
             <EditItemTemplate>
                 <tr>
+                    <td>
+                        <asp:TextBox runat="server" ID="TrackNrEdit" Text="<%# BindItem.TrackNr %>" />
+                    </td>
                     <td>
                         <asp:TextBox runat="server" ID="SongNameEdit" Text="<%# BindItem.SongName %>" />
                     </td>
@@ -83,6 +92,9 @@
             </EditItemTemplate>
             <InsertItemTemplate>
                 <tr>
+                    <td>
+                        <asp:TextBox runat="server" ID="InsertTrackNr" Text="<%# BindItem.TrackNr %>" />
+                    </td>
                     <td>
                         <asp:TextBox runat="server" ID="InsertSongName" Text="<%# BindItem.SongName %>"/>
                     </td>
@@ -108,21 +120,4 @@
         </asp:ListView>
         </li>
     </ul>
-    <%-- <ul>
-        <asp:Repeater runat="server" ItemType="Individuellt_arbete.Model.Song" ID="AddedSongsRepeater" SelectMethod="AddedSongsRepeater_GetData">
-            <HeaderTemplate>
-                <li>Tillagda låtar:</li>
-            </HeaderTemplate>
-            <ItemTemplate>
-                <li><%# Item.SongName %></li>
-            </ItemTemplate>
-        </asp:Repeater>
-        <li>Längd: <asp:TextBox runat="server" ID="Length"/></li>
-        <li>Namn: <asp:TextBox runat="server" ID="SongName"/></li>
-        <li>BandNamn: <asp:TextBox runat="server" ID="BandName"/></li>
-        <li>Album: <asp:DropDownList ID="AlbumList" runat="server" ItemType="Individuellt_arbete.Model.Album" ViewStateMode="Enabled"></asp:DropDownList></li>
-        <li>
-            <asp:Button Text="Spara" runat="server" ID="SaveSongButton" OnClick="SaveSongButton_Click"/></li>
-        <li></li>
-    </ul>--%>
 </asp:Content>

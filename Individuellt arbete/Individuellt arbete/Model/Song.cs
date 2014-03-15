@@ -30,5 +30,10 @@ namespace Individuellt_arbete.Model
             get;
             set;
         }
+        public short TrackNr
+        {
+            get;
+            set;
+        }
     }
 }
