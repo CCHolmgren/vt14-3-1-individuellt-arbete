@@ -20,6 +20,7 @@ namespace Individuellt_arbete
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["currentuser"] = 1;
             if (!IsPostBack)
             {
                 MemberList.DataSource = CreateDataSource();

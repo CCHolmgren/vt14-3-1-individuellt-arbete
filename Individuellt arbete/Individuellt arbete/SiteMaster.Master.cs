@@ -15,6 +15,11 @@ namespace Individuellt_arbete
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["currentuser"] == null)
+            {
+                Session["errormessage"] = "Du måste logga in först.";
+                Response.RedirectToRoute("Default");
+            }
         }
     }
 }
