@@ -18,7 +18,7 @@ namespace Individuellt_arbete
             if(Session["currentuser"] == null)
             {
                 Session["errormessage"] = "Du måste logga in först.";
-                Response.RedirectToRoute("Default");
+                Response.RedirectToRoute("Login");
             }
         }
     }

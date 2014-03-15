@@ -1,17 +1,14 @@
-﻿using Individuellt_arbete.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using System.Web.Routing;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Individuellt_arbete
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Login : System.Web.UI.Page
     {
         Service _service;
         private Service Service
@@ -20,18 +17,18 @@ namespace Individuellt_arbete
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Session["currentuser"] = 1;
-            /*if (!IsPostBack)
+            Session["currentuser"] = 1;
+            if (!IsPostBack)
             {
                 MemberList.DataSource = CreateDataSource();
                 MemberList.DataTextField = "MemberNameTextField";
                 MemberList.DataValueField = "MemberIdValueField";
                 MemberList.DataBind();
-            }*/
+            }
         }
-        /*DataView CreateDataSource()
+        DataView CreateDataSource()
         {
-            List<Medlem> medlems;
+            List<Model.Medlem> medlems;
             try
             {
                 medlems = Service.getAllMedlems();
@@ -50,7 +47,9 @@ namespace Individuellt_arbete
 
             // Populate the table with sample values.e
             medlems.ForEach(medlem =>
-                dt.Rows.Add(CreateRow(String.Format("{0} {1}", medlem.FirstName, medlem.LastName)
+                dt.Rows.Add(CreateRow(String.Format("{0} {1}"
+                                        , medlem.FirstName
+                                        , medlem.LastName)
                                         , medlem.MedlemId, dt)));
 
             // Create a DataView from the DataTable to act as the data source
@@ -58,8 +57,8 @@ namespace Individuellt_arbete
             DataView dv = new DataView(dt);
             return dv;
 
-        }*/
-        /*DataRow CreateRow(String Text, int Value, DataTable dt)
+        }
+        DataRow CreateRow(String Text, int Value, DataTable dt)
         {
 
             // Create a DataRow using the DataTable defined in the 
@@ -75,12 +74,12 @@ namespace Individuellt_arbete
             dr[1] = Value;
 
             return dr;
-        }*/
-        /*public IEnumerable<Individuellt_arbete.Model.Album> Unnamed_GetData()
+        }
+        public IEnumerable<Individuellt_arbete.Model.Album> Unnamed_GetData()
         {
             try
             {
-                List<Album> album = Service.getAllAlbums();
+                List<Model.Album> album = Service.getAllAlbums();
                 return album.AsEnumerable();
             }
             catch (Exception ex)
@@ -94,6 +93,6 @@ namespace Individuellt_arbete
         {
             Session["currentuser"] = int.Parse(MemberList.SelectedValue);
             Response.RedirectToRoute("MedlemPage", new { medlemid = MemberList.SelectedValue });
-        }*/
+        }
     }
 }

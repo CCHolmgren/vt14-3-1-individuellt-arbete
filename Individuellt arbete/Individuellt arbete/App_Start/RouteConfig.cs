@@ -29,6 +29,7 @@ namespace Individuellt_arbete
             
             routes.MapPageRoute("ListenToSong", "song/{song}/listen", "~/Pages/Song/Listen.aspx");
 
+            routes.MapPageRoute("Login", "login", "~/Pages/Login.aspx");
             routes.MapPageRoute("Default", "", "~/Pages/Default.aspx");
             routes.MapPageRoute("Missing", "{*value}", "~/Missing.aspx");
         }
