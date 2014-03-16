@@ -2,10 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Panel runat="server" ID="HelloMessage" Visible="false"><p>Hej <asp:Label ID="FirstName" runat="server"/>!</p></asp:Panel>
+    <asp:Panel runat="server" ID="HelloMessage" Visible="false"><p>Hej <asp:Label ID="FirstName" runat="server"/>! what</p></asp:Panel>
     <p><asp:Label ID="LastName" runat="server"></asp:Label>
     <asp:Label ID="PrimaryEmail" runat="server"></asp:Label></p>
-    <asp:ListView runat="server" ItemType="Individuellt_arbete.Model.RecentlyListened" ID="RecentlyListenedListView" SelectMethod="RecentlyListenedListView_GetData">
+    <asp:ListView runat="server" 
+        ItemType="Individuellt_arbete.Model.RecentlyListened" 
+        ID="RecentlyListenedListView" 
+        SelectMethod="RecentlyListenedListView_GetData">
         <LayoutTemplate>
             <table>
                 <thead>
@@ -15,6 +18,7 @@
                         <th>Listened at:</th>
                         <th>Length listened</th>
                         <th>Betyg</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +44,27 @@
                 <td>
                     <%#Item.Betyg %>
                 </td>
+                <asp:Panel Visible="true" ID="GradePanel" runat="server">
+                    <td>
+                        <asp:DropDownList OnSelectedIndexChanged="Unnamed_SelectedIndexChanged" AutoPostBack="true" runat="server" db-SongId="<%# Item.SongId %>">
+                            <asp:ListItem Value="1">
+                                1
+                            </asp:ListItem>
+                            <asp:ListItem Value="2">
+                                2
+                            </asp:ListItem>
+                            <asp:ListItem Value="3">
+                                3
+                            </asp:ListItem>
+                            <asp:ListItem Value="4">
+                                4
+                            </asp:ListItem>
+                            <asp:ListItem Value="5">
+                                5
+                            </asp:ListItem>
+                        </asp:DropDownList>
+                        </td>
+                </asp:Panel>
             </tr>
         </ItemTemplate>
         <InsertItemTemplate>

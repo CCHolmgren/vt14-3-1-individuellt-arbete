@@ -119,6 +119,7 @@ namespace Individuellt_arbete.Model
                     int lengthIndex = reader.GetOrdinal("Length");
                     int bandNameIndex = reader.GetOrdinal("BandName");
                     int betygIndex = reader.GetOrdinal("Betyg");
+                    int songIdIndex = reader.GetOrdinal("SongId");
                     //Date, SongName, ConstrictedRows.Length, BandName, Betyg
 
                     while (reader.Read())
@@ -129,6 +130,7 @@ namespace Individuellt_arbete.Model
                         rl.BandName = reader.GetString(bandNameIndex);
                         rl.Betyg = reader.GetInt32(betygIndex);
                         rl.Length = reader.GetInt16(lengthIndex);
+                        rl.SongId = reader.GetInt32(songIdIndex);
 
                             recentlylistened.Add(rl);
                         /*recentlylistened.Add(new RecentlyListened
@@ -183,6 +185,22 @@ namespace Individuellt_arbete.Model
         internal void RemoveSong(int SongId)
         {
             throw new NotImplementedException();
+        }
+
+        public void GradeSong(int songId, int medlemId, int grade)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("gradeSong", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@songId", SqlDbType.Int, 4).Value = songId;
+                cmd.Parameters.Add("@medlemId", SqlDbType.Int, 4).Value = medlemId;
+                cmd.Parameters.Add("@grade", SqlDbType.Int, 4).Value = grade;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

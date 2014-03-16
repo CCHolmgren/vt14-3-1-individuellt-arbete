@@ -76,6 +76,10 @@ namespace Individuellt_arbete
         {
             Song.ListenToSong(songId, medlemId, length, date);
         }
+        public void gradeSong(int songId, int medlemId, int grade)
+        {
+            Song.GradeSong(songId, medlemId, grade);
+        }
 
         //Album
         public List<Album> getAllAlbums()

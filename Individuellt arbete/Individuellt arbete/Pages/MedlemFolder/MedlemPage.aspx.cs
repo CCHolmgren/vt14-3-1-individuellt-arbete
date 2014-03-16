@@ -77,5 +77,12 @@ namespace Individuellt_arbete.Pages.MedlemFolder
             totalRowCount = rl.Count();
             return rl;
         }
+
+        protected void Unnamed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DropDownList ddl = (DropDownList)sender;
+            Service.gradeSong(Convert.ToInt32(ddl.Attributes["db-SongId"]),MedlemId, Convert.ToInt32(ddl.SelectedValue));
+            Response.RedirectToRoute("MedlemPage", new { medlemid = MedlemId });
+        }
     }
 }

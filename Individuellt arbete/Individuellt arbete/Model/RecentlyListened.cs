@@ -32,5 +32,10 @@ namespace Individuellt_arbete.Model
             get;
             set;
         }
+        public int SongId
+        {
+            get;
+            set;
+        }
     }
 }
