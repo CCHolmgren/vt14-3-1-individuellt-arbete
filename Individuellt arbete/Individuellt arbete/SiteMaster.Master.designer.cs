@@ -31,6 +31,15 @@ namespace Individuellt_arbete {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// HttpContextHandler control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label HttpContextHandler;
+        
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>

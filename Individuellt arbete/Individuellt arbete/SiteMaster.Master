@@ -16,6 +16,7 @@
         </div>
         <div class="main" id="main">
             <form id="form1" runat="server">
+                <asp:Label ID="HttpContextHandler" runat="server"/>
                 <div>
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>

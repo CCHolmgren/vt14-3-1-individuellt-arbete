@@ -16,7 +16,8 @@ namespace Individuellt_arbete
             get { return _service ?? (_service = new Service()); }
         }
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {   
+            
             Session["currentuser"] = 1;
             if (!IsPostBack)
             {
@@ -24,6 +25,7 @@ namespace Individuellt_arbete
                 MemberList.DataTextField = "MemberNameTextField";
                 MemberList.DataValueField = "MemberIdValueField";
                 MemberList.DataBind();
+                CreateDataSource();
             }
         }
         DataView CreateDataSource()
@@ -56,7 +58,6 @@ namespace Individuellt_arbete
             // for the DropDownList control.
             DataView dv = new DataView(dt);
             return dv;
-
         }
         DataRow CreateRow(String Text, int Value, DataTable dt)
         {
