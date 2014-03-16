@@ -14,9 +14,17 @@
         <div id="header">
             <h1>Individuellt projekt</h1>
         </div>
+        <asp:Panel ID="SuccessPanel" CssClass="successcontainer" Visible="false" runat="server">
+                <asp:Label ID="SuccessLabel" Text="" CssClass="successmessage" runat="server" />
+                <a href="#" class="successbutton" id="successbutton">X</a>
+            </asp:Panel>
+        <asp:Panel ID="ErrorPanel" CssClass="errorscontainer" Visible="false" runat="server">
+                <asp:Label ID="ErrorLabel" Text="" CssClass="errormessage" runat="server" />
+                <a href="#" class="errorbutton" id="errorbutton">X</a>
+            </asp:Panel>
         <div class="main" id="main">
             <form id="form1" runat="server">
-                <asp:Label ID="HttpContextHandler" runat="server"/>
+                <asp:ValidationSummary runat="server" ForeColor="Red" DisplayMode="List"/>
                 <div>
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>

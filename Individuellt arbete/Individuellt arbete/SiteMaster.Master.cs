@@ -11,28 +11,45 @@ namespace Individuellt_arbete
 {
     public partial class SiteMaster : System.Web.UI.MasterPage
     {
-        protected static List<Regex> allowedWithoutLogin = new List<Regex> { new Regex(@"^/$",RegexOptions.Singleline|RegexOptions.IgnoreCase), new Regex(@"^/medlem/d+$") };
+        protected static List<Regex> allowedWithoutLogin = new List<Regex> { new Regex(@"^/$",RegexOptions.Singleline|RegexOptions.IgnoreCase), 
+                                                                             new Regex(@"^/medlem/d+$"), 
+                                                                             new Regex(@"^/medlem/register$"),
+                                                                             new Regex(@"^/albums$"),
+                                                                             new Regex(@"^/login$")};
         protected void Page_Init(object sender, EventArgs e)
         {
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpContextHandler.Text = Request.Path;
-
             bool allowed = false;
-            foreach (Regex r in allowedWithoutLogin)
+            allowed = allowedWithoutLogin.Any(r => r.IsMatch(Request.Path));
+            /*foreach (Regex r in allowedWithoutLogin)
             {
                 if (r.IsMatch(Request.Path))
                 {
                     allowed = true;
                 }
-            }
+            }*/
             //allowedWithoutLogin.Any();
             //var allowedUrl = allowedWithoutLogin.Any(re => re.IsMatch(Request.Path));
             if (Session["currentuser"] == null && !allowed)
             {
-                Session["errormessage"] = "Du måste logga in först.";
+                Page.SetTempData("errormessage", "Du måste logga in först.");
                 Response.RedirectToRoute("Login");
+            }
+
+            string errormessage = Page.GetTempData("errormessage") as string;
+            if (errormessage != null)
+            {
+                ErrorPanel.Visible = true;
+                ErrorLabel.Text = errormessage;
+            }
+
+            string successmessage = Page.GetTempData("successmessage") as string;
+            if(successmessage != null)
+            {
+                SuccessPanel.Visible = true;
+                SuccessLabel.Text = successmessage;
             }
         }
     }

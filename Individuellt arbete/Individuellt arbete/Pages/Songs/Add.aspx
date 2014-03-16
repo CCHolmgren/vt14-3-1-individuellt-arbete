@@ -4,9 +4,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <ul>
         <li>
-            <asp:ValidationSummary runat="server" DisplayMode="List"/>
-        </li>
-        <li>
             <asp:Button Text="Lägg till låt" ID="AddSongButton" OnClick="AddSongButton_Click" runat="server" />
         </li>
         <li>
