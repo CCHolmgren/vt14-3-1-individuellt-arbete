@@ -5,8 +5,11 @@
     margin: 0 auto;
 }
 .navigation {
+    width:100%;
     list-style-type:none;
 }
 .navigation li {
     display: inline-block;
+    width: 20%;
+    font-size:1.4em;
 }

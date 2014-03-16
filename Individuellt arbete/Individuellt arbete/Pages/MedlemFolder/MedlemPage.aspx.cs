@@ -73,15 +73,32 @@ namespace Individuellt_arbete.Pages.MedlemFolder
         //     string sortByExpression
         public IEnumerable<Individuellt_arbete.Model.RecentlyListened> RecentlyListenedListView_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
-            IEnumerable<Model.RecentlyListened> rl = Service.getSongListLatest(MedlemId);
-            totalRowCount = rl.Count();
-            return rl;
+            try
+            {
+                IEnumerable<Model.RecentlyListened> rl = Service.getSongListLatest(MedlemId);
+                totalRowCount = rl.Count();
+                return rl;
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+                totalRowCount = 0;
+                return null;
+            }
         }
 
         protected void Unnamed_SelectedIndexChanged(object sender, EventArgs e)
         {
             DropDownList ddl = (DropDownList)sender;
-            Service.gradeSong(Convert.ToInt32(ddl.Attributes["db-SongId"]),MedlemId, Convert.ToInt32(ddl.SelectedValue));
+            try
+            {
+                Service.gradeSong(Convert.ToInt32(ddl.Attributes["db-SongId"]), MedlemId, Convert.ToInt32(ddl.SelectedValue));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+                return;
+            }
             Response.RedirectToRoute("MedlemPage", new { medlemid = MedlemId });
         }
     }

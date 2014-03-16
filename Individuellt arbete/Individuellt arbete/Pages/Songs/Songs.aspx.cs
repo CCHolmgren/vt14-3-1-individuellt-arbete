@@ -60,10 +60,5 @@ namespace Individuellt_arbete.Pages.Songs
                 ModelState.AddModelError(String.Empty, ex.Message);
             }
         }
-
-        protected void DeleteButton_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

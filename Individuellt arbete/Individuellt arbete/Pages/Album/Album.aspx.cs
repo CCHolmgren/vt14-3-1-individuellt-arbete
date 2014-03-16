@@ -28,7 +28,16 @@ namespace Individuellt_arbete.Pages.Album
         //     string sortByExpression
         public IEnumerable<Individuellt_arbete.Model.Album> AlbumList_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
-            return Service.getAlbumList(maximumRows, startRowIndex, out totalRowCount);
+            try
+            {
+                return Service.getAlbumList(maximumRows, startRowIndex, out totalRowCount);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+                totalRowCount = 0;
+                return null;
+            }
         }
 
         public void AlbumList_InsertItem()
@@ -107,7 +116,15 @@ namespace Individuellt_arbete.Pages.Album
         // The id parameter name should match the DataKeyNames value set on the control
         public void AlbumList_DeleteItem(int AlbumId)
         {
-            Service.deleteAlbum(AlbumId);
+            try
+            {
+                Service.deleteAlbum(AlbumId);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+                return;
+            }
         }
     }
 }
