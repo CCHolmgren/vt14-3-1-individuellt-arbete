@@ -4,3 +4,9 @@
     width: 50%;
     margin: 0 auto;
 }
+.navigation {
+    list-style-type:none;
+}
+.navigation li {
+    display: inline-block;
+}

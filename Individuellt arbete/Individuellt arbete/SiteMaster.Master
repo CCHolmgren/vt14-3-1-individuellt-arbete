@@ -14,6 +14,17 @@
         <div id="header">
             <h1>Individuellt projekt</h1>
         </div>
+        <ul class="navigation">
+            <li>
+                <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Default %>" Text="Home" runat="server" />
+            </li>
+            <li>
+                <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Login %>" Text="Login" runat="server" />
+            </li>
+            <li>
+                <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Albums %>" Text="Albums" runat="server" />
+            </li>
+        </ul>
         <asp:Panel ID="SuccessPanel" CssClass="successcontainer" Visible="false" runat="server">
                 <asp:Label ID="SuccessLabel" Text="" CssClass="successmessage" runat="server" />
                 <a href="#" class="successbutton" id="successbutton">X</a>
