@@ -123,14 +123,22 @@ namespace Individuellt_arbete.Model
 
                     while (reader.Read())
                     {
-                        recentlylistened.Add(new RecentlyListened
+                        RecentlyListened rl = new RecentlyListened();
+                        rl.SongName = reader.GetString(songNameIndex);
+                        rl.Date = reader.GetDateTime(dateIndex);
+                        rl.BandName = reader.GetString(bandNameIndex);
+                        rl.Betyg = reader.GetInt32(betygIndex);
+                        rl.Length = reader.GetInt16(lengthIndex);
+
+                            recentlylistened.Add(rl);
+                        /*recentlylistened.Add(new RecentlyListened
                         {
                             SongName = reader.GetString(songNameIndex),
                             Date = reader.GetDateTime(dateIndex),
                             BandName = reader.GetString(bandNameIndex),
                             Betyg = reader.GetInt32(betygIndex),
                             Length = reader.GetInt16(lengthIndex)
-                        });
+                        });*/
                     }
                 }
                 return recentlylistened;

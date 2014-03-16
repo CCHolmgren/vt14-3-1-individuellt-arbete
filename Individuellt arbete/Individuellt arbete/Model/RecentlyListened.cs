@@ -28,7 +28,7 @@ namespace Individuellt_arbete.Model
             get;
             set;
         }
-        public int Betyg{
+        public int? Betyg{
             get;
             set;
         }
