@@ -22,6 +22,15 @@ namespace Individuellt_arbete {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
+        /// LoggedInAs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LoggedInAs;
+        
+        /// <summary>
         /// SuccessPanel control.
         /// </summary>
         /// <remarks>

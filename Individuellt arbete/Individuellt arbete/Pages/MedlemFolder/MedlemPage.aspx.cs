@@ -17,9 +17,9 @@ namespace Individuellt_arbete.Pages.MedlemFolder
                 return _service ?? (_service = new Service());
             }
         }
-        int CurrentUser
+        int CurrentUserId
         {
-            get { return Convert.ToInt32(Session["currentuser"]); }
+            get { return ((Model.Medlem)Session["currentuser"]).MedlemId; }
         }
         int MedlemId
         {
@@ -38,7 +38,7 @@ namespace Individuellt_arbete.Pages.MedlemFolder
                 Model.Medlem medlem = Service.getMedlem(MedlemId);
                 if (medlem != null)
                 {
-                    if (CurrentUser == MedlemId)
+                    if (CurrentUserId == MedlemId)
                     {
                         HelloMessage.Visible = true;
                         RecentlyListenedListView.EmptyDataTemplate = RecentlyListenedListView.InsertItemTemplate;

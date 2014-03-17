@@ -21,6 +21,14 @@ namespace Individuellt_arbete
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["currentuser"] != null)
+            {
+                LoggedInAs.Text = String.Format("{0} {1}", ((Medlem)Session["currentuser"]).FirstName, ((Medlem)Session["currentuser"]).LastName);
+            }
+            else
+            {
+                LoggedInAs.Text = "Du är inte inloggad än.";
+            }
             bool allowed = false;
             allowed = allowedWithoutLogin.Any(r => r.IsMatch(Request.Path));
             /*foreach (Regex r in allowedWithoutLogin)

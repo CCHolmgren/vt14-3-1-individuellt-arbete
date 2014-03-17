@@ -85,7 +85,7 @@ namespace Individuellt_arbete
             {
                 if (Session["currentuser"] == null)
                     return null;
-                int medlemId = (int)Session["currentuser"];
+                int medlemId = ((Medlem)Session["currentuser"]).MedlemId;
                 return Service.getAllListened(medlemId);
             }
             catch (ConnectionException cx)

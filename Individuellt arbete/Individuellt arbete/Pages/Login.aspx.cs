@@ -18,14 +18,13 @@ namespace Individuellt_arbete
         protected void Page_Load(object sender, EventArgs e)
         {   
             
-            Session["currentuser"] = 1;
+            //Session["currentuser"] = 1;
             if (!IsPostBack)
             {
                 MemberList.DataSource = CreateDataSource();
                 MemberList.DataTextField = "MemberNameTextField";
                 MemberList.DataValueField = "MemberIdValueField";
-                MemberList.DataBind();
-                CreateDataSource();
+                MemberList.DataBind();;
             }
         }
         DataView CreateDataSource()
@@ -34,6 +33,7 @@ namespace Individuellt_arbete
             try
             {
                 medlems = Service.getAllMedlems();
+                Session["medlems"] = medlems;
             }
             catch (Exception ex)
             {
@@ -76,23 +76,12 @@ namespace Individuellt_arbete
 
             return dr;
         }
-        public IEnumerable<Individuellt_arbete.Model.Album> Unnamed_GetData()
-        {
-            try
-            {
-                List<Model.Album> album = Service.getAllAlbums();
-                return album.AsEnumerable();
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(String.Empty, ex.Message);
-                return null;
-            }
-        }
 
         protected void MedlemIdSet_Click(object sender, EventArgs e)
         {
-            Session["currentuser"] = int.Parse(MemberList.SelectedValue);
+            int medlemIndex = Convert.ToInt32(MemberList.SelectedValue);
+            Session["currentuser"] = (Session["memberlist"] as List<Model.Medlem>)[medlemIndex];
+            //Session["currentuser"] = int.Parse(MemberList.SelectedValue);
             Response.RedirectToRoute("MedlemPage", new { medlemid = MemberList.SelectedValue });
         }
     }

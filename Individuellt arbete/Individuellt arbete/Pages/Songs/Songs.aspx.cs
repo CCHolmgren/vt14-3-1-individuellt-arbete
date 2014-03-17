@@ -16,7 +16,7 @@ namespace Individuellt_arbete.Pages.Songs
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            Page.Title = String.Format("Låtar på albumet");
+            //Page.Title = String.Format("Låtar på albumet");
         }
 
         // The return type can be changed to IEnumerable, however to support
@@ -52,7 +52,7 @@ namespace Individuellt_arbete.Pages.Songs
             string[] argumentarray = arguments.Split(',');
             try
             {
-                Service.ListenToSong(Convert.ToInt32(argumentarray[0]), (int)Session["currentuser"],Convert.ToInt32(argumentarray[1]),DateTime.Today);
+                Service.ListenToSong(Convert.ToInt32(argumentarray[0]), ((Model.Medlem)Session["currentuser"]).MedlemId, Convert.ToInt32(argumentarray[1]), DateTime.Today);
                 Successlabel.Text = "Du lyssnade på låten.";
             }
             catch (Exception ex)

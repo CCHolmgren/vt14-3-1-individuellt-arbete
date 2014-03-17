@@ -82,6 +82,4 @@
             </tr>
         </InsertItemTemplate>
     </asp:ListView>
-    <p>Kommer visa album här som man senare går in på och kan se varje låt.</p>
-    <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Default %>" runat="server">Hej, hemsidan</asp:HyperLink>
 </asp:Content>

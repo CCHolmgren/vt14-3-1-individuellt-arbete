@@ -13,6 +13,7 @@
     <div class="pagewrapper">
         <div id="header">
             <h1>Individuellt projekt</h1>
+            <p><asp:Label ID="LoggedInAs" runat="server"/></p>
         </div>
         <ul class="navigation">
             <li>
