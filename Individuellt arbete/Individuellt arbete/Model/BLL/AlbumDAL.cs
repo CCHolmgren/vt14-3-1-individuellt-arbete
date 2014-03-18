@@ -172,13 +172,21 @@ namespace Individuellt_arbete.Model
 
                     while (reader.Read())
                     {
-                        album.Add( new AlbumHasGenre
+                        AlbumHasGenre ahg = new AlbumHasGenre();
+
+                        ahg.Genre = reader.GetString(genreIndex);
+                        ahg.Album_has_GenreId = reader.GetInt32(albumHasGenreIdIndex);
+                        ahg.GenreId = reader.GetInt32(genreIdIndex);
+                        ahg.AlbumId = reader.GetInt32(albumIdIndex);
+
+                        album.Add(ahg);
+                        /*album.Add( new AlbumHasGenre
                         {
                             Album_has_GenreId = reader.GetInt32(albumHasGenreIdIndex),
                             GenreId = reader.GetInt32(genreIdIndex),
                             AlbumId = reader.GetInt32(albumIdIndex),
                             Genre = reader.GetString(genreIdIndex)
-                        });
+                        });*/
                     }
                     return album;
                 }
@@ -190,7 +198,7 @@ namespace Individuellt_arbete.Model
             using (var conn = CreateConnection())
             {
                 List<Genre> genres = new List<Genre>();
-                SqlCommand cmd = new SqlCommand("getGenresFromAlbum", conn);
+                SqlCommand cmd = new SqlCommand("getAllGenres", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 conn.Open();
@@ -204,11 +212,26 @@ namespace Individuellt_arbete.Model
                         genres.Add(new Genre
                         {
                             GenreId = reader.GetInt32(genreIdIndex),
-                            GenreName = reader.GetString(genreIdIndex)
+                            GenreName = reader.GetString(genreIndex)
                         });
                     }
                     return genres;
                 }
+            }
+        }
+
+        public void addGenreToAlbum(int genreId, int albumId)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("addGenreToAlbumWithGenreId", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@albumId", SqlDbType.Int, 4).Value = albumId;
+                cmd.Parameters.Add("@genreId", SqlDbType.Int, 4).Value = genreId;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
     }

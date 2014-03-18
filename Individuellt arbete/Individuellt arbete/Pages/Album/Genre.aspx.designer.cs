@@ -13,6 +13,24 @@ namespace Individuellt_arbete.Pages.Album {
     public partial class Genre {
         
         /// <summary>
+        /// AlbumGenreRpr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater AlbumGenreRpr;
+        
+        /// <summary>
+        /// NewGenreDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList NewGenreDDL;
+        
+        /// <summary>
         /// AddGenreButton control.
         /// </summary>
         /// <remarks>
@@ -20,14 +38,5 @@ namespace Individuellt_arbete.Pages.Album {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button AddGenreButton;
-        
-        /// <summary>
-        /// AddGenreListView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView AddGenreListView;
     }
 }

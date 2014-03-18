@@ -4,17 +4,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <ul>
         <li>
-            <asp:Button Text="Lägg till genre" ID="AddGenreButton" OnClick="AddGenreButton_Click" runat="server" />
-        </li>
-        <li>
-            <asp:ListView ID="AddGenreListView" 
+            <asp:Repeater runat="server" ID="AlbumGenreRpr" ItemType="Individuellt_arbete.Model.AlbumHasGenre" SelectMethod="AlbumGenreRpr_GetData">
+                <ItemTemplate><%# Item.Genre %></ItemTemplate>
+            </asp:Repeater></li>
+            <li><asp:DropDownList runat="server" ID="NewGenreDDL" /><asp:Button runat="server" ID="AddGenreButton" Text="Lägg till genre" OnClick="AddGenreButton_Click"/></li>
+            <%-- <asp:ListView ID="AddGenreListView" 
             runat="server" 
             DataKeyNames="GenreId" 
             ItemType="Individuellt_arbete.Model.AlbumHasGenre" 
             SelectMethod="AddGenreListView_GetData" 
             InsertMethod="AddGenreListView_InsertItem"
             InsertItemPosition="None" 
-            DeleteMethod="AddGenreListView_DeleteItem" OnItemInserting="AddGenreListView_ItemInserting">
+            DeleteMethod="AddGenreListView_DeleteItem">
             <LayoutTemplate>
                 <table>
                     <thead>
@@ -63,7 +64,6 @@
                     <td>Det finns inga genrer associerade med albumet. Om du vill lägga till genrer så kan du använda knappen här ovan.</td>
                 </tr>
             </EmptyDataTemplate>
-        </asp:ListView>
-        </li>
+        </asp:ListView>--%>
     </ul>
 </asp:Content>

@@ -17,7 +17,13 @@ namespace Individuellt_arbete.Pages.Album
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+            {
+                NewGenreDDL.DataSource = CreateDataSource();
+                NewGenreDDL.DataTextField = "MemberNameTextField";
+                NewGenreDDL.DataValueField = "MemberIdValueField";
+                NewGenreDDL.DataBind();
+            }
         }
         DataView CreateDataSource()
         {
@@ -67,53 +73,18 @@ namespace Individuellt_arbete.Pages.Album
 
             return dr;
         }
-        protected void InsertButton_Click(object sender, EventArgs e)
+
+        public IEnumerable<Individuellt_arbete.Model.AlbumHasGenre> AlbumGenreRpr_GetData()
         {
-            
+            return Service.getGenresFromAlbum(Convert.ToInt32(RouteData.Values["albumid"]));
         }
 
         protected void AddGenreButton_Click(object sender, EventArgs e)
         {
-            AddGenreListView.InsertItemPosition = InsertItemPosition.FirstItem;
-        }
-
-        // The return type can be changed to IEnumerable, however to support
-        // paging and sorting, the following parameters must be added:
-        //     int maximumRows
-        //     int startRowIndex
-        //     out int totalRowCount
-        //     string sortByExpression
-        public IEnumerable<Individuellt_arbete.Model.AlbumHasGenre> AddGenreListView_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
-        {
-            List<Model.AlbumHasGenre> ahg = Service.getGenresFromAlbum(Convert.ToInt32(RouteData.Values["albumid"]));
-            totalRowCount = ahg.Count;
-            return ahg;
-        }
-
-        public void AddGenreListView_InsertItem()
-        {
-            var item = new Individuellt_arbete.Model.Genre();
-            TryUpdateModel(item);
-            if (ModelState.IsValid)
-            {
-                // Save changes here
-
-            }
-        }
-
-        // The id parameter name should match the DataKeyNames value set on the control
-        public void AddGenreListView_DeleteItem(int GenreId)
-        {
-
-        }
-
-        protected void AddGenreListView_ItemInserting(object sender, ListViewInsertEventArgs e)
-        {
-                DropDownList GenreDDL = (DropDownList)AddGenreListView.InsertItem.FindControl("GenreDDL");
-                GenreDDL.DataSource = CreateDataSource();
-                GenreDDL.DataTextField = "MemberNameTextField";
-                GenreDDL.DataValueField = "MemberIdValueField";
-                GenreDDL.DataBind();
+            int genreId = Convert.ToInt32(NewGenreDDL.SelectedValue);
+            int albumId = Convert.ToInt32(RouteData.Values["albumid"]);
+            Service.addGenreToAlbum(genreId, albumId);
+            Response.RedirectToRoute("AddGenre", new { albumid = albumId });
         }
     }
 }

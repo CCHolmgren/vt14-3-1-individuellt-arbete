@@ -140,5 +140,10 @@ namespace Individuellt_arbete
         {
             return Album.GetAllGenres();
         }
+
+        public void addGenreToAlbum(int genreId, int albumId)
+        {
+            Album.addGenreToAlbum(genreId, albumId);
+        }
     }
 }
