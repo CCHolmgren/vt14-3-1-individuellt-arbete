@@ -130,5 +130,15 @@ namespace Individuellt_arbete
         {
             Medlem.AddMedlem(medlem);
         }
+
+        public List<Model.AlbumHasGenre> getGenresFromAlbum(int albumId)
+        {
+            return Album.GetGenres(albumId);
+        }
+
+        public List<Genre> getAllGenres()
+        {
+            return Album.GetAllGenres();
+        }
     }
 }

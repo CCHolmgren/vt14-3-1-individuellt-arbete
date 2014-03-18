@@ -151,5 +151,65 @@ namespace Individuellt_arbete.Model
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public List<AlbumHasGenre> GetGenres(int albumId)
+        {
+            using (var conn = CreateConnection())
+            {
+                List<AlbumHasGenre> album = new List<AlbumHasGenre>();
+                SqlCommand cmd = new SqlCommand("getGenresFromAlbum", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@albumId", SqlDbType.Int, 4).Value = albumId;
+
+                conn.Open();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    int albumHasGenreIdIndex = reader.GetOrdinal("Album_has_GenreId");
+                    int albumIdIndex = reader.GetOrdinal("AlbumId");
+                    int genreIndex = reader.GetOrdinal("Genre");
+                    int genreIdIndex= reader.GetOrdinal("GenreId");
+
+                    while (reader.Read())
+                    {
+                        album.Add( new AlbumHasGenre
+                        {
+                            Album_has_GenreId = reader.GetInt32(albumHasGenreIdIndex),
+                            GenreId = reader.GetInt32(genreIdIndex),
+                            AlbumId = reader.GetInt32(albumIdIndex),
+                            Genre = reader.GetString(genreIdIndex)
+                        });
+                    }
+                    return album;
+                }
+            }
+        }
+
+        public List<Genre> GetAllGenres()
+        {
+            using (var conn = CreateConnection())
+            {
+                List<Genre> genres = new List<Genre>();
+                SqlCommand cmd = new SqlCommand("getGenresFromAlbum", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                conn.Open();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    int genreIndex = reader.GetOrdinal("Genre");
+                    int genreIdIndex = reader.GetOrdinal("GenreId");
+
+                    while (reader.Read())
+                    {
+                        genres.Add(new Genre
+                        {
+                            GenreId = reader.GetInt32(genreIdIndex),
+                            GenreName = reader.GetString(genreIdIndex)
+                        });
+                    }
+                    return genres;
+                }
+            }
+        }
     }
 }

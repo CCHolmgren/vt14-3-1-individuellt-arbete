@@ -131,5 +131,10 @@ namespace Individuellt_arbete.Pages.Album
         {
             Response.RedirectToRoute("AddSongs", new { albumid = Convert.ToInt32(((Button)sender).CommandArgument) });
         }
+
+        protected void AddGenreButton_Click(object sender, EventArgs e)
+        {
+            Response.RedirectToRoute("AddGenre", new { albumid = Convert.ToInt32(((Button)sender).CommandArgument) });
+        }
     }
 }

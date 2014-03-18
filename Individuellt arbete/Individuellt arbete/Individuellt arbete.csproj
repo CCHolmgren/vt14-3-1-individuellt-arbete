@@ -100,9 +100,11 @@
     <Content Include="Missing.aspx" />
     <Compile Include="App_Infrastructure\SqlExtensions.cs" />
     <Compile Include="App_Infrastructure\ValidationExtensions.cs" />
+    <Compile Include="Model\AlbumHasGenre.cs" />
     <Compile Include="Model\BLL\AlbumDAL.cs" />
     <Content Include="Pages\Album\Album.aspx" />
     <Content Include="Pages\Album\EditAlbum.aspx" />
+    <Content Include="Pages\Album\Genre.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\MedlemFolder\MedlemPage.aspx" />
     <Content Include="Pages\Songs\Add.aspx" />
@@ -148,6 +150,7 @@
       <DependentUpon>Missing.aspx</DependentUpon>
     </Compile>
     <Compile Include="Model\BLL\SongDAL.cs" />
+    <Compile Include="Model\Genre.cs" />
     <Compile Include="Model\RecentlyListened.cs" />
     <Compile Include="Pages\Album\Album.aspx.cs">
       <DependentUpon>Album.aspx</DependentUpon>
@@ -162,6 +165,13 @@
     </Compile>
     <Compile Include="Pages\Album\EditAlbum.aspx.designer.cs">
       <DependentUpon>EditAlbum.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Album\Genre.aspx.cs">
+      <DependentUpon>Genre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Album\Genre.aspx.designer.cs">
+      <DependentUpon>Genre.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

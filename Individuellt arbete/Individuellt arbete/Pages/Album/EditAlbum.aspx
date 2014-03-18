@@ -15,8 +15,9 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Albumname</th>
+                                <th>AlbumName</th>
                                 <th>ReleaseYear</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -46,6 +47,9 @@
                 </td>
                 <td>
                     <asp:Button Text="Lägg till låtar" OnClick="AddSongsButton_Click" CommandArgument="<%# Item.AlbumId %>" ID="AddSongsButton" runat="server"/>
+                </td>
+                <td>
+                    <asp:Button Text="Lägg till genre" ID="AddGenreButton" runat="server" CommandArgument="<%# Item.AlbumId %>" OnClick="AddGenreButton_Click" />
                 </td>
             </tr>
         </ItemTemplate>

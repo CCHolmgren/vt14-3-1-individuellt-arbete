@@ -80,7 +80,7 @@ namespace Individuellt_arbete
         protected void MedlemIdSet_Click(object sender, EventArgs e)
         {
             int medlemIndex = Convert.ToInt32(MemberList.SelectedValue);
-            Session["currentuser"] = (Session["memberlist"] as List<Model.Medlem>)[medlemIndex];
+            Session["currentuser"] = (Session["medlems"] as List<Model.Medlem>)[medlemIndex-1];
             //Session["currentuser"] = int.Parse(MemberList.SelectedValue);
             Response.RedirectToRoute("MedlemPage", new { medlemid = MemberList.SelectedValue });
         }
