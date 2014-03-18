@@ -86,4 +86,7 @@
             </tr>
         </InsertItemTemplate>
     </asp:ListView>
+    <p>
+        <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Albums %>" runat="server" Text="Gå tillbaka till albumsidan"/>
+    </p>
 </asp:Content>

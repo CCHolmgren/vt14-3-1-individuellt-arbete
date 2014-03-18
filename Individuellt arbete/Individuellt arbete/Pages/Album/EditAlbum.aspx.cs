@@ -49,6 +49,7 @@ namespace Individuellt_arbete.Pages.Album
                 try
                 {
                     Service.saveAlbum(item);
+                    Response.RedirectToRoute("EditAlbums");
                 }
                 catch (Exception ex)
                 {
@@ -80,6 +81,7 @@ namespace Individuellt_arbete.Pages.Album
                         try
                         {
                             Service.saveAlbum(album);
+                            Response.RedirectToRoute("EditAlbums");
                             //SuccessMessage = String.Format("Kontakten uppdaterades.");
                             //Response.Redirect(String.Format("?page={0}", DataPager.StartRowIndex / DataPager.PageSize + 1), true);
                         }
@@ -119,6 +121,7 @@ namespace Individuellt_arbete.Pages.Album
             try
             {
                 Service.deleteAlbum(AlbumId);
+                Response.RedirectToRoute("EditAlbums");
             }
             catch (Exception ex)
             {
