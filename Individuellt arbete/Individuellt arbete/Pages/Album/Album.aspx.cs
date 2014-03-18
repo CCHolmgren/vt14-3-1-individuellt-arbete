@@ -126,5 +126,10 @@ namespace Individuellt_arbete.Pages.Album
                 return;
             }
         }
+
+        protected void AddAlbumButton_Click(object sender, EventArgs e)
+        {
+            Response.RedirectToRoute("EditAlbums");
+        }
     }
 }

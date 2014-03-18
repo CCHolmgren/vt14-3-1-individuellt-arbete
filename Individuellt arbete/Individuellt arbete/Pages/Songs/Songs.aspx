@@ -45,6 +45,8 @@
                 </td>--%>
             </tr>
         </ItemTemplate>
+        <EmptyDataTemplate>
+            <a href='javascript:history.go(-1)'>Gå tillbaka till senaste sidan</a>
+        </EmptyDataTemplate>
     </asp:ListView>
-    <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Default %>" Text="Hej, hemsidan" runat="server"></asp:HyperLink>
 </asp:Content>

@@ -3,14 +3,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <ul>
-            <asp:Repeater runat="server" ID="AlbumGenreRpr" ItemType="Individuellt_arbete.Model.AlbumHasGenre" SelectMethod="AlbumGenreRpr_GetData" OnItemDataBound="AlbumGenreRpr_ItemDataBound">
+            <asp:Repeater runat="server" ID="AlbumGenreRpr" ItemType="Individuellt_arbete.Model.AlbumHasGenre" SelectMethod="AlbumGenreRpr_GetData">
                 <ItemTemplate>
                     <li>
                         <%# Item.Genre %>
                     </li>
                 </ItemTemplate>
                 <FooterTemplate>
-                    <asp:Label runat="server" ID="MissingData" Text="Det finns inga låtar associerade med albumet än." Visible="false"></asp:Label>
                 </FooterTemplate>
             </asp:Repeater>
             <li><asp:DropDownList runat="server" ID="NewGenreDDL" /><asp:Button runat="server" ID="AddGenreButton" Text="Lägg till genre" OnClick="AddGenreButton_Click"/></li>

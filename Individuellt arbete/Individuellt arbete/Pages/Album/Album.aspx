@@ -39,4 +39,5 @@
             </tr>
         </ItemTemplate>
     </asp:ListView>
+    <asp:Button ID="AddAlbumButton" Text="Lägg till album" runat="server" OnClick="AddAlbumButton_Click" />
 </asp:Content>

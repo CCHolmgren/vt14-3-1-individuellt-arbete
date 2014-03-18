@@ -25,6 +25,9 @@
             <li>
                 <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Albums %>" Text="Albums" runat="server" />
             </li>
+            <li>
+                <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=RegisterMedlem %>" Text="Registrera ny användare" runat="server" />
+            </li>
         </ul>
         <asp:Panel ID="SuccessPanel" CssClass="successcontainer" Visible="false" runat="server">
                 <asp:Label ID="SuccessLabel" Text="" CssClass="successmessage" runat="server" />

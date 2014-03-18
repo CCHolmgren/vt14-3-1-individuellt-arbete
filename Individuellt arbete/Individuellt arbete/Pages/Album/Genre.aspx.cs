@@ -86,17 +86,5 @@ namespace Individuellt_arbete.Pages.Album
             Service.addGenreToAlbum(genreId, albumId);
             Response.RedirectToRoute("AddGenre", new { albumid = albumId });
         }
-
-        protected void AlbumGenreRpr_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (AlbumGenreRpr.Items.Count < 1)
-            {
-                if (e.Item.ItemType == ListItemType.Footer)
-                {
-                    Label missingData = (Label)e.Item.FindControl("MissingData");
-                    missingData.Visible = true;
-                }
-            }
-        }
     }
 }
