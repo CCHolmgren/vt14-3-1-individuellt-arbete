@@ -15,7 +15,7 @@
             InsertMethod="AddSongsListView_InsertItem" 
             InsertItemPosition="None" 
             DeleteMethod="AddSongsListView_DeleteItem" 
-            UpdateMethod="AddSongsListView_UpdateItem">
+            UpdateMethod="AddSongsListView_UpdateItem" OnDataBound="AddSongsListView_DataBound">
             <LayoutTemplate>
                 <table>
                     <thead>
@@ -42,8 +42,11 @@
                         <asp:PlaceHolder ID="itemPlaceholder" runat="server"/>
                     </tbody>
                 </table>
-                <asp:DataPager Visible="false" PagedControlID="AddSongsListView" ID="DataPager" runat="server" QueryStringField="page" PageSize="200">
-                        </asp:DataPager>
+                <asp:DataPager PagedControlID="AddSongsListView" ID="DataPager" runat="server" QueryStringField="page" PageSize="20">
+                    <Fields>
+                        <asp:NextPreviousPagerField ShowNextPageButton="true" ShowPreviousPageButton="true" RenderNonBreakingSpacesBetweenControls="true"/>
+                    </Fields>
+                </asp:DataPager>
             </LayoutTemplate>
             <ItemTemplate>
                 <tr>

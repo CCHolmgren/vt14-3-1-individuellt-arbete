@@ -10,7 +10,7 @@
         InsertItemPosition="None" 
         InsertMethod="AlbumList_InsertItem" 
         UpdateMethod="AlbumList_UpdateItem" 
-        DeleteMethod="AlbumList_DeleteItem">
+        DeleteMethod="AlbumList_DeleteItem" OnDataBound="AlbumList_DataBound">
         <LayoutTemplate>
                     <table>
                         <thead>

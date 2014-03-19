@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label runat="server" ID="Successlabel"></asp:Label>
-    <asp:ListView ItemType="Individuellt_arbete.Model.Song" runat="server" ID="SongList" SelectMethod="SongList_GetData">
+    <asp:ListView ItemType="Individuellt_arbete.Model.Song" runat="server" ID="SongList" SelectMethod="SongList_GetData" OnDataBound="SongList_DataBound">
         <LayoutTemplate>
                     <table>
                         <tr>
@@ -17,8 +17,9 @@
                     </table>
                     <%-- Pagination --%>
                     <%-- Invisible because we don't want there to be any pagination right now. Must probably change the PageSize though --%>
-                    <asp:DataPager PagedControlID="SongList" ID="DataPager" Visible="false" runat="server" QueryStringField="page" PageSize="20">
+                    <asp:DataPager PagedControlID="SongList" ID="DataPager" runat="server" QueryStringField="page" PageSize="20">
                         <Fields>
+                            <asp:NextPreviousPagerField ShowNextPageButton="true" ShowPreviousPageButton="true" RenderNonBreakingSpacesBetweenControls="true"/>
                         </Fields>
                     </asp:DataPager>
                 </LayoutTemplate>

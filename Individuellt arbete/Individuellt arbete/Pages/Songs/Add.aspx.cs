@@ -21,6 +21,8 @@ namespace Individuellt_arbete
         {
             get { return Session["AddedSongs"] as List<Song>; }
         }
+        DataPager _datapager;
+        DataPager DataPager { get { return _datapager ?? (_datapager = (DataPager)AlbumList.FindControl("DataPager")); } }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) { 
@@ -193,6 +195,11 @@ namespace Individuellt_arbete
         protected void AddSongButton_Click(object sender, EventArgs e)
         {
             AddSongsListView.InsertItemPosition = InsertItemPosition.LastItem;
+        }
+
+        protected void AddSongsListView_DataBound(object sender, EventArgs e)
+        {
+            DataPager.Visible = (DataPager.PageSize < DataPager.TotalRowCount);
         }
     }
 }

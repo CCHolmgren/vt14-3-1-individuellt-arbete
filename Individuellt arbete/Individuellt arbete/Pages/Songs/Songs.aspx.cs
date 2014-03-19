@@ -14,6 +14,8 @@ namespace Individuellt_arbete.Pages.Songs
         {
             get { return _service ?? (_service = new Service()); }
         }
+        DataPager _datapager;
+        DataPager DataPager { get { return _datapager ?? (_datapager = (DataPager)AlbumList.FindControl("DataPager")); } }
         protected void Page_Load(object sender, EventArgs e)
         {
             //Page.Title = String.Format("Låtar på albumet");
@@ -59,6 +61,11 @@ namespace Individuellt_arbete.Pages.Songs
             {
                 ModelState.AddModelError(String.Empty, ex.Message);
             }
+        }
+
+        protected void SongList_DataBound(object sender, EventArgs e)
+        {
+            DataPager.Visible = (DataPager.PageSize < DataPager.TotalRowCount);
         }
     }
 }

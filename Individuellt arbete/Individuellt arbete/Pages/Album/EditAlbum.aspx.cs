@@ -16,6 +16,8 @@ namespace Individuellt_arbete.Pages.Album
         {
             get { return _service ?? (_service = new Service()); }
         }
+        DataPager _datapager;
+        DataPager DataPager { get { return _datapager ?? (_datapager = (DataPager)AlbumList.FindControl("DataPager")); } }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -52,7 +54,7 @@ namespace Individuellt_arbete.Pages.Album
                     try
                     {
                         Service.saveAlbum(item);
-                        Response.RedirectToRoute("EditAlbums");
+                        Response.RedirectToRoute("EditAlbums", new {page=DataPager.StartRowIndex / DataPager.PageSize + 1});
                     }
                     catch (ValidationException vx)
                     {
@@ -91,7 +93,7 @@ namespace Individuellt_arbete.Pages.Album
                         try
                         {
                             Service.saveAlbum(album);
-                            Response.RedirectToRoute("EditAlbums");
+                            Response.RedirectToRoute("EditAlbums", new { page = DataPager.StartRowIndex / DataPager.PageSize + 1 });
                             //SuccessMessage = String.Format("Kontakten uppdaterades.");
                             //Response.Redirect(String.Format("?page={0}", DataPager.StartRowIndex / DataPager.PageSize + 1), true);
                         }
@@ -131,7 +133,7 @@ namespace Individuellt_arbete.Pages.Album
             try
             {
                 Service.deleteAlbum(AlbumId);
-                Response.RedirectToRoute("EditAlbums");
+                Response.RedirectToRoute("EditAlbums", new { page = DataPager.StartRowIndex / DataPager.PageSize + 1 });
             }
             catch (Exception ex)
             {
@@ -148,6 +150,11 @@ namespace Individuellt_arbete.Pages.Album
         protected void AddGenreButton_Click(object sender, EventArgs e)
         {
             Response.RedirectToRoute("AddGenre", new { albumid = Convert.ToInt32(((Button)sender).CommandArgument) });
+        }
+
+        protected void AlbumList_DataBound(object sender, EventArgs e)
+        {
+            DataPager.Visible = (DataPager.PageSize < DataPager.TotalRowCount);
         }
     }
 }

@@ -7,7 +7,7 @@
         ItemType="Individuellt_arbete.Model.Album" 
         SelectMethod="AlbumList_GetData" 
         DataKeyNames="AlbumId" 
-        InsertItemPosition="None">
+        InsertItemPosition="None" OnDataBound="AlbumList_DataBound">
         <LayoutTemplate>
                     <table>
                         <thead>
@@ -22,7 +22,10 @@
                         </tbody>
                     </table>
                     <%-- Pagination --%>
-                    <asp:DataPager PagedControlID="AlbumList" ID="DataPager" runat="server" QueryStringField="page" PageSize="10000">
+                    <asp:DataPager PagedControlID="AlbumList" ID="DataPager" runat="server" QueryStringField="page" PageSize="20">
+                        <Fields>
+                            <asp:NextPreviousPagerField ShowNextPageButton="true" ShowPreviousPageButton="true" RenderNonBreakingSpacesBetweenControls="true"/>
+                        </Fields>
                     </asp:DataPager>
                 </LayoutTemplate>
         <ItemTemplate>

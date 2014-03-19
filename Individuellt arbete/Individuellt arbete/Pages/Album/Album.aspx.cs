@@ -15,6 +15,8 @@ namespace Individuellt_arbete.Pages.Album
         {
             get { return _service ?? (_service = new Service()); }
         }
+        DataPager _datapager;
+        DataPager DataPager { get { return _datapager ?? (_datapager = (DataPager)AlbumList.FindControl("DataPager")); } }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -48,6 +50,11 @@ namespace Individuellt_arbete.Pages.Album
         protected void AddAlbumButton_Click(object sender, EventArgs e)
         {
             Response.RedirectToRoute("EditAlbums");
+        }
+
+        protected void AlbumList_DataBound(object sender, EventArgs e)
+        {
+            DataPager.Visible = (DataPager.PageSize < DataPager.TotalRowCount);
         }
     }
 }
