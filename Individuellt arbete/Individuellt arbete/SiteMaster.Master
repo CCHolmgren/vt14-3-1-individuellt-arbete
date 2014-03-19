@@ -7,6 +7,7 @@
     <title>MasterPage</title>
     <link href="~/Styles/Main.css" rel="stylesheet" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="Scripts/Main.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -15,6 +16,7 @@
         <div id="header">
             <h1>Individuellt projekt</h1>
             <p><asp:Label ID="LoggedInAs" runat="server"/></p>
+            <asp:Panel runat="server" ID="Linktomemberpage" Visible="false"><asp:HyperLink runat="server" Text="Din sida" ID="Hyperlinktomemberpage"></asp:HyperLink></asp:Panel>
         </div>
         <ul class="navigation">
             <li>

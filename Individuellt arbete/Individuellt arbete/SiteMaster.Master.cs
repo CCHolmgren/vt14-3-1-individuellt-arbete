@@ -23,7 +23,9 @@ namespace Individuellt_arbete
         {
             if (Session["currentuser"] != null)
             {
-                LoggedInAs.Text = String.Format("{0} {1}", ((Medlem)Session["currentuser"]).FirstName, ((Medlem)Session["currentuser"]).LastName);
+                LoggedInAs.Text = String.Format("Inloggad som: {0} {1}", ((Medlem)Session["currentuser"]).FirstName, ((Medlem)Session["currentuser"]).LastName);
+                Linktomemberpage.Visible = true;
+                Hyperlinktomemberpage.NavigateUrl=String.Format("/medlem/{0}", ((Medlem)Session["currentuser"]).MedlemId);
             }
             else
             {

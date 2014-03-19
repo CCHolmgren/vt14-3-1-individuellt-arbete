@@ -55,7 +55,7 @@ namespace Individuellt_arbete.Pages.Songs
             try
             {
                 Service.ListenToSong(Convert.ToInt32(argumentarray[0]), ((Model.Medlem)Session["currentuser"]).MedlemId, Convert.ToInt32(argumentarray[1]), DateTime.Today);
-                Successlabel.Text = "Du lyssnade på låten.";
+                Page.SetTempData("Successmessage", "Du lyssnade på låten.");
             }
             catch (Exception ex)
             {
