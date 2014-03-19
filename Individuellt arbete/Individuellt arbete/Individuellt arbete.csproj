@@ -111,6 +111,7 @@
     <Content Include="Pages\Songs\Add.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ListenSong.aspx" />
+    <Content Include="Pages\Songs\AddSongs.aspx" />
     <Content Include="Pages\Songs\Listen.aspx" />
     <Content Include="Pages\Songs\Songs.aspx" />
     <Content Include="Pages\Song\Listen.aspx" />
@@ -227,6 +228,13 @@
     <Compile Include="Model\Medlem.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\Song.cs" />
+    <Compile Include="Pages\Songs\AddSongs.aspx.cs">
+      <DependentUpon>AddSongs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Songs\AddSongs.aspx.designer.cs">
+      <DependentUpon>AddSongs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Songs\Listen.aspx.cs">
       <DependentUpon>Listen.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

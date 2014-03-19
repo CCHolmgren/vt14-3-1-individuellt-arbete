@@ -6,6 +6,7 @@
 <head runat="server">
     <title>MasterPage</title>
     <link href="~/Styles/Main.css" rel="stylesheet" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

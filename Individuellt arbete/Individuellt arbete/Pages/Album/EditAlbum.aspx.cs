@@ -51,6 +51,7 @@ namespace Individuellt_arbete.Pages.Album
                     try
                     {
                         Service.saveAlbum(item);
+                        Page.SetTempData("successmessage", "Albumet skapades.");
                         Response.RedirectToRoute("EditAlbums", new {page=DataPager.StartRowIndex / DataPager.PageSize + 1});
                     }
                     catch (ValidationException vx)
@@ -90,6 +91,7 @@ namespace Individuellt_arbete.Pages.Album
                         try
                         {
                             Service.saveAlbum(album);
+                            Page.SetTempData("successmessage", "Albumet uppdaterades.");
                             Response.RedirectToRoute("EditAlbums", new { page = DataPager.StartRowIndex / DataPager.PageSize + 1 });
                             //SuccessMessage = String.Format("Kontakten uppdaterades.");
                             //Response.Redirect(String.Format("?page={0}", DataPager.StartRowIndex / DataPager.PageSize + 1), true);
@@ -130,6 +132,7 @@ namespace Individuellt_arbete.Pages.Album
             try
             {
                 Service.deleteAlbum(AlbumId);
+                Page.SetTempData("successmessage", "Albumet togs bort.");
                 Response.RedirectToRoute("EditAlbums", new { page = DataPager.StartRowIndex / DataPager.PageSize + 1 });
             }
             catch (Exception ex)
@@ -151,7 +154,7 @@ namespace Individuellt_arbete.Pages.Album
 
         protected void AlbumList_DataBound(object sender, EventArgs e)
         {
-            DataPager.Visible = (DataPager.PageSize < DataPager.TotalRowCount);
+            //DataPager.Visible = (DataPager.PageSize < DataPager.TotalRowCount);
         }
     }
 }

@@ -17,23 +17,64 @@ namespace Individuellt_arbete
         {
             get { return _service ?? (_service = new Service()); }
         }
-        List<Song> SongList
+
+        protected void AddSongButton_Click(object sender, EventArgs e)
+        {
+            AddSongsListView.InsertItemPosition = InsertItemPosition.FirstItem;
+        }
+
+        // The return type can be changed to IEnumerable, however to support
+        // paging and sorting, the following parameters must be added:
+        //     int maximumRows
+        //     int startRowIndex
+        //     out int totalRowCount
+        //     string sortByExpression
+        public IEnumerable<Individuellt_arbete.Model.Song> AddSongsListView_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
+        {
+            return Service.getSongList(maximumRows, startRowIndex, out totalRowCount, Convert.ToInt32(RouteData.Values["albumid"]));
+        }
+
+        public void AddSongsListView_InsertItem()
+        {
+            var item = new Individuellt_arbete.Model.Song();
+            TryUpdateModel(item);
+            if (ModelState.IsValid)
+            {
+                // Save changes here
+                Service.saveSong(item, Convert.ToInt32(RouteData.Values["albumid"]));
+            }
+        }
+
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void AddSongsListView_UpdateItem(int SongId)
+        {
+            Individuellt_arbete.Model.Song item = null;
+            // Load the item here, e.g. item = MyDataLayer.Find(id);
+            if (item == null)
+            {
+                // The item wasn't found
+                ModelState.AddModelError("", String.Format("Item with id {0} was not found", SongId));
+                return;
+            }
+            TryUpdateModel(item);
+            if (ModelState.IsValid)
+            {
+                // Save changes here, e.g. MyDataLayer.SaveChanges();
+                Service.saveSong(item, Convert.ToInt32(RouteData.Values["albumid"]));
+            }
+        }
+
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void AddSongsListView_DeleteItem(int SongId)
+        {
+            Service.removeSong(SongId);
+        }
+        /*List<Song> SongList
         {
             get { return Session["AddedSongs"] as List<Song>; }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { 
-                /*AlbumList.DataSource = CreateDataSource();
-                AlbumList.DataTextField = "AlbumNameTextField";
-                AlbumList.DataValueField = "AlbumIdValueField";
-                AlbumList.DataBind();*/
-            }
-
-            if (Session["AddedSongs"] == null)
-            {
-                Session["AddedSongs"] = new List<Song>();
-            }
         }
         DataView CreateDataSource()
         {
@@ -84,21 +125,9 @@ namespace Individuellt_arbete
             return dr;
         }
 
-        protected void SaveSongButton_Click(object sender, EventArgs e)
+        protected void EditButton_Click(object sender, EventArgs e)
         {
-            if (IsValid)
-            {
-                /*ModelState.AddModelError(String.Empty, AlbumList.SelectedItem.ToString());
-                ModelState.AddModelError("", AlbumList.SelectedValue);
-                ModelState.AddModelError("", AlbumList.SelectedIndex.ToString());
-                Song newSong = new Song { Length = int.Parse(Length.Text), SongName = SongName.Text, BandName = BandName.Text };
-                SongList.Add(newSong/*, AlbumList.SelectedValue);*/
-            }
-        }
-
-        public IEnumerable<Individuellt_arbete.Model.Song> AddedSongsRepeater_GetData()
-        {
-            return SongList;
+            //
         }
 
         // The return type can be changed to IEnumerable, however to support
@@ -123,23 +152,27 @@ namespace Individuellt_arbete
 
         public void AddSongsListView_InsertItem()
         {
-            Model.Song item = new Individuellt_arbete.Model.Song();
-            if (TryUpdateModel(item))
+            if(ModelState.IsValid)
             {
-                // Save changes heretry
-                try
+                Model.Song item = new Individuellt_arbete.Model.Song();
+                if (TryUpdateModel(item))
                 {
-                    Service.saveSong(item, Convert.ToInt32(RouteData.Values["albumid"]));
-                }
-                catch (ValidationException vx)
-                {
-                    var validationResult = vx.Data["validationResult"] as List<ValidationResult>;
-                    validationResult.ForEach(r => ModelState.AddModelError(String.Empty, r.ErrorMessage));
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError(String.Empty, ex.Message);
-                    return;
+                    // Save changes heretry
+                    try
+                    {
+                        Service.saveSong(item, Convert.ToInt32(RouteData.Values["albumid"]));
+                        Response.RedirectToRoute("AddSongs", new { albumid = Convert.ToInt32(RouteData.Values["albumid"]) });
+                    }
+                    catch (ValidationException vx)
+                    {
+                        var validationResult = vx.Data["validationResult"] as List<ValidationResult>;
+                        validationResult.ForEach(r => ModelState.AddModelError(String.Empty, r.ErrorMessage));
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError(String.Empty, ex.Message);
+                        return;
+                    }
                 }
             }
         }
@@ -150,6 +183,7 @@ namespace Individuellt_arbete
             try
             {
                 Service.removeSong(SongId);
+                Response.RedirectToRoute("AddSongs", new { albumid = Convert.ToInt32(RouteData.Values["albumid"]) });
             }
             catch (Exception ex)
             {
@@ -162,6 +196,7 @@ namespace Individuellt_arbete
         public void AddSongsListView_UpdateItem(int SongId)
         {
             Individuellt_arbete.Model.Song item = null;
+            item = Service.getSong(SongId);
             // Load the item here, e.g. item = MyDataLayer.Find(id);
             if (item == null)
             {
@@ -175,7 +210,8 @@ namespace Individuellt_arbete
                 // Save changes here, e.g. MyDataLayer.SaveChanges();
                 try
                 {
-                    Service.saveSong(item, 0);
+                    Service.saveSong(item, Convert.ToInt32(RouteData.Values["albumid"]));
+                    Response.RedirectToRoute("AddSongs", new { albumid = Convert.ToInt32(RouteData.Values["albumid"]) });
                 }
                 catch (ValidationException vx)
                 {
@@ -198,5 +234,35 @@ namespace Individuellt_arbete
         protected void AddSongsListView_DataBound(object sender, EventArgs e)
         {
         }
+
+        protected void AddSongsListView_ItemInserting(object sender, ListViewInsertEventArgs e)
+        {
+            //
+        }
+
+        public void AddSongsListView_InsertItem1()
+        {
+            var item = new Individuellt_arbete.Model.Song();
+            TryUpdateModel(item);
+            if (ModelState.IsValid)
+            {
+                // Save changes here
+                try
+                {
+                    Service.saveSong(item, Convert.ToInt32(RouteData.Values["albumid"]));
+                    Response.RedirectToRoute("AddSongs", new { albumid = Convert.ToInt32(RouteData.Values["albumid"]) });
+                }
+                catch (ValidationException vx)
+                {
+                    var validationResult = vx.Data["validationResult"] as List<ValidationResult>;
+                    validationResult.ForEach(r => ModelState.AddModelError(String.Empty, r.ErrorMessage));
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(String.Empty, ex.Message);
+                    return;
+                }
+            }
+        }*/
     }
 }

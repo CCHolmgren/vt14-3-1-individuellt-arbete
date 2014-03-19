@@ -54,7 +54,7 @@ namespace Individuellt_arbete.Pages.Album
 
         protected void AlbumList_DataBound(object sender, EventArgs e)
         {
-            DataPager.Visible = (DataPager.PageSize < DataPager.TotalRowCount);
+            //DataPager.Visible = (DataPager.PageSize < DataPager.TotalRowCount);
         }
     }
 }

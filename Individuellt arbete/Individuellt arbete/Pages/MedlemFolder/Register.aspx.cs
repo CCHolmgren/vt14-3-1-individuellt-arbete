@@ -31,7 +31,7 @@ namespace Individuellt_arbete
                     Medlem medlem = new Medlem { FirstName = FirstName.Text, LastName = LastName.Text, PrimaryEmail = PrimaryEmail.Text };
                     Service.createMedlem(medlem);
                     Page.SetTempData("SuccessMessage", "Kontakten skapades.");
-                    Response.RedirectToRoute("MedlemPage", new { medlem = medlem.MedlemId });
+                    Response.RedirectToRoute("MedlemPage", new { medlemid = medlem.MedlemId });
                 }
                 catch (ValidationException vx)
                 {

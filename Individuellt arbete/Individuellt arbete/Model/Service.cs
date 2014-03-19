@@ -152,5 +152,10 @@ namespace Individuellt_arbete
         {
             Album.addGenreToAlbum(genreId, albumId);
         }
+
+        public Song getSong(int SongId)
+        {
+            return Song.GetSong(SongId);
+        }
     }
 }

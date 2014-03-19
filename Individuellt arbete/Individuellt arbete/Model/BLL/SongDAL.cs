@@ -182,9 +182,18 @@ namespace Individuellt_arbete.Model
             }
         }
 
-        internal void RemoveSong(int SongId)
+        public void RemoveSong(int SongId)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("removeSong", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@songId", SqlDbType.Int, 4).Value = SongId;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void GradeSong(int songId, int medlemId, int grade)
@@ -200,6 +209,41 @@ namespace Individuellt_arbete.Model
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
+            }
+        }
+
+        internal Song GetSong(int SongId)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("getSongGivenId", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    List<Song> songs = new List<Song>();
+
+                    int songIDindex = reader.GetOrdinal("SongId");
+                    int songNameIndex = reader.GetOrdinal("SongName");
+                    int lengthIndex = reader.GetOrdinal("Length");
+                    int bandNameIndex = reader.GetOrdinal("BandName");
+                    int trackNrIndex = reader.GetOrdinal("TrackNr");
+
+                    if (reader.Read())
+                    {
+                        return new Song
+                        {
+                            BandName = reader.GetString(bandNameIndex),
+                            SongId = reader.GetInt32(songIDindex),
+                            Length = reader.GetInt16(lengthIndex),
+                            SongName = reader.GetString(songNameIndex),
+                            TrackNr = reader.GetInt16(trackNrIndex)
+                        };
+                    }
+                    return null;
+                }
             }
         }
     }
