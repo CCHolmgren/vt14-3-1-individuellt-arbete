@@ -11,11 +11,11 @@ namespace Individuellt_arbete
 {
     public partial class SiteMaster : System.Web.UI.MasterPage
     {
-        protected static List<Regex> allowedWithoutLogin = new List<Regex> { new Regex(@"^/$",RegexOptions.Singleline|RegexOptions.IgnoreCase), 
-                                                                             new Regex(@"^/medlem/d+$"), 
-                                                                             new Regex(@"^/medlem/register$"),
-                                                                             new Regex(@"^/albums$"),
-                                                                             new Regex(@"^/login$")};
+        protected static List<Regex> allowedWithoutLogin = new List<Regex> { new Regex(@"/$",RegexOptions.Singleline|RegexOptions.IgnoreCase), 
+                                                                             new Regex(@"/medlem/d+$"), 
+                                                                             new Regex(@"/medlem/register$"),
+                                                                             new Regex(@"/albums$"),
+                                                                             new Regex(@"/login$")};
         protected void Page_Init(object sender, EventArgs e)
         {
         }
@@ -26,8 +26,8 @@ namespace Individuellt_arbete
             if (Session["currentuser"] != null)
             {
                 LoggedInAs.Text = String.Format("Inloggad som: {0} {1}", ((Medlem)Session["currentuser"]).FirstName, ((Medlem)Session["currentuser"]).LastName);
-                //Linktomemberpage.Visible = true;
-                //Hyperlinktomemberpage.NavigateUrl = ResolveClientUrl(String.Format("~/medlem/{0}", ((Medlem)Session["currentuser"]).MedlemId));
+                Linktomemberpage.Visible = true;
+                Hyperlinktomemberpage.NavigateUrl = GetRouteUrl("MedlemPage", new { medlemid = ((Medlem)Session["currentuser"]).MedlemId });
                     //String.Format("/medlem/{0}", ((Medlem)Session["currentuser"]).MedlemId);
             }
             else
@@ -47,7 +47,7 @@ namespace Individuellt_arbete
             //var allowedUrl = allowedWithoutLogin.Any(re => re.IsMatch(Request.Path));
             if (Session["currentuser"] == null && !allowed)
             {
-                //Page.SetTempData("errormessage", "Du måste logga in först.");
+                Page.SetTempData("errormessage", "Du måste logga in först.");
                 //Response.RedirectToRoute("Login");
             }
 

@@ -15,7 +15,9 @@
         <div id="header">
             <h1>Individuellt projekt</h1>
             <p><asp:Label ID="LoggedInAs" runat="server"/></p>
-            <%-- <asp:Panel runat="server" ID="Linktomemberpage" Visible="false"><asp:HyperLink runat="server" Text="Din sida" ID="Hyperlinktomemberpage"></asp:HyperLink></asp:Panel>--%>
+            <asp:Panel runat="server" ID="Linktomemberpage" Visible="false">
+                <asp:HyperLink runat="server" Text="Din sida" ID="Hyperlinktomemberpage"></asp:HyperLink>
+            </asp:Panel>
         </div>
         <ul class="navigation">
             <li>
