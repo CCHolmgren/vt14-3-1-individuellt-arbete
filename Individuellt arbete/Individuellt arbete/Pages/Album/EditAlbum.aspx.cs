@@ -17,18 +17,15 @@ namespace Individuellt_arbete.Pages.Album
             get { return _service ?? (_service = new Service()); }
         }
         DataPager _datapager;
-        DataPager DataPager { get { return _datapager ?? (_datapager = (DataPager)AlbumList.FindControl("DataPager")); } }
+        DataPager DataPager 
+        { 
+            get { return _datapager ?? (_datapager = (DataPager)AlbumList.FindControl("DataPager")); } 
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        // The return type can be changed to IEnumerable, however to support
-        // paging and sorting, the following parameters must be added:
-        //     int maximumRows
-        //     int startRowIndex
-        //     out int totalRowCount
-        //     string sortByExpression
         public IEnumerable<Individuellt_arbete.Model.Album> AlbumList_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
             try

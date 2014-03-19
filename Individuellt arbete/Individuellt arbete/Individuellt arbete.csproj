@@ -97,7 +97,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Missing.aspx" />
+    <Content Include="Pages\Error.aspx" />
+    <Content Include="Pages\Missing.aspx" />
     <Compile Include="App_Infrastructure\SqlExtensions.cs" />
     <Compile Include="App_Infrastructure\ValidationExtensions.cs" />
     <Compile Include="Model\AlbumHasGenre.cs" />
@@ -142,11 +143,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Infrastructure\PageExtensions.cs" />
-    <Compile Include="Missing.aspx.cs">
+    <Compile Include="Pages\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Missing.aspx.cs">
       <DependentUpon>Missing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Missing.aspx.designer.cs">
+    <Compile Include="Pages\Missing.aspx.designer.cs">
       <DependentUpon>Missing.aspx</DependentUpon>
     </Compile>
     <Compile Include="Model\BLL\SongDAL.cs" />

@@ -28,7 +28,10 @@
                         </tbody>
                     </table>
                     <%-- Pagination --%>
-                    <asp:DataPager PagedControlID="AlbumList" ID="DataPager" runat="server" QueryStringField="page" PageSize="10000">
+                    <asp:DataPager PagedControlID="AlbumList" ID="DataPager" runat="server" QueryStringField="page" PageSize="20">
+                        <Fields>
+                            <asp:NextPreviousPagerField ShowNextPageButton="true" ShowPreviousPageButton="true" RenderNonBreakingSpacesBetweenControls="true"/>
+                        </Fields>
                     </asp:DataPager>
                 </LayoutTemplate>
         <ItemTemplate>

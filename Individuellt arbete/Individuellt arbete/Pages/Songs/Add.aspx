@@ -42,10 +42,7 @@
                         <asp:PlaceHolder ID="itemPlaceholder" runat="server"/>
                     </tbody>
                 </table>
-                <asp:DataPager PagedControlID="AddSongsListView" ID="DataPager" runat="server" QueryStringField="page" PageSize="20">
-                    <Fields>
-                        <asp:NextPreviousPagerField ShowNextPageButton="true" ShowPreviousPageButton="true" RenderNonBreakingSpacesBetweenControls="true"/>
-                    </Fields>
+                <asp:DataPager PagedControlID="AddSongsListView" ID="DataPager" runat="server" QueryStringField="page" Visible="false" PageSize="200">
                 </asp:DataPager>
             </LayoutTemplate>
             <ItemTemplate>
@@ -102,15 +99,15 @@
                     </td>
                     <td>
                         <asp:TextBox runat="server" ID="InsertSongName" Text="<%# BindItem.SongName %>" MaxLength="45"/>
-                        <asp:RequiredFieldValidator ErrorMessage="Du måste fylla i ett låtnamn" ControlToValidate="SongNameEdit" runat="server" />
+                        <asp:RequiredFieldValidator ErrorMessage="Du måste fylla i ett låtnamn" ControlToValidate="InsertSongName" runat="server" />
                     </td>
                     <td>
                         <asp:TextBox runat="server" ID="InsertBandName" Text="<%# BindItem.BandName %>" MaxLength="50"/>
-                        <asp:RequiredFieldValidator ErrorMessage="Du måste fylla i ett bandnamn" ControlToValidate="BandNameEdit" runat="server" />
+                        <asp:RequiredFieldValidator ErrorMessage="Du måste fylla i ett bandnamn" ControlToValidate="InsertBandName" runat="server" />
                     </td>
                     <td>
                         <asp:TextBox runat="server" ID="InsertLength" Text="<%# BindItem.Length %>" MaxLength="3"/>
-                        <asp:CompareValidator ErrorMessage="Du måste fylla en giltig längd" ControlToValidate="LengthEdit" Type="Integer" Operator="DataTypeCheck" runat="server" />
+                        <asp:CompareValidator ErrorMessage="Du måste fylla en giltig längd" ControlToValidate="InsertLength" Type="Integer" Operator="DataTypeCheck" runat="server" />
                     </td>
                     <td>
                         <asp:Button Text="Lägg till" ID="InsertButton" CommandName="Insert" runat="server" />

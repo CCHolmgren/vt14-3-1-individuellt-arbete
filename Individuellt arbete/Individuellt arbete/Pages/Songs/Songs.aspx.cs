@@ -15,7 +15,7 @@ namespace Individuellt_arbete.Pages.Songs
             get { return _service ?? (_service = new Service()); }
         }
         DataPager _datapager;
-        DataPager DataPager { get { return _datapager ?? (_datapager = (DataPager)AlbumList.FindControl("DataPager")); } }
+        DataPager DataPager { get { return _datapager ?? (_datapager = (DataPager)SongList.FindControl("DataPager")); } }
         protected void Page_Load(object sender, EventArgs e)
         {
             //Page.Title = String.Format("Låtar på albumet");
