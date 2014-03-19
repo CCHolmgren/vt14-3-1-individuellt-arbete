@@ -56,6 +56,7 @@ namespace Individuellt_arbete.Pages.Songs
             {
                 Service.ListenToSong(Convert.ToInt32(argumentarray[0]), ((Model.Medlem)Session["currentuser"]).MedlemId, Convert.ToInt32(argumentarray[1]), DateTime.Today);
                 Page.SetTempData("Successmessage", "Du lyssnade på låten.");
+                Response.RedirectToRoute("SongsGivenAlbum", new { albumid = RouteData.Values["albumid"] });
             }
             catch (Exception ex)
             {

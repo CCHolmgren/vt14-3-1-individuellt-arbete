@@ -21,6 +21,8 @@ namespace Individuellt_arbete
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.Page.ClientScript.RegisterClientScriptInclude(this.GetType(), "Global", this.ResolveClientUrl("~/Scripts/Main.js"));
+
             if (Session["currentuser"] != null)
             {
                 LoggedInAs.Text = String.Format("Inloggad som: {0} {1}", ((Medlem)Session["currentuser"]).FirstName, ((Medlem)Session["currentuser"]).LastName);
