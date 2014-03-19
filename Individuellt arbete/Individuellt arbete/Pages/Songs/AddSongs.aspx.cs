@@ -36,6 +36,7 @@ namespace Individuellt_arbete.Pages.Songs
             catch (Exception ex)
             {
                 ModelState.AddModelError(String.Empty, ex.Message);
+                totalRowCount = 0;
                 return null;
             }
         }
