@@ -26,8 +26,9 @@ namespace Individuellt_arbete
             if (Session["currentuser"] != null)
             {
                 LoggedInAs.Text = String.Format("Inloggad som: {0} {1}", ((Medlem)Session["currentuser"]).FirstName, ((Medlem)Session["currentuser"]).LastName);
-                Linktomemberpage.Visible = true;
-                Hyperlinktomemberpage.NavigateUrl=String.Format("/medlem/{0}", ((Medlem)Session["currentuser"]).MedlemId);
+                //Linktomemberpage.Visible = true;
+                //Hyperlinktomemberpage.NavigateUrl = ResolveClientUrl(String.Format("~/medlem/{0}", ((Medlem)Session["currentuser"]).MedlemId));
+                    //String.Format("/medlem/{0}", ((Medlem)Session["currentuser"]).MedlemId);
             }
             else
             {
@@ -46,8 +47,8 @@ namespace Individuellt_arbete
             //var allowedUrl = allowedWithoutLogin.Any(re => re.IsMatch(Request.Path));
             if (Session["currentuser"] == null && !allowed)
             {
-                Page.SetTempData("errormessage", "Du måste logga in först.");
-                Response.RedirectToRoute("Login");
+                //Page.SetTempData("errormessage", "Du måste logga in först.");
+                //Response.RedirectToRoute("Login");
             }
 
             string errormessage = Page.GetTempData("errormessage") as string;

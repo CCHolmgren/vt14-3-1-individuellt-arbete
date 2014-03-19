@@ -116,6 +116,7 @@
     <Content Include="Pages\Songs\Songs.aspx" />
     <Content Include="Pages\Song\Listen.aspx" />
     <Content Include="Pages\MedlemFolder\Register.aspx" />
+    <None Include="Properties\PublishProfiles\ch222kv.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
