@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.ModelBinding;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.ComponentModel.DataAnnotations;
 
 namespace Individuellt_arbete
 {
@@ -31,6 +32,12 @@ namespace Individuellt_arbete
                     Service.createMedlem(medlem);
                     Page.SetTempData("SuccessMessage", "Kontakten skapades.");
                     Response.RedirectToRoute("MedlemPage", new { medlem = medlem.MedlemId });
+                }
+                catch (ValidationException vx)
+                {
+                    var validationResult = vx.Data["validationResult"] as List<ValidationResult>;
+                    validationResult.ForEach(r => ModelState.AddModelError(String.Empty, r.ErrorMessage));
+                    return;
                 }
                 catch (Exception ex)
                 {

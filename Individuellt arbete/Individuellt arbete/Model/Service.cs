@@ -128,6 +128,13 @@ namespace Individuellt_arbete
         }
         public void createMedlem(Medlem medlem)
         {
+            ICollection<ValidationResult> validationResult;
+            if (!medlem.Validate(out validationResult))
+            {
+                var vx = new ValidationException("Objektet klarade inte valideringen.");
+                vx.Data.Add("validationResult", validationResult);
+                throw vx;
+            }
             Medlem.AddMedlem(medlem);
         }
 

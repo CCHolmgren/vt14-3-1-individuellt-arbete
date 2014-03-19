@@ -1,6 +1,7 @@
 ﻿using Individuellt_arbete.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -130,6 +131,11 @@ namespace Individuellt_arbete
                 {
                     Service.saveSong(item, Convert.ToInt32(RouteData.Values["albumid"]));
                 }
+                catch (ValidationException vx)
+                {
+                    var validationResult = vx.Data["validationResult"] as List<ValidationResult>;
+                    validationResult.ForEach(r => ModelState.AddModelError(String.Empty, r.ErrorMessage));
+                }
                 catch (Exception ex)
                 {
                     ModelState.AddModelError(String.Empty, ex.Message);
@@ -170,6 +176,11 @@ namespace Individuellt_arbete
                 try
                 {
                     Service.saveSong(item, 0);
+                }
+                catch (ValidationException vx)
+                {
+                    var validationResult = vx.Data["validationResult"] as List<ValidationResult>;
+                    validationResult.ForEach(r => ModelState.AddModelError(String.Empty, r.ErrorMessage));
                 }
                 catch (Exception ex)
                 {

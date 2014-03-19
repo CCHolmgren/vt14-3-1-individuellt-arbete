@@ -68,16 +68,20 @@
             <EditItemTemplate>
                 <tr>
                     <td>
-                        <asp:TextBox runat="server" ID="TrackNrEdit" Text="<%# BindItem.TrackNr %>" />
+                        <asp:TextBox runat="server" ID="TrackNrEdit" Text="<%# BindItem.TrackNr %>" MaxLength="3" />
+                        <asp:CompareValidator ErrorMessage="Du måste fylla i ett giltigt låtnummer" ControlToValidate="TrackNrEdit" runat="server" />
                     </td>
                     <td>
-                        <asp:TextBox runat="server" ID="SongNameEdit" Text="<%# BindItem.SongName %>" />
+                        <asp:TextBox runat="server" ID="SongNameEdit" Text="<%# BindItem.SongName %>" MaxLength="45"/>
+                        <asp:RequiredFieldValidator ErrorMessage="Du måste fylla i ett låtnamn" ControlToValidate="SongNameEdit" runat="server" />
                     </td>
                     <td>
-                        <asp:TextBox runat="server" ID="TextBox1" Text="<%# BindItem.SongName %>" />
+                        <asp:TextBox runat="server" ID="BandNameEdit" Text="<%# BindItem.BandName%>" MaxLength="50"/>
+                        <asp:RequiredFieldValidator ErrorMessage="Du måste fylla i ett bandnamn" ControlToValidate="BandNameEdit" runat="server" />
                     </td>
                     <td>
-                        <asp:TextBox runat="server" ID="TextBox2" Text="<%# BindItem.SongName %>" />
+                        <asp:TextBox runat="server" ID="LengthEdit" Text="<%# BindItem.Length %>" MaxLength="3"/>
+                        <asp:CompareValidator ErrorMessage="Du måste fylla en giltig längd" ControlToValidate="LengthEdit" Type="Integer" Operator="DataTypeCheck" runat="server" />
                     </td>
                     <td>
                         <asp:Button runat="server" CommandName="Update" Text="Spara" ID="EditButton"/>
@@ -90,16 +94,20 @@
             <InsertItemTemplate>
                 <tr>
                     <td>
-                        <asp:TextBox runat="server" ID="InsertTrackNr" Text="<%# BindItem.TrackNr %>" />
+                        <asp:TextBox runat="server" ID="InsertTrackNr" Text="<%# BindItem.TrackNr %>"  MaxLength="3"/>
+                        <asp:CompareValidator ErrorMessage="Du måste fylla i ett giltigt låtnummer" ControlToValidate="InsertTrackNr" runat="server" />
                     </td>
                     <td>
-                        <asp:TextBox runat="server" ID="InsertSongName" Text="<%# BindItem.SongName %>"/>
+                        <asp:TextBox runat="server" ID="InsertSongName" Text="<%# BindItem.SongName %>" MaxLength="45"/>
+                        <asp:RequiredFieldValidator ErrorMessage="Du måste fylla i ett låtnamn" ControlToValidate="SongNameEdit" runat="server" />
                     </td>
                     <td>
-                        <asp:TextBox runat="server" ID="InsertBandName" Text="<%# BindItem.BandName %>"/>
+                        <asp:TextBox runat="server" ID="InsertBandName" Text="<%# BindItem.BandName %>" MaxLength="50"/>
+                        <asp:RequiredFieldValidator ErrorMessage="Du måste fylla i ett bandnamn" ControlToValidate="BandNameEdit" runat="server" />
                     </td>
                     <td>
-                        <asp:TextBox runat="server" ID="InsertLength" Text="<%# BindItem.Length %>"/>
+                        <asp:TextBox runat="server" ID="InsertLength" Text="<%# BindItem.Length %>" MaxLength="3"/>
+                        <asp:CompareValidator ErrorMessage="Du måste fylla en giltig längd" ControlToValidate="LengthEdit" Type="Integer" Operator="DataTypeCheck" runat="server" />
                     </td>
                     <td>
                         <asp:Button Text="Lägg till" ID="InsertButton" CommandName="Insert" runat="server" />

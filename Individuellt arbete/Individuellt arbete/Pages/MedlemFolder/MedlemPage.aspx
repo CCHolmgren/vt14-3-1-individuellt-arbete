@@ -3,8 +3,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Panel runat="server" ID="HelloMessage" Visible="false"><p>Hej <asp:Label ID="FirstName" runat="server"/>!</p></asp:Panel>
-    <p><asp:Label ID="LastName" runat="server"></asp:Label>
-    <asp:Label ID="PrimaryEmail" runat="server"></asp:Label></p>
+    <p>Förnamn: <asp:Label ID="FirstNameAgain" runat="server"/></p>
+    <p>Efternamn: <asp:Label ID="LastName" runat="server"/></p>
+    <p>Email-address: <asp:Label ID="PrimaryEmail" runat="server"/></p>
     <asp:ListView runat="server" 
         ItemType="Individuellt_arbete.Model.RecentlyListened" 
         ID="RecentlyListenedListView" 

@@ -1,6 +1,7 @@
 ﻿using Individuellt_arbete.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -42,19 +43,28 @@ namespace Individuellt_arbete.Pages.Album
 
         public void AlbumList_InsertItem()
         {
-            Model.Album item = new Individuellt_arbete.Model.Album();
-            if (TryUpdateModel(item))
+            if (ModelState.IsValid)
             {
-                // Save changes here
-                try
+                Model.Album item = new Individuellt_arbete.Model.Album();
+                if (TryUpdateModel(item))
                 {
-                    Service.saveAlbum(item);
-                    Response.RedirectToRoute("EditAlbums");
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError(String.Empty, ex.Message);
-                    return;
+                    // Save changes here
+                    try
+                    {
+                        Service.saveAlbum(item);
+                        Response.RedirectToRoute("EditAlbums");
+                    }
+                    catch (ValidationException vx)
+                    {
+                        var validationResult = vx.Data["validationResult"] as List<ValidationResult>;
+                        validationResult.ForEach(r => ModelState.AddModelError(String.Empty, r.ErrorMessage));
+                        return;
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError(String.Empty, ex.Message);
+                        return;
+                    }
                 }
             }
         }
@@ -90,11 +100,11 @@ namespace Individuellt_arbete.Pages.Album
                             ModelState.AddModelError(String.Empty, ex.Message);
                             //setModelState("Ett oväntat fel inträffade vid uppdateringen av kontakten.");
                         }
-                        /*catch (ValidationException vx)
+                        catch (ValidationException vx)
                         {
-                            //var validationResult = vx.Data["validationResult"] as List<ValidationResult>;
-                            //validationResult.ForEach(r => ModelState.AddModelError(String.Empty, r.ErrorMessage));
-                        }*/
+                            var validationResult = vx.Data["validationResult"] as List<ValidationResult>;
+                            validationResult.ForEach(r => ModelState.AddModelError(String.Empty, r.ErrorMessage));
+                        }
                     }
                 }
                 catch (ArgumentException ax)

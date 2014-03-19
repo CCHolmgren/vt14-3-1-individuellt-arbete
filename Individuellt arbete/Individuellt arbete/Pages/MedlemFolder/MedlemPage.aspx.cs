@@ -49,6 +49,7 @@ namespace Individuellt_arbete.Pages.MedlemFolder
                     }
 
                     FirstName.Text = medlem.FirstName;
+                    FirstNameAgain.Text = medlem.FirstName;
                     LastName.Text = medlem.LastName;
                     PrimaryEmail.Text = medlem.PrimaryEmail;
                     Page.Title = String.Format("Medlem - {0} {1}", medlem.FirstName, medlem.LastName);

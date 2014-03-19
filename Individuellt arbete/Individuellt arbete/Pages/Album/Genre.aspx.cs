@@ -76,15 +76,31 @@ namespace Individuellt_arbete.Pages.Album
 
         public IEnumerable<Individuellt_arbete.Model.AlbumHasGenre> AlbumGenreRpr_GetData()
         {
-            return Service.getGenresFromAlbum(Convert.ToInt32(RouteData.Values["albumid"]));
+            try
+            {
+                return Service.getGenresFromAlbum(Convert.ToInt32(RouteData.Values["albumid"]));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+                return null;
+            }
         }
 
         protected void AddGenreButton_Click(object sender, EventArgs e)
         {
             int genreId = Convert.ToInt32(NewGenreDDL.SelectedValue);
             int albumId = Convert.ToInt32(RouteData.Values["albumid"]);
-            Service.addGenreToAlbum(genreId, albumId);
-            Response.RedirectToRoute("AddGenre", new { albumid = albumId });
+            try
+            {
+                Service.addGenreToAlbum(genreId, albumId);
+                Response.RedirectToRoute("AddGenre", new { albumid = albumId });
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+                return;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,11 +11,13 @@ namespace Individuellt_arbete.Model
     /// </summary>
     public class Medlem
     {
+        [Required(ErrorMessage="Du måste fylla i ett förnamn.")]
         public string FirstName
         {
             get;
             set;
         }
+        [Required(ErrorMessage = "Du måste fylla i ett efternamn.")]
         public string LastName 
         { 
             get; 
@@ -25,6 +28,7 @@ namespace Individuellt_arbete.Model
             get;
             set;
         }
+        [Required(ErrorMessage = "Du måste fylla i en emailaddress."), EmailAddress(ErrorMessage="Du måste fylla i en giltig emailaddress")]
         public string PrimaryEmail
         {
             get;

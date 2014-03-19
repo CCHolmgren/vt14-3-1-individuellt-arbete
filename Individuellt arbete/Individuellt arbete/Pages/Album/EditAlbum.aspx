@@ -56,10 +56,12 @@
         <EditItemTemplate>
             <tr>
                 <td>
-                    <asp:TextBox Text="<%# BindItem.AlbumName %>" ID="EditName" runat="server"></asp:TextBox>
+                    <asp:TextBox Text="<%# BindItem.AlbumName %>" ID="EditName" runat="server" MaxLength="45"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="EditName" Display="None" ErrorMessage="Du måste fylla i ett Albumnamn" />
                 </td>
                 <td>
-                    <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="EditReleaseYear" runat="server"></asp:TextBox>
+                    <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="EditReleaseYear" runat="server" MaxLength="4"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="EditReleaseYear" Display="None" ErrorMessage="Du måste fylla i ett releaseyear" />
                 </td>
                 <td>
                     <asp:Button CommandName="Update" ID="UpdateButton" runat="server" Text="Uppdatera"/>
@@ -72,10 +74,12 @@
         <InsertItemTemplate>
             <tr>
                 <td>
-                    <asp:TextBox Text="<%# BindItem.AlbumName %>" ID="InsertName" runat="server"></asp:TextBox>
+                    <asp:TextBox Text="<%# BindItem.AlbumName %>" ID="InsertName" runat="server" MaxLength="45"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="InsertName" Display="None" ErrorMessage="Du måste fylla i ett Albumnamn" />
                 </td>
                 <td>
-                    <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="InsertReleaseYear" runat="server"></asp:TextBox>
+                    <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="InsertReleaseYear" runat="server" MaxLength="4"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="InsertReleaseYear" Display="None" ErrorMessage="Du måste fylla i ett releaseyear" />
                 </td>
                 <td>
                     <asp:Button CommandName="Insert" ID="InsertButton" runat="server" Text="Lägg till"/>
