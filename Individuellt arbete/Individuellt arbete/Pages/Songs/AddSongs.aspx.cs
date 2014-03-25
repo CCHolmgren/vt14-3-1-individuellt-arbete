@@ -130,6 +130,7 @@ namespace Individuellt_arbete.Pages.Songs
                 try
                 {
                     Service.saveSong(item, Convert.ToInt32(RouteData.Values["albumid"]));
+                    Page.SetTempData("successmessage", "Låten uppdaterades.");
                     Response.RedirectToRoute("AddSongs", new { albumid = RouteData.Values["albumid"] });
                 }
                 catch (ValidationException vx)
@@ -151,6 +152,7 @@ namespace Individuellt_arbete.Pages.Songs
             try
             {
                 Service.removeSong(SongId);
+                Page.SetTempData("successmessage","Låten togs bort.");
                 Response.RedirectToRoute("AddSongs", new { albumid = RouteData.Values["albumid"] });
             }
             catch (Exception ex)

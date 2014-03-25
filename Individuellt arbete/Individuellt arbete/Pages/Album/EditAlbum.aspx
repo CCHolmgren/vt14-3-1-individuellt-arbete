@@ -60,12 +60,12 @@
             <tr>
                 <td>
                     <asp:TextBox Text="<%# BindItem.AlbumName %>" ID="EditName" runat="server" MaxLength="45"></asp:TextBox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="EditName" Display="None" ErrorMessage="Du måste fylla i ett Albumnamn" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="EditName" Display="None" ErrorMessage="Du måste fylla i ett Albumnamn." />
                 </td>
                 <td>
                     <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="EditReleaseYear" runat="server" MaxLength="4"></asp:TextBox>
-                    <asp:RangeValidator ControlToValidate="EditReleaseYear" runat="server" MinimumValue="1500" Display="None" MaximumValue="2020" ErrorMessage="Du måste ange ett utgivningsår mellan 1500 och 2020"/>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="EditReleaseYear" Display="None" ErrorMessage="Du måste fylla i ett utgivningsår" />
+                    <asp:RangeValidator ControlToValidate="EditReleaseYear" runat="server" MinimumValue="1500" Display="None" MaximumValue="2020" ErrorMessage="Du måste ange ett utgivningsår mellan 1500 och 2020."/>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="EditReleaseYear" Display="None" ErrorMessage="Du måste fylla i ett utgivningsår." />
                 </td>
                 <td>
                     <asp:Button CommandName="Update" ID="UpdateButton" runat="server" Text="Uppdatera"/>
@@ -79,12 +79,12 @@
             <tr>
                 <td>
                     <asp:TextBox Text="<%# BindItem.AlbumName %>" ID="InsertName" runat="server" MaxLength="45"></asp:TextBox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="InsertName" Display="None" ErrorMessage="Du måste fylla i ett Albumnamn" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="InsertName" Display="None" ErrorMessage="Du måste fylla i ett Albumnamn." />
                 </td>
                 <td>
                     <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="InsertReleaseYear" runat="server" MaxLength="4"></asp:TextBox>
-                    <asp:RangeValidator ControlToValidate="InsertReleaseYear" runat="server" MinimumValue="1500" MaximumValue="2020" Display="None" ErrorMessage="Du måste ange ett utgivningsår mellan 1500 och 2020"/>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="InsertReleaseYear" Display="None" ErrorMessage="Du måste fylla i ett releaseyear" />
+                    <asp:RangeValidator ControlToValidate="InsertReleaseYear" runat="server" MinimumValue="1500" MaximumValue="2020" Display="None" ErrorMessage="Du måste ange ett utgivningsår mellan 1500 och 2020."/>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="InsertReleaseYear" Display="None" ErrorMessage="Du måste fylla i ett utgivningsår." />
                 </td>
                 <td>
                     <asp:Button CommandName="Insert" ID="InsertButton" runat="server" Text="Lägg till"/>
