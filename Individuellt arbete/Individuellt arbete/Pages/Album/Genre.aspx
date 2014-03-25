@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:Label runat="server" ID="AlbumName"/>
     <ul>
             <asp:Repeater runat="server" ID="AlbumGenreRpr" ItemType="Individuellt_arbete.Model.AlbumHasGenre" SelectMethod="AlbumGenreRpr_GetData">
                 <ItemTemplate>

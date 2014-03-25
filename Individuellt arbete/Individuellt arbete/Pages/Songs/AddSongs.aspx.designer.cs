@@ -13,6 +13,15 @@ namespace Individuellt_arbete.Pages.Songs {
     public partial class AddSongs {
         
         /// <summary>
+        /// AlbumName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AlbumName;
+        
+        /// <summary>
         /// InsertNewRow control.
         /// </summary>
         /// <remarks>

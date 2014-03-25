@@ -16,9 +16,7 @@ namespace Individuellt_arbete
                                                                              new Regex(@"/medlem/register$"),
                                                                              new Regex(@"/albums$"),
                                                                              new Regex(@"/login$")};
-        /*protected void Page_Init(object sender, EventArgs e)
-        {
-        }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Page.ClientScript.RegisterClientScriptInclude(this.GetType(), "Global", this.ResolveClientUrl("~/Scripts/Main.js"));
@@ -34,7 +32,7 @@ namespace Individuellt_arbete
             {
                 LoggedInAs.Text = "Du är inte inloggad än.";
             }
-            bool allowed = false;
+            /*bool allowed = false;
             allowed = allowedWithoutLogin.Any(r => r.IsMatch(Request.Path));
             foreach (Regex r in allowedWithoutLogin)
             {
@@ -43,14 +41,7 @@ namespace Individuellt_arbete
                     allowed = true;
                 }
             }
-            //allowedWithoutLogin.Any();
-            //var allowedUrl = allowedWithoutLogin.Any(re => re.IsMatch(Request.Path));
-            if (Session["currentuser"] == null && !allowed)
-            {
-                Page.SetTempData("errormessage", "Du måste logga in först.");
-                Response.RedirectToRoute("Login");
-            }
-
+            */
             string errormessage = Page.GetTempData("errormessage") as string;
             if (errormessage != null)
             {
@@ -64,6 +55,6 @@ namespace Individuellt_arbete
                 SuccessPanel.Visible = true;
                 SuccessLabel.Text = successmessage;
             }
-        }*/
+        }
     }
 }

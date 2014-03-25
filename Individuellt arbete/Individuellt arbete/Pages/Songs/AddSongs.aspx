@@ -2,13 +2,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:Label runat="server" ID="AlbumName"/>
     <asp:Button ID="InsertNewRow" runat="server" OnClick="InsertNewRow_Click" Text="Lägg till låt"/>
     <asp:ListView runat="server" ID="AddSongsListView" 
         ItemType="Individuellt_arbete.Model.Song" 
         DataKeyNames="SongId" 
         SelectMethod="AddSongs_GetData" 
         InsertMethod="AddSongsListView_InsertItem" 
-        ViewStateMode="Disabled" 
+        ViewStateMode="Enabled" 
         UpdateMethod="AddSongsListView_UpdateItem" 
         DeleteMethod="AddSongsListView_DeleteItem" OnItemEditing="AddSongsListView_ItemEditing">
         <LayoutTemplate>

@@ -21,10 +21,10 @@
         </div>
         <ul class="navigation">
             <li>
-                <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Default %>" Text="Home" runat="server" />
+                <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Default %>" Text="Hem" runat="server" />
             </li>
             <li>
-                <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Login %>" Text="Login" runat="server" />
+                <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Login %>" Text="Logga in" runat="server" />
             </li>
             <li>
                 <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Albums %>" Text="Albums" runat="server" />

@@ -16,16 +16,17 @@ namespace Individuellt_arbete
             get { return _service ?? (_service = new Service()); }
         }
         protected void Page_Load(object sender, EventArgs e)
-        {   
-            
-            //Session["currentuser"] = 1;
-            if (!IsPostBack)
+        {
+            DataView dv = CreateDataSource();
+            if (dv.Count == 0)
             {
-                MemberList.DataSource = CreateDataSource();
-                MemberList.DataTextField = "MemberNameTextField";
-                MemberList.DataValueField = "MemberIdValueField";
-                MemberList.DataBind();;
+                ModelState.AddModelError(String.Empty, "Det finns inga medlemmar än. Registrera en medlem från menyn och försök igen.");
+                return;
             }
+            MemberList.DataSource = dv;
+            MemberList.DataTextField = "MemberNameTextField";
+            MemberList.DataValueField = "MemberIdValueField";
+            MemberList.DataBind();
         }
         DataView CreateDataSource()
         {

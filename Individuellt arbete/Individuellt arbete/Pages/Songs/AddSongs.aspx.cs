@@ -18,7 +18,27 @@ namespace Individuellt_arbete.Pages.Songs
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                Model.Album album = Service.getAlbumById(Convert.ToInt32(RouteData.Values["albumid"]));
+                if (album == null)
+                {
+                    ModelState.AddModelError(String.Empty, "Albumet kunde inte hittas, försök igen med ett annat album.");
+                    Page.Title = "Albumet kunde inte hittas.";
+                    AddSongsListView.Visible = false;
+                    return;
+                }
+                else
+                {
+                    AlbumName.Text = String.Format("Album: {0}", album.AlbumName);
+                    Page.Title = String.Format("{0}: {1}", album.AlbumName, Page.Title);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, "Ett fel uppstod när albumet laddades.");
+                return;
+            }
         }
 
         // The return type can be changed to IEnumerable, however to support
