@@ -15,8 +15,8 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>AlbumName</th>
-                                <th>ReleaseYear</th>
+                                <th>Albumnamn</th>
+                                <th>Utgivningsår</th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -30,7 +30,7 @@
                     <%-- Pagination --%>
                     <asp:DataPager PagedControlID="AlbumList" ID="DataPager" runat="server" QueryStringField="page" PageSize="20">
                         <Fields>
-                            <asp:NextPreviousPagerField ShowNextPageButton="true" ShowPreviousPageButton="true" RenderNonBreakingSpacesBetweenControls="true"/>
+                            <asp:NextPreviousPagerField ShowNextPageButton="true" ShowPreviousPageButton="true" RenderNonBreakingSpacesBetweenControls="true" PreviousPageText="Förra" NextPageText="Nästa"/>
                         </Fields>
                     </asp:DataPager>
                 </LayoutTemplate>
@@ -64,7 +64,8 @@
                 </td>
                 <td>
                     <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="EditReleaseYear" runat="server" MaxLength="4"></asp:TextBox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="EditReleaseYear" Display="None" ErrorMessage="Du måste fylla i ett releaseyear" />
+                    <asp:RangeValidator ControlToValidate="EditReleaseYear" runat="server" MinimumValue="1500" MaximumValue="2020" ErrorMessage="Du måste ange ett utgivningsår mellan 1500 och 2020"/>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="EditReleaseYear" Display="None" ErrorMessage="Du måste fylla i ett utgivningsår" />
                 </td>
                 <td>
                     <asp:Button CommandName="Update" ID="UpdateButton" runat="server" Text="Uppdatera"/>
@@ -82,6 +83,7 @@
                 </td>
                 <td>
                     <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="InsertReleaseYear" runat="server" MaxLength="4"></asp:TextBox>
+                    <asp:RangeValidator ControlToValidate="InsertReleaseYear" runat="server" MinimumValue="1500" MaximumValue="2020" ErrorMessage="Du måste ange ett utgivningsår mellan 1500 och 2020"/>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="InsertReleaseYear" Display="None" ErrorMessage="Du måste fylla i ett releaseyear" />
                 </td>
                 <td>
