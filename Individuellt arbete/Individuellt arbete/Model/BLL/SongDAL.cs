@@ -218,6 +218,7 @@ namespace Individuellt_arbete.Model
             {
                 SqlCommand cmd = new SqlCommand("getSongGivenId", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@songId", SqlDbType.Int, 4).Value = SongId;
 
                 conn.Open();
 
@@ -239,7 +240,7 @@ namespace Individuellt_arbete.Model
                             SongId = reader.GetInt32(songIDindex),
                             Length = reader.GetInt16(lengthIndex),
                             SongName = reader.GetString(songNameIndex),
-                            TrackNr = reader.GetInt16(trackNrIndex)
+                            TrackNr = reader.GetByte(trackNrIndex)
                         };
                     }
                     return null;
