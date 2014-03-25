@@ -3,14 +3,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Button Text="Nytt album" OnClick="NewAlbum_Click" ID="NewAlbum" runat="server" />
-    <asp:ListView runat="server" ID="AlbumList" ViewStateMode="Enabled" 
+    <asp:ListView runat="server" ID="AlbumList" 
         ItemType="Individuellt_arbete.Model.Album" 
         SelectMethod="AlbumList_GetData" 
         DataKeyNames="AlbumId" 
         InsertItemPosition="None" 
         InsertMethod="AlbumList_InsertItem" 
         UpdateMethod="AlbumList_UpdateItem" 
-        DeleteMethod="AlbumList_DeleteItem" OnDataBound="AlbumList_DataBound">
+        DeleteMethod="AlbumList_DeleteItem" OnItemEditing="AlbumList_ItemEditing">
         <LayoutTemplate>
                     <table>
                         <thead>

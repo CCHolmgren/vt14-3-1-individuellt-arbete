@@ -119,6 +119,7 @@ namespace Individuellt_arbete.Pages.Album
 
         protected void NewAlbum_Click(object sender, EventArgs e)
         {
+            AlbumList.EditIndex = -1;
             AlbumList.InsertItemPosition = InsertItemPosition.FirstItem;
         }
 
@@ -151,6 +152,11 @@ namespace Individuellt_arbete.Pages.Album
         protected void AlbumList_DataBound(object sender, EventArgs e)
         {
             //DataPager.Visible = (DataPager.PageSize < DataPager.TotalRowCount);
+        }
+
+        protected void AlbumList_ItemEditing(object sender, ListViewEditEventArgs e)
+        {
+            AlbumList.InsertItemPosition = InsertItemPosition.None;
         }
     }
 }
