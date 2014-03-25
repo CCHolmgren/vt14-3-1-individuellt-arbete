@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace Individuellt_arbete.Pages.Album
 {
@@ -17,14 +18,20 @@ namespace Individuellt_arbete.Pages.Album
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                NewGenreDDL.DataSource = CreateDataSource();
-                NewGenreDDL.DataTextField = "MemberNameTextField";
-                NewGenreDDL.DataValueField = "MemberIdValueField";
+                NewGenreDDL.DataSource = Service.getAllGenres();
+                NewGenreDDL.DataTextField = "GenreName";
+                NewGenreDDL.DataValueField = "GenreId";
                 NewGenreDDL.DataBind();
             }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(String.Empty, "Ett fel uppstod när genrerna hämtades.");
+                return;
+            }
         }
+        [Obsolete()]
         DataView CreateDataSource()
         {
             List<Model.Genre> genres;
@@ -56,6 +63,7 @@ namespace Individuellt_arbete.Pages.Album
             DataView dv = new DataView(dt);
             return dv;
         }
+        [Obsolete()]
         DataRow CreateRow(String Text, int Value, DataTable dt)
         {
 
