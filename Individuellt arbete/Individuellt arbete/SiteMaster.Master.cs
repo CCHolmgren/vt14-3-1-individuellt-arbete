@@ -16,7 +16,7 @@ namespace Individuellt_arbete
                                                                              new Regex(@"/medlem/register$"),
                                                                              new Regex(@"/albums$"),
                                                                              new Regex(@"/login$")};
-        protected void Page_Init(object sender, EventArgs e)
+        /*protected void Page_Init(object sender, EventArgs e)
         {
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -36,19 +36,19 @@ namespace Individuellt_arbete
             }
             bool allowed = false;
             allowed = allowedWithoutLogin.Any(r => r.IsMatch(Request.Path));
-            /*foreach (Regex r in allowedWithoutLogin)
+            foreach (Regex r in allowedWithoutLogin)
             {
                 if (r.IsMatch(Request.Path))
                 {
                     allowed = true;
                 }
-            }*/
+            }
             //allowedWithoutLogin.Any();
             //var allowedUrl = allowedWithoutLogin.Any(re => re.IsMatch(Request.Path));
             if (Session["currentuser"] == null && !allowed)
             {
                 Page.SetTempData("errormessage", "Du måste logga in först.");
-                //Response.RedirectToRoute("Login");
+                Response.RedirectToRoute("Login");
             }
 
             string errormessage = Page.GetTempData("errormessage") as string;
@@ -64,6 +64,6 @@ namespace Individuellt_arbete
                 SuccessPanel.Visible = true;
                 SuccessLabel.Text = successmessage;
             }
-        }
+        }*/
     }
 }

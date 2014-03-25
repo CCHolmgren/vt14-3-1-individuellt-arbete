@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Button Text="Nytt album" OnClick="NewAlbum_Click" ID="NewAlbum" runat="server" />
-    <asp:ListView runat="server" ID="AlbumList" 
+    <asp:ListView runat="server" ID="AlbumList" ViewStateMode="Enabled" 
         ItemType="Individuellt_arbete.Model.Album" 
         SelectMethod="AlbumList_GetData" 
         DataKeyNames="AlbumId" 
@@ -46,7 +46,7 @@
                     <asp:Button Text="Redigera" CommandName="Edit" runat="server" />
                 </td>
                 <td>
-                    <asp:Button Text="Ta bort" CommandName="Delete" runat="server" />
+                    <asp:LinkButton OnclientClick="return confirm('Är du säker på att du vill ta bort albumet permanent?')" Text="Ta bort" CommandName="Delete" runat="server" />
                 </td>
                 <td>
                     <asp:Button Text="Lägg till låtar" OnClick="AddSongsButton_Click" CommandArgument="<%# Item.AlbumId %>" ID="AddSongsButton" runat="server"/>
@@ -64,7 +64,7 @@
                 </td>
                 <td>
                     <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="EditReleaseYear" runat="server" MaxLength="4"></asp:TextBox>
-                    <asp:RangeValidator ControlToValidate="EditReleaseYear" runat="server" MinimumValue="1500" MaximumValue="2020" ErrorMessage="Du måste ange ett utgivningsår mellan 1500 och 2020"/>
+                    <asp:RangeValidator ControlToValidate="EditReleaseYear" runat="server" MinimumValue="1500" Display="None" MaximumValue="2020" ErrorMessage="Du måste ange ett utgivningsår mellan 1500 och 2020"/>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="EditReleaseYear" Display="None" ErrorMessage="Du måste fylla i ett utgivningsår" />
                 </td>
                 <td>
@@ -83,7 +83,7 @@
                 </td>
                 <td>
                     <asp:TextBox Text="<%# BindItem.ReleaseYear %>" ID="InsertReleaseYear" runat="server" MaxLength="4"></asp:TextBox>
-                    <asp:RangeValidator ControlToValidate="InsertReleaseYear" runat="server" MinimumValue="1500" MaximumValue="2020" ErrorMessage="Du måste ange ett utgivningsår mellan 1500 och 2020"/>
+                    <asp:RangeValidator ControlToValidate="InsertReleaseYear" runat="server" MinimumValue="1500" MaximumValue="2020" Display="None" ErrorMessage="Du måste ange ett utgivningsår mellan 1500 och 2020"/>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="InsertReleaseYear" Display="None" ErrorMessage="Du måste fylla i ett releaseyear" />
                 </td>
                 <td>

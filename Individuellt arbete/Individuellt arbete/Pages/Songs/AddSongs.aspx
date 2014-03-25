@@ -8,7 +8,9 @@
         DataKeyNames="SongId" 
         SelectMethod="AddSongs_GetData" 
         InsertMethod="AddSongsListView_InsertItem" 
-        ViewStateMode="Enabled" UpdateMethod="AddSongsListView_UpdateItem" DeleteMethod="AddSongsListView_DeleteItem">
+        ViewStateMode="Disabled" 
+        UpdateMethod="AddSongsListView_UpdateItem" 
+        DeleteMethod="AddSongsListView_DeleteItem" OnItemEditing="AddSongsListView_ItemEditing">
         <LayoutTemplate>
                 <table>
                     <thead>
@@ -55,7 +57,9 @@
                     <td>
                         <asp:Button runat="server" ID="Edit" CommandName="Edit" Text="Redigera" />
                     </td>
-                    <td></td>
+                    <td>
+                        <asp:LinkButton OnclientClick="return confirm('Är du säker på att du vill ta bort låten permanent?')" Text="Ta bort" CommandName="Delete" runat="server" />
+                    </td>
                 </tr>
             </ItemTemplate>
             <EditItemTemplate>
@@ -63,7 +67,7 @@
                     <td>
                         <asp:TextBox runat="server" ID="TrackNrEdit" Text="<%# BindItem.TrackNr %>" MaxLength="3" />
                         <asp:RequiredFieldValidator ErrorMessage="Du måste fylla i ett låtnummer." Display="None" ControlToValidate="TrackNrEdit" runat="server" />
-                        <asp:RangeValidator ErrorMessage="Du måste fylla i ett värde mellan 1 och 100." MinimumValue="1" MaximumValue="100" ControlToValidate="TrackNrEdit" runat="server" Display="None" />
+                        <asp:RangeValidator ErrorMessage="Du måste fylla i ett värde mellan 1 och 100 för låtnummer." MinimumValue="1" Type="Integer" MaximumValue="100" ControlToValidate="TrackNrEdit" runat="server" Display="None" />
                     </td>
                     <td>
                         <asp:TextBox runat="server" ID="SongNameEdit" Text="<%# BindItem.SongName %>" MaxLength="45"/>
@@ -91,7 +95,7 @@
                     <td>
                         <asp:TextBox runat="server" ID="InsertTrackNr" Text="<%# BindItem.TrackNr %>"  MaxLength="3"/>
                         <asp:RequiredFieldValidator ErrorMessage="Du måste fylla i ett låtnummer." Display="None" ControlToValidate="InsertTrackNr" runat="server" />
-                        <asp:RangeValidator ErrorMessage="Du måste fylla i ett värde mellan 1 och 100." MinimumValue="1" MaximumValue="100" ControlToValidate="InsertTrackNr" runat="server" Display="None"/>
+                        <asp:RangeValidator ErrorMessage="Du måste fylla i ett värde mellan 1 och 100 för låtnummer." MinimumValue="1" Type="Integer" MaximumValue="100" ControlToValidate="InsertTrackNr" runat="server" Display="None"/>
                     </td>
                     <td>
                         <asp:TextBox runat="server" ID="InsertSongName" Text="<%# BindItem.SongName %>" MaxLength="45"/>
@@ -114,5 +118,12 @@
                     </td>
                 </tr>
             </InsertItemTemplate>
+        <EmptyDataTemplate>
+            <tr>
+                <td>
+                    Det finns inga låtar associerade med albumet.
+                </td>
+            </tr>
+        </EmptyDataTemplate>
     </asp:ListView>
 </asp:Content>

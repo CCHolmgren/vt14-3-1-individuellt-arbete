@@ -24,11 +24,6 @@ namespace Individuellt_arbete
             routes.MapPageRoute("SongsGivenAlbum", "album-{albumid}/songs", "~/Pages/Songs/Songs.aspx");
             routes.MapPageRoute("AddSongs", "album-{albumid}/songs/add", "~/Pages/Songs/AddSongs.aspx");
             routes.MapPageRoute("EditSongsOnAlbum", "album-{albumid}/songs/edit", "~/Pages/Songs/EditSongs.aspx");
-            
-            //routes.MapPageRoute("DeleteSong", "song/{song}/delete", "~/Pages/Song/Delete.aspx");
-            //routes.MapPageRoute("ListenToSongs", "songs/listen", "~/Pages/Songs/Listen.aspx");
-            
-            //routes.MapPageRoute("ListenToSong", "song/{song}/listen", "~/Pages/Song/Listen.aspx");
 
             routes.MapPageRoute("Login", "login", "~/Pages/Login.aspx");
             routes.MapPageRoute("Default", "", "~/Pages/Default.aspx");

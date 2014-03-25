@@ -31,7 +31,17 @@ namespace Individuellt_arbete.Pages.Songs
         {
             try
             {
-                return Service.getSongList(maximumRows, startRowIndex, out totalRowCount, Convert.ToInt32(RouteData.Values["albumid"]));
+                Model.Album album = Service.getAlbumById(Convert.ToInt32(RouteData.Values["albumid"]));
+                if (album == null)
+                {
+                    ModelState.AddModelError(String.Empty, "Albumet kunde inte hittas, försök igen med ett annat album.");
+                    InsertNewRow.Enabled = false;
+                    totalRowCount = 0;
+                    AddSongsListView.EmptyDataTemplate = null;
+                    return null;
+                }
+                IEnumerable<Model.Song> songList = Service.getSongList(maximumRows, startRowIndex, out totalRowCount, Convert.ToInt32(RouteData.Values["albumid"]));
+                return songList;
             }
             catch (Exception ex)
             {
@@ -43,6 +53,7 @@ namespace Individuellt_arbete.Pages.Songs
 
         protected void InsertNewRow_Click(object sender, EventArgs e)
         {
+            AddSongsListView.EditIndex = -1;
             AddSongsListView.InsertItemPosition = InsertItemPosition.FirstItem;
         }
 
@@ -127,6 +138,11 @@ namespace Individuellt_arbete.Pages.Songs
                 ModelState.AddModelError(String.Empty, ex.Message);
                 return;
             }
+        }
+
+        protected void AddSongsListView_ItemEditing(object sender, ListViewEditEventArgs e)
+        {
+            AddSongsListView.InsertItemPosition = InsertItemPosition.None;
         }
     }
 }
