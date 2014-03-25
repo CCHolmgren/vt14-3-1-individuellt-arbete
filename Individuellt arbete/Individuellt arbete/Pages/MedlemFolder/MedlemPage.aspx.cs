@@ -90,17 +90,20 @@ namespace Individuellt_arbete.Pages.MedlemFolder
 
         protected void Unnamed_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DropDownList ddl = (DropDownList)sender;
-            try
+            if (ModelState.IsValid)
             {
-                Service.gradeSong(Convert.ToInt32(ddl.Attributes["db-SongId"]), MedlemId, Convert.ToInt32(ddl.SelectedValue));
+                DropDownList ddl = (DropDownList)sender;
+                try
+                {
+                    Service.gradeSong(Convert.ToInt32(ddl.Attributes["db-SongId"]), MedlemId, Convert.ToInt32(ddl.SelectedValue));
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(String.Empty, ex.Message);
+                    return;
+                }
+                Response.RedirectToRoute("MedlemPage", new { medlemid = MedlemId });
             }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(String.Empty, ex.Message);
-                return;
-            }
-            Response.RedirectToRoute("MedlemPage", new { medlemid = MedlemId });
         }
     }
 }

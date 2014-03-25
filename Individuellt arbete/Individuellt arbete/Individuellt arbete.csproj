@@ -108,11 +108,9 @@
     <Content Include="Pages\Album\Genre.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\MedlemFolder\MedlemPage.aspx" />
-    <Content Include="Pages\Songs\Add.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ListenSong.aspx" />
     <Content Include="Pages\Songs\AddSongs.aspx" />
-    <Content Include="Pages\Songs\Listen.aspx" />
     <Content Include="Pages\Songs\Songs.aspx" />
     <Content Include="Pages\Song\Listen.aspx" />
     <Content Include="Pages\MedlemFolder\Register.aspx" />
@@ -198,13 +196,6 @@
     <Compile Include="Pages\MedlemFolder\MedlemPage.aspx.designer.cs">
       <DependentUpon>MedlemPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Songs\Add.aspx.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Songs\Add.aspx.designer.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Pages\Default.aspx.cs">
@@ -236,13 +227,6 @@
     </Compile>
     <Compile Include="Pages\Songs\AddSongs.aspx.designer.cs">
       <DependentUpon>AddSongs.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Songs\Listen.aspx.cs">
-      <DependentUpon>Listen.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Songs\Listen.aspx.designer.cs">
-      <DependentUpon>Listen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Songs\Songs.aspx.cs">
       <DependentUpon>Songs.aspx</DependentUpon>

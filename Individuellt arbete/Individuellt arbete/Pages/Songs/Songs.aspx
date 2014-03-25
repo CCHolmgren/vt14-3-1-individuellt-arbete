@@ -47,7 +47,14 @@
             </tr>
         </ItemTemplate>
         <EmptyDataTemplate>
-            <a href='javascript:history.go(-1)'>Gå tillbaka till senaste sidan</a>
+            <tr>
+                <td>Det finns inga låtar associerade med albumet</td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:HyperLink NavigateUrl="<%$Routeurl:routename=Albums %>" Text="Tillbaka till albumsidan" runat="server" />
+                </td>
+            </tr>
         </EmptyDataTemplate>
     </asp:ListView>
 </asp:Content>
