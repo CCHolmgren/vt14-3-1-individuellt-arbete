@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteMaster.master.cs" Inherits="Individuellt_arbete.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteMaster.master.cs" Inherits="Individuellt_arbete.SiteMaster" ViewStateMode="Disabled" %>
 
 <!DOCTYPE html>
 
