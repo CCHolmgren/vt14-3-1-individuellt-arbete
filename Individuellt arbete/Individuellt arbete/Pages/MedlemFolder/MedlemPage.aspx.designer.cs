@@ -31,6 +31,15 @@ namespace Individuellt_arbete.Pages.MedlemFolder {
         protected global::System.Web.UI.WebControls.Label FirstName;
         
         /// <summary>
+        /// MedlemExists control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MedlemExists;
+        
+        /// <summary>
         /// FirstNameAgain control.
         /// </summary>
         /// <remarks>

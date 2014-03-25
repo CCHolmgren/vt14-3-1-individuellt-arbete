@@ -19,25 +19,26 @@ namespace Individuellt_arbete.Pages.MedlemFolder
         }
         int CurrentUserId
         {
-            get { return ((Model.Medlem)Session["currentuser"]).MedlemId; }
+            get 
+            {
+                if (Session["currentuser"] != null)
+                    return (Session["currentuser"] as Model.Medlem).MedlemId;
+                else
+                    return 0;
+            }
         }
         int MedlemId
         {
             get { return Convert.ToInt32(RouteData.Values["medlemid"]); }
         }
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            //TODO: Change back this line to 
-            //int medlemId = Convert.ToInt32(Page.RouteData.Values["medlem"]);
-            //It's only for debuggign.
             try
             {
                 Model.Medlem medlem = Service.getMedlem(MedlemId);
                 if (medlem != null)
                 {
+                    MedlemExists.Visible = true;
                     if (CurrentUserId == MedlemId)
                     {
                         HelloMessage.Visible = true;

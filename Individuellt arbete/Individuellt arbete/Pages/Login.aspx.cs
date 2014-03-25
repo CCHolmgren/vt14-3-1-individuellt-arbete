@@ -34,7 +34,7 @@ namespace Individuellt_arbete
             try
             {
                 medlems = Service.getAllMedlems();
-                Session["medlems"] = medlems;
+                Session["medlems"] = medlems.ToDictionary(k=>k.MedlemId);
             }
             catch (Exception ex)
             {
@@ -81,7 +81,7 @@ namespace Individuellt_arbete
         protected void MedlemIdSet_Click(object sender, EventArgs e)
         {
             int medlemIndex = Convert.ToInt32(MemberList.SelectedValue);
-            Session["currentuser"] = (Session["medlems"] as List<Model.Medlem>)[medlemIndex-1];
+            Session["currentuser"] = (Session["medlems"] as Dictionary<int,Model.Medlem>)[medlemIndex];
             //Session["currentuser"] = int.Parse(MemberList.SelectedValue);
             Response.RedirectToRoute("MedlemPage", new { medlemid = MemberList.SelectedValue });
         }
