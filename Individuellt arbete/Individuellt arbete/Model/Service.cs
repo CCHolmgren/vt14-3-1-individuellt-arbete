@@ -30,10 +30,6 @@ namespace Individuellt_arbete
         }
 
         //Song
-        public void addSong(Song song, int albumId)
-        {
-            Song.AddSong(song, albumId);
-        }
         public List<Song> getAllSongs()
         {
             return Song.GetAllSongs();

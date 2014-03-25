@@ -22,7 +22,7 @@ namespace Individuellt_arbete.Model
             get;
             set;
         }
-        [Required(ErrorMessage="Du måste fylla i en längd.")]
+        [Range(1, 32000, ErrorMessage="Längden måste vara mellan 1 och 32000 sekunder.")]
         public int Length
         {
             get;
@@ -34,7 +34,7 @@ namespace Individuellt_arbete.Model
             get;
             set;
         }
-        [Required(ErrorMessage="Du måste fylla i ett låtnummer.")]
+        [Range(1, 100, ErrorMessage="Låtnumret måste vara mellan 1 och 100.")]
         public short TrackNr
         {
             get;
