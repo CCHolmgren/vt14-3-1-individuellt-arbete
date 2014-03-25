@@ -48,6 +48,9 @@
                 <asp:Panel Visible="true" ID="GradePanel" runat="server">
                     <td>
                         <asp:DropDownList OnSelectedIndexChanged="Unnamed_SelectedIndexChanged" AutoPostBack="true" runat="server" db-SongId="<%# Item.SongId %>">
+                            <asp:ListItem Value="0">
+                                Välj ett betyg
+                            </asp:ListItem>
                             <asp:ListItem Value="1">
                                 1
                             </asp:ListItem>
@@ -64,6 +67,7 @@
                                 5
                             </asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RangeValidator ErrorMessage="Du måste välja ett giltigt betyg mellan 1 och 5." ControlToValidate="PreviousControlID" runat="server" MinimumValue="1" MaximumValue="5"/>
                         </td>
                 </asp:Panel>
             </tr>
