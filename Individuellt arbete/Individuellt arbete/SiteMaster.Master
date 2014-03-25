@@ -43,7 +43,7 @@
             </asp:Panel>
         <div class="main" id="main">
             <form id="form1" runat="server">
-                <asp:ValidationSummary runat="server" ForeColor="Red" DisplayMode="List"/>
+                <asp:ValidationSummary runat="server" CssClass="validationsummary" DisplayMode="List"/>
                 <div>
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
