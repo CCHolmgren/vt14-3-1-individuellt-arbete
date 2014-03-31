@@ -80,7 +80,7 @@
                     </td>
                     <td>
                         <asp:TextBox runat="server" ID="LengthEdit" Text="<%# BindItem.Length %>" MaxLength="3"/>
-                        <asp:CompareValidator ErrorMessage="Du måste ange ett heltal större eller lika med 1 för längden." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" ControlToValidate="LengthEdit" runat="server" Display="None"/>
+                        <asp:RangeValidator ErrorMessage="DU måste ange ett heltal mellan 1 och 999 för längden." Type="Integer" MinimumValue="1" MaximumValue="999" Display="None" ControlToValidate="LengthEdit" runat="server" />
                         <asp:RequiredFieldValidator ErrorMessage="Du måste fylla i en låtlängd" Display="None" ControlToValidate="LengthEdit" runat="server" />
                     </td>
                     <td>
@@ -109,7 +109,7 @@
                     <td>
                         <asp:TextBox runat="server" ID="InsertLength" Text="<%# BindItem.Length %>" MaxLength="3"/>
                         <asp:RequiredFieldValidator ErrorMessage="Du måste fylla i en låtlängd." Display="None" ControlToValidate="InsertLength" runat="server" />
-                        <asp:CompareValidator ErrorMessage="Du måste ange ett heltal större eller lika med 1 för längden." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" ControlToValidate="InsertLength" runat="server" Display="None"/>
+                        <asp:RangeValidator ErrorMessage="DU måste ange ett heltal mellan 1 och 999 för längden." Type="Integer" MinimumValue="1" MaximumValue="999" Display="None" ControlToValidate="InsertLength" runat="server" />
                     </td>
                     <td>
                         <asp:Button CommandName="Insert" ID="InsertButton" runat="server" Text="Lägg till"/>

@@ -22,7 +22,7 @@ namespace Individuellt_arbete.Model
             get;
             set;
         }
-        [Required(ErrorMessage="Du måste fylla i ett giltigt releaseyear")]
+        [Range(1500,2020, ErrorMessage="Du måste fylla i ett utgivningsår mellan 1500 och 2020.")]
         public int ReleaseYear
         {
             get;

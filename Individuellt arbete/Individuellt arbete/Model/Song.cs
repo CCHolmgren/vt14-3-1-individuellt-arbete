@@ -16,19 +16,21 @@ namespace Individuellt_arbete.Model
             get;
             set;
         }
-        [Required(ErrorMessage="Du måste fylla i ett låtnamn."), MaxLength(45, ErrorMessage="Låtnamnet kan inte vara längre än 45 tecken.")]
+        [Required(ErrorMessage="Du måste fylla i ett låtnamn."), 
+        MaxLength(45, ErrorMessage="Låtnamnet kan inte vara längre än 45 tecken.")]
         public string SongName
         {
             get;
             set;
         }
-        [Range(1, 32000, ErrorMessage="Längden måste vara mellan 1 och 32000 sekunder.")]
+        [Range(1, 999, ErrorMessage="Längden måste vara mellan 1 och 999 sekunder.")]
         public int Length
         {
             get;
             set;
         }
-        [Required(ErrorMessage="Du måste fylla i ett bandnamn."), MaxLength(50, ErrorMessage="Bandnamnet kan inte vara längre än 50 tecken.")]
+        [Required(ErrorMessage="Du måste fylla i ett bandnamn."), 
+        MaxLength(50, ErrorMessage="Bandnamnet kan inte vara längre än 50 tecken.")]
         public string BandName
         {
             get;
