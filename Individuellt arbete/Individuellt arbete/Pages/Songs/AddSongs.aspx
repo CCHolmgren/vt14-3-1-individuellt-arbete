@@ -9,7 +9,7 @@
         DataKeyNames="SongId" 
         SelectMethod="AddSongs_GetData" 
         InsertMethod="AddSongsListView_InsertItem" 
-        ViewStateMode="Enabled" 
+        ViewStateMode="Disabled" 
         UpdateMethod="AddSongsListView_UpdateItem" 
         DeleteMethod="AddSongsListView_DeleteItem" OnItemEditing="AddSongsListView_ItemEditing">
         <LayoutTemplate>

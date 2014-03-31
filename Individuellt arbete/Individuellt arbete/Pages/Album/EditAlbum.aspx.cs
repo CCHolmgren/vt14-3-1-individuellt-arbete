@@ -120,7 +120,8 @@ namespace Individuellt_arbete.Pages.Album
         protected void NewAlbum_Click(object sender, EventArgs e)
         {
             AlbumList.EditIndex = -1;
-            AlbumList.InsertItemPosition = InsertItemPosition.FirstItem;
+            //if(AlbumList.InsertItemPosition != InsertItemPosition.FirstItem)
+                AlbumList.InsertItemPosition = InsertItemPosition.FirstItem;
         }
 
         // The id parameter name should match the DataKeyNames value set on the control

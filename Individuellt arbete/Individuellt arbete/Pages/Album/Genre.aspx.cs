@@ -68,17 +68,16 @@ namespace Individuellt_arbete.Pages.Album
                             }));
 
                 allGenres = Service.getAllGenres();
-                
+                //allGenres = allGenres.Except(fromAHGToGenre).ToList();
                 List<int> notAddedGenreIds = allGenres.Select(c => c.GenreId)
                                               .Except(fromAHGToGenre.Select(c => c.GenreId))
                                               .ToList();
-
                 allGenres = allGenres.Where(c => notAddedGenreIds.Contains(c.GenreId))
                                      .ToList();
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(String.Empty, "Hämtandet av genrer mislyckades. Försök igen.");
+                ModelState.AddModelError(String.Empty, ex.Message);
                 return new DataView();
             }
             // Create a table to store data for the DropDownList control.
@@ -99,9 +98,19 @@ namespace Individuellt_arbete.Pages.Album
             DataView dv = new DataView(dt);
             return dv;
         }
+        [Obsolete()]
         DataRow CreateRow(String Text, int Value, DataTable dt)
         {
+
+            // Create a DataRow using the DataTable defined in the 
+            // CreateDataSource method.
             DataRow dr = dt.NewRow();
+
+            // This DataRow contains the ColorTextField and ColorValueField 
+            // fields, as defined in the CreateDataSource method. Set the 
+            // fields with the appropriate value. Remember that column 0 
+            // is defined as ColorTextField, and column 1 is defined as 
+            // ColorValueField.
             dr[0] = Text;
             dr[1] = Value;
 

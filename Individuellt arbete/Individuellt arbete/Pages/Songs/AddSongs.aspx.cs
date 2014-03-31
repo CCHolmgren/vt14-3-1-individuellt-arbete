@@ -74,7 +74,8 @@ namespace Individuellt_arbete.Pages.Songs
         protected void InsertNewRow_Click(object sender, EventArgs e)
         {
             AddSongsListView.EditIndex = -1;
-            AddSongsListView.InsertItemPosition = InsertItemPosition.FirstItem;
+            //if(AddSongsListView.InsertItemPosition != InsertItemPosition.FirstItem)
+                AddSongsListView.InsertItemPosition = InsertItemPosition.FirstItem;
         }
 
         public void AddSongsListView_InsertItem()
