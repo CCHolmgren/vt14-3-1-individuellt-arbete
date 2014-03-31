@@ -53,23 +53,27 @@ namespace Individuellt_arbete.Pages.Album
         }
         DataView CreateDataSource()
         {
-            List<Model.Genre> genres;
-            List<Model.AlbumHasGenre> genresadded;
-            List<Model.Genre> yes = new List<Model.Genre>();
+            List<Model.Genre> allGenres;
+            List<Model.AlbumHasGenre> previouslyAddedGenres;
+            List<Model.Genre> fromAHGToGenre = new List<Model.Genre>();
             try
             {
-                genresadded = Service.getGenresFromAlbum(Convert.ToInt32(RouteData.Values["albumid"]));
-                genresadded.ForEach(g => 
-                    yes.Add(
+                previouslyAddedGenres = Service.getGenresFromAlbum(Convert.ToInt32(RouteData.Values["albumid"]));
+                previouslyAddedGenres.ForEach(g => 
+                    fromAHGToGenre.Add(
                         new Model.Genre
                             {
                                 GenreId = g.GenreId, 
                                 GenreName = g.Genre
                             }));
 
-                genres = Service.getAllGenres();
-                List<int> genreids = genres.Select(c => c.GenreId).Except(yes.Select(c => c.GenreId)).ToList();
-                genres = genres.Where(c => genreids.Contains(c.GenreId)).ToList();
+                allGenres = Service.getAllGenres();
+                //allGenres = allGenres.Except(fromAHGToGenre).ToList();
+                List<int> notAddedGenreIds = allGenres.Select(c => c.GenreId)
+                                              .Except(fromAHGToGenre.Select(c => c.GenreId))
+                                              .ToList();
+                allGenres = allGenres.Where(c => notAddedGenreIds.Contains(c.GenreId))
+                                     .ToList();
             }
             catch (Exception ex)
             {
@@ -84,7 +88,7 @@ namespace Individuellt_arbete.Pages.Album
             dt.Columns.Add(new DataColumn("GenreId", typeof(int)));
 
             // Populate the table with sample values.e
-            genres.ForEach(genre =>
+            allGenres.ForEach(genre =>
                 dt.Rows.Add(CreateRow(String.Format("{0}"
                                         , genre.GenreName)
                                         , genre.GenreId, dt)));
