@@ -13,7 +13,7 @@
                         <thead>
                             <tr>
                                 <th>Albumname</th>
-                                <th>ReleaseYear</th>
+                                <th>Utgivningsår</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -24,7 +24,7 @@
                     <%-- Pagination --%>
                     <asp:DataPager PagedControlID="AlbumList" ID="DataPager" runat="server" QueryStringField="page" PageSize="20">
                         <Fields>
-                            <asp:NextPreviousPagerField ShowNextPageButton="true" ShowPreviousPageButton="true" RenderNonBreakingSpacesBetweenControls="true"/>
+                            <asp:NextPreviousPagerField ShowNextPageButton="true" ShowPreviousPageButton="true" RenderNonBreakingSpacesBetweenControls="true" PreviousPageText="Förra" NextPageText="Nästa"/>
                         </Fields>
                     </asp:DataPager>
                 </LayoutTemplate>

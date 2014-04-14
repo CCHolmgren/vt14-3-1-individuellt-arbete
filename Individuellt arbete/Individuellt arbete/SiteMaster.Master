@@ -27,7 +27,7 @@
                 <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Login %>" Text="Logga in" runat="server" />
             </li>
             <li>
-                <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Albums %>" Text="Albums" runat="server" />
+                <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=Albums %>" Text="Album" runat="server" />
             </li>
             <li>
                 <asp:HyperLink NavigateUrl="<%$ RouteUrl:routename=RegisterMedlem %>" Text="Registrera ny användare" runat="server" />

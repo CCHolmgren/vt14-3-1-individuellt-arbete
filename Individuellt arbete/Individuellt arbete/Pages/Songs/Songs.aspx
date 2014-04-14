@@ -16,10 +16,9 @@
                         <asp:PlaceHolder runat="server" ID="itemPlaceholder"/>
                     </table>
                     <%-- Pagination --%>
-                    <%-- Invisible because we don't want there to be any pagination right now. Must probably change the PageSize though --%>
                     <asp:DataPager PagedControlID="SongList" ID="DataPager" runat="server" QueryStringField="page" PageSize="20">
                         <Fields>
-                            <asp:NextPreviousPagerField ShowNextPageButton="true" ShowPreviousPageButton="true" RenderNonBreakingSpacesBetweenControls="true"/>
+                            <asp:NextPreviousPagerField ShowNextPageButton="true" ShowPreviousPageButton="true" RenderNonBreakingSpacesBetweenControls="true" PreviousPageText="Förra" NextPageText="Nästa"/>
                         </Fields>
                     </asp:DataPager>
                 </LayoutTemplate>
