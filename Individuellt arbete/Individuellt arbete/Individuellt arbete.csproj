@@ -112,7 +112,6 @@
     <Content Include="ListenSong.aspx" />
     <Content Include="Pages\Songs\AddSongs.aspx" />
     <Content Include="Pages\Songs\Songs.aspx" />
-    <Content Include="Pages\Song\Listen.aspx" />
     <Content Include="Pages\MedlemFolder\Register.aspx" />
     <None Include="Properties\PublishProfiles\ch222kv.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -234,13 +233,6 @@
     </Compile>
     <Compile Include="Pages\Songs\Songs.aspx.designer.cs">
       <DependentUpon>Songs.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Song\Listen.aspx.cs">
-      <DependentUpon>Listen.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Song\Listen.aspx.designer.cs">
-      <DependentUpon>Listen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\MedlemFolder\Register.aspx.cs">

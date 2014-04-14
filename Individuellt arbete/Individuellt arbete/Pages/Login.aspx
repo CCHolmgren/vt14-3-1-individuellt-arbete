@@ -3,6 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label Text="Login" runat="server" />
-    <asp:DropDownList runat="server" ID="MemberList" ViewStateMode="Enabled"></asp:DropDownList>
+    <asp:DropDownList runat="server" ID="MemberList"></asp:DropDownList>
     <asp:Button Text="Login" ID="MedlemIdSet" OnClick="MedlemIdSet_Click" runat="server" />
 </asp:Content>
