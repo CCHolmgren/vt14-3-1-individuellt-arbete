@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Button Text="Nytt album" OnClick="NewAlbum_Click" ID="NewAlbum" runat="server" />
-    <asp:ListView runat="server" ID="AlbumList" ViewStateMode="Disabled" 
+    <asp:ListView runat="server" ID="AlbumList" ViewStateMode="Enabled" 
         ItemType="Individuellt_arbete.Model.Album" 
         SelectMethod="AlbumList_GetData" 
         DataKeyNames="AlbumId" 
